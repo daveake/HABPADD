@@ -1,0 +1,9 @@
+inherited frmTarget: TfrmTarget
+  Caption = 'Target Form'
+  DesignerMasterStyle = 0
+  object tmrUpdates: TTimer
+    OnTimer = tmrUpdatesTimer
+    Left = 32
+    Top = 384
+  end
+end

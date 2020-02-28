@@ -1,0 +1,150 @@
+inherited frmMap: TfrmMap
+  Caption = 'frmBase1'
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    object pnlTop: TPanel
+      Align = Top
+      Size.Width = 700.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'BasePanelStyle'
+      TabOrder = 3
+      object btnCar: TButton
+        Align = Scale
+        StyledSettings = [Family, Other]
+        Position.X = 346.000000000000000000
+        Size.Width = 116.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSButtonStyle'
+        TabOrder = 0
+        Text = 'Car'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnCarClick
+      end
+      object btnPayload: TButton
+        Align = Scale
+        StyledSettings = [Family, Other]
+        Position.X = 584.000000000000000000
+        Size.Width = 115.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSButtonStyle'
+        TabOrder = 1
+        Text = 'Payload'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnPayloadClick
+      end
+      object btnFree: TButton
+        Align = Scale
+        StyledSettings = [Family, Other]
+        Position.X = 465.000000000000000000
+        Size.Width = 116.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSButtonStyle'
+        TabOrder = 2
+        Text = 'Free'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnFreeClick
+      end
+      object Rectangle4: TRectangle
+        Align = Scale
+        Fill.Color = xFFF1DF6F
+        Position.X = 833.518493652343800000
+        Size.Width = 57.037048339843750000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object Rectangle6: TRectangle
+        Align = Scale
+        Fill.Color = xFFF1DF6F
+        Size.Width = 31.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object Rectangle1: TRectangle
+        Align = Scale
+        Fill.Color = claBlue
+        Position.X = 34.000000000000000000
+        Size.Width = 100.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object Rectangle2: TRectangle
+        Align = Scale
+        Fill.Color = claRed
+        Position.X = 138.000000000000000000
+        Size.Width = 100.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object Rectangle3: TRectangle
+        Align = Scale
+        Fill.Color = claLime
+        Position.X = 242.000000000000000000
+        Size.Width = 100.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+    end
+    object pnlCentre: TPanel
+      Align = Client
+      Size.Width = 700.000000000000000000
+      Size.Height = 392.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'BasePanelStyle'
+      TabOrder = 0
+      object Rectangle5: TRectangle
+        Align = Client
+        Margins.Left = 1.000000000000000000
+        Margins.Top = 2.000000000000000000
+        Margins.Right = 2.000000000000000000
+        Margins.Bottom = 2.000000000000000000
+        Size.Width = 697.000000000000000000
+        Size.Height = 388.000000000000000000
+        Size.PlatformDefault = False
+        object GMap: TTMSFMXWebGMaps
+          Align = Client
+          Version = '3.1.5.0'
+          Size.Width = 697.000000000000000000
+          Size.Height = 388.000000000000000000
+          Size.PlatformDefault = False
+          APIVersion = '3.34'
+          Clusters = <>
+          Markers = <>
+          Polylines = <>
+          Polygons = <>
+          Directions = <>
+          MapOptions.MapType = mtTerrain
+          MapOptions.DefaultLatitude = 52.000000000000000000
+          MapOptions.DefaultLongitude = 2.294297000000000000
+          Routing.PolylineOptions.Icons = <>
+          StreetViewOptions.DefaultLatitude = 52.000000000000000000
+          StreetViewOptions.DefaultLongitude = 2.294297000000000000
+          ControlsOptions.ControlsType = ctSmall
+          PolygonLabel.Font.Family = 'Arial'
+          TabOrder = 0
+          OnDownloadFinish = GMapDownloadFinish
+          OnMapIdle = GMapMapIdle
+          object tmrDirections: TTimer
+            Enabled = False
+            OnTimer = tmrDirectionsTimer
+            Left = 170
+            Top = 362
+          end
+        end
+      end
+    end
+  end
+  inherited tmrUpdates: TTimer
+    Left = 40
+    Top = 360
+  end
+end

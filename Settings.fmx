@@ -1,0 +1,147 @@
+inherited frmSettings: TfrmSettings
+  Caption = 'frmBase1'
+  StyleBook = frmMain.StyleBook1
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    object Rectangle2: TRectangle
+      Align = Top
+      Fill.Kind = None
+      Margins.Left = 8.000000000000000000
+      Margins.Right = 8.000000000000000000
+      Margins.Bottom = 8.000000000000000000
+      Position.X = 8.000000000000000000
+      Size.Width = 684.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object btnGPS: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Position.X = 93.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 0
+        Text = 'GPS'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnGPSClick
+      end
+      object btnUDP: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Position.X = 536.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 1
+        Text = 'UDP'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnUDPClick
+      end
+      object btnLoRaBT: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Position.X = 448.000000000000000000
+        Size.Width = 84.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 2
+        Text = 'BT'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnLoRaBTClick
+      end
+      object btnLoRaSerial: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Position.X = 364.000000000000000000
+        Size.Width = 81.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 3
+        Text = 'USB'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnLoRaSerialClick
+      end
+      object btnGateway1: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Position.X = 156.000000000000000000
+        Size.Width = 101.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 4
+        Text = 'Gateway 1'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnGateway1Click
+      end
+      object btnHabitat: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Position.X = 605.000000000000000000
+        Size.Width = 84.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 5
+        Text = 'Habitat'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnHabitatClick
+      end
+      object btnGeneral: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Size.Width = 89.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 6
+        Text = 'General'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnGeneralClick
+      end
+      object btnGateway2: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Position.X = 260.000000000000000000
+        Size.Width = 101.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 7
+        Text = 'Gateway 2'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnGateway2Click
+      end
+    end
+  end
+end

@@ -1,0 +1,224 @@
+inherited frmLog: TfrmLog
+  Caption = ''
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    object lstLog: TListBox
+      Align = Client
+      Margins.Left = 8.000000000000000000
+      Margins.Right = 8.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 424.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'LCARSListBoxStyle'
+      TabOrder = 0
+      AlternatingRowBackground = True
+      DisableFocusEffect = True
+      ItemHeight = 40.000000000000000000
+      DefaultItemStyles.ItemStyle = 'LCARSListBoxItemStyleCentred'
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 380.000000000000000000
+      Viewport.Height = 404.000000000000000000
+      object lstSpeech: TListBox
+        Position.X = 96.000000000000000000
+        Position.Y = 56.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 297.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Visible = False
+        DisableFocusEffect = True
+        DefaultItemStyles.ItemStyle = ''
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+        Viewport.Width = 189.000000000000000000
+        Viewport.Height = 293.000000000000000000
+      end
+    end
+    object Rectangle1: TRectangle
+      Align = Right
+      Fill.Kind = None
+      Margins.Top = 4.000000000000000000
+      Position.X = 416.000000000000000000
+      Position.Y = 4.000000000000000000
+      Size.Width = 284.000000000000000000
+      Size.Height = 420.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claWhite
+      Stroke.Thickness = 0.000000000000000000
+      object Button3: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Left = 4.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 4.000000000000000000
+        Position.Y = 126.000000000000000000
+        Size.Width = 276.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 0
+        Text = 'Filling Balloon'
+        TextSettings.Font.Size = 32.000000000000000000
+        OnClick = btnClick
+      end
+      object Button1: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Left = 4.000000000000000000
+        Margins.Top = 8.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 4.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 276.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 1
+        Text = 'Waiting For Weather'
+        TextSettings.Font.Size = 32.000000000000000000
+        OnClick = btnClick
+      end
+      object Button2: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Left = 4.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 4.000000000000000000
+        Position.Y = 67.000000000000000000
+        Size.Width = 276.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 2
+        Text = 'Preparing Trackers'
+        TextSettings.Font.Size = 32.000000000000000000
+        OnClick = btnClick
+      end
+      object Button4: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Left = 4.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 4.000000000000000000
+        Position.Y = 185.000000000000000000
+        Size.Width = 276.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 3
+        Text = 'Launch Delayed'
+        TextSettings.Font.Size = 32.000000000000000000
+        OnClick = btnClick
+      end
+      object Button5: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Left = 4.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 4.000000000000000000
+        Position.Y = 244.000000000000000000
+        Size.Width = 276.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 4
+        Text = 'Launching Soon'
+        TextSettings.Font.Size = 32.000000000000000000
+        OnClick = btnClick
+      end
+      object Button6: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Left = 4.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 4.000000000000000000
+        Position.Y = 303.000000000000000000
+        Size.Width = 276.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 5
+        Text = 'Payload Located'
+        TextSettings.Font.Size = 32.000000000000000000
+        OnClick = btnClick
+      end
+      object Button7: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Left = 4.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 4.000000000000000000
+        Position.Y = 362.000000000000000000
+        Size.Width = 276.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 6
+        Text = 'Payload Recovered'
+        TextSettings.Font.Size = 32.000000000000000000
+        OnClick = btnClick
+      end
+    end
+  end
+  object OAuth1_Twitter: TOAuth1Authenticator
+    AccessToken = '23782664-LzmHiup9BrwW9Ii8TkPBiof08Y2tBGPj2BKOmHd6w'
+    AccessTokenSecret = 'Gl3CjHgGA0qKaNiy9YbR8bbNhUa4D49sT4AO88GUuCUtx'
+    AccessTokenEndpoint = 'https://api.twitter.com/oauth/access_token'
+    RequestTokenEndpoint = 'https://api.twitter.com/oauth/request_token'
+    AuthenticationEndpoint = 'https://api.twitter.com/oauth/authenticate'
+    CallbackEndpoint = 'oob'
+    ConsumerKey = '1aVCt7DII4fQ0O2B6YDXlC0ep'
+    ConsumerSecret = '45sOumHgTDhXb9M46RuvLZG8fsC7JSre73YWS1Myz0xlZqpU7u'
+    VerifierPIN = '4141357'
+    Left = 368
+    Top = 45
+    ConsumerSecrect = '45sOumHgTDhXb9M46RuvLZG8fsC7JSre73YWS1Myz0xlZqpU7u'
+  end
+  object RESTClient: TRESTClient
+    Authenticator = OAuth1_Twitter
+    Params = <>
+    Left = 368
+    Top = 128
+  end
+  object RESTRequest: TRESTRequest
+    Client = RESTClient
+    Params = <>
+    Response = RESTResponse
+    SynchronizedEvents = False
+    Left = 368
+    Top = 208
+  end
+  object RESTResponse: TRESTResponse
+    Left = 368
+    Top = 280
+  end
+end

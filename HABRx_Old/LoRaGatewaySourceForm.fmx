@@ -1,0 +1,12 @@
+inherited frmLoRaGateway: TfrmLoRaGateway
+  Caption = 'frmSource1'
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    inherited lstData: TListBox
+      Items.Strings = (
+        'LoRa Gateway Source ...')
+      Viewport.Width = 696.000000000000000000
+      Viewport.Height = 420.000000000000000000
+    end
+  end
+end

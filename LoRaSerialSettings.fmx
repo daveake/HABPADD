@@ -1,0 +1,170 @@
+inherited frmLoRaSerialSettings: TfrmLoRaSerialSettings
+  Caption = 'frmSettingsBase1'
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    inherited Panel1: TPanel
+      Size.Height = 213.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Height = 205.000000000000000000
+        inherited Memo1: TMemo
+          Lines.Strings = (
+            
+              'Set the frequency and mode to match your payload.  These setting' +
+              's are sent to the attached receiver after you touch Apply.'
+            #11
+            
+              'The Enable buttons enable uploading telemetry/SSDV from this dev' +
+              'ice to Habitat.')
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Size.Height = 199.000000000000000000
+          Viewport.Width = 675.000000000000000000
+          Viewport.Height = 199.000000000000000000
+        end
+      end
+    end
+    inherited Panel3: TPanel
+      Size.Height = 137.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Height = 129.000000000000000000
+      end
+      object Label2: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 24.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 89.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Frequency:'
+        TabOrder = 9
+      end
+      object edtFrequency: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 1
+        KeyboardType = DecimalNumberPad
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Position.X = 124.000000000000000000
+        Position.Y = 14.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnChangeTracking = edtPortChangeTracking
+        Size.Width = 202.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+      object Label3: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 16.000000000000000000
+        Position.Y = 80.000000000000000000
+        Size.Width = 97.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Mode:'
+        TabOrder = 8
+      end
+      object btnModeDown: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 124.000000000000000000
+        Position.Y = 73.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = '<'
+        TabOrder = 6
+        OnClick = btnModeDownClick
+      end
+      object edtMode: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 0
+        ReadOnly = True
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Position.X = 199.000000000000000000
+        Position.Y = 73.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnChangeTracking = edtPortChangeTracking
+        Size.Width = 52.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+      object btnModeUp: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 262.000000000000000000
+        Position.Y = 73.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = '>'
+        TabOrder = 4
+        OnClick = btnModeUpClick
+      end
+      object chkHabitat: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 439.000000000000000000
+        Position.Y = 12.000000000000000000
+        Size.Width = 241.000000000000000000
+        Size.Height = 45.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'Enable Telemetry Upload'
+        TabOrder = 5
+        OnClick = chkHabitatClick
+      end
+      object chkSSDV: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 438.000000000000000000
+        Position.Y = 69.000000000000000000
+        Size.Width = 243.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'Enable SSDV Upload'
+        TabOrder = 2
+        OnClick = chkHabitatClick
+      end
+    end
+    inherited Panel2: TPanel
+      Position.Y = 137.000000000000000000
+    end
+  end
+end

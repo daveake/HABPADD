@@ -1,0 +1,142 @@
+inherited frmGeneralSettings: TfrmGeneralSettings
+  Caption = 'frmSettingsBase1'
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    inherited Panel1: TPanel
+      Size.Height = 221.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Height = 213.000000000000000000
+        inherited Memo1: TMemo
+          Lines.Strings = (
+            
+              '"Your Callsign" is used for telemetry uploads from this program.' +
+              '  Normally we leave it to the telemetry receiver (e.g. dl-fldigi' +
+              ' or the LoRa Gateway) to upload to Habitat, but sometimes you ma' +
+              'y use a source (e.g. the a Bluetooth LoRa Receiver) that does no' +
+              't upload.'
+            ''
+            
+              '"Position Beeps" enables a short speaker beep for every incoming' +
+              ' telemetry position.'
+            ''
+            '"Alarm Beeps" enables beeps for alarms such as Signal Loss.'#11
+            
+              '"Speech" enables text-to-speech for log entries.  Works on Andro' +
+              'id only.')
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Size.Height = 207.000000000000000000
+          Viewport.Width = 675.000000000000000000
+          Viewport.Height = 207.000000000000000000
+        end
+      end
+    end
+    inherited Panel3: TPanel
+      Size.Height = 129.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Height = 121.000000000000000000
+        object edtCallsign: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 0
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 272.000000000000000000
+          Position.Y = 16.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtCallsignChangeTracking
+          Size.Width = 193.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object Label3: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = 24.000000000000000000
+          Position.Y = 16.000000000000000000
+          Size.Width = 233.000000000000000000
+          Size.Height = 36.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 18.000000000000000000
+          Text = 'Your Callsign:'
+          TabOrder = 1
+        end
+      end
+      object chkTweet: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 16.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 249.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'Post Updates To Twitter'
+        TabOrder = 3
+        OnClick = chkSettingsClick
+      end
+      object chkPositionBeeps: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 272.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 161.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'Position Beeps'
+        TabOrder = 2
+        OnClick = chkSettingsClick
+      end
+      object chkAlarmBeeps: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 440.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 137.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'Alarm Beeps'
+        TabOrder = 1
+        OnClick = chkSettingsClick
+      end
+      object chkSpeech: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 584.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 97.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'Speech'
+        TabOrder = 0
+        OnClick = chkSettingsClick
+      end
+    end
+    inherited Panel2: TPanel
+      Position.Y = 129.000000000000000000
+    end
+  end
+end

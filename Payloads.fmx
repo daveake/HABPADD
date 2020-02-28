@@ -1,0 +1,40 @@
+inherited frmPayloads: TfrmPayloads
+  Caption = 'Payloads'
+  StyleBook = frmMain.StyleBook1
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    object Rectangle1: TRectangle
+      Align = Scale
+      Fill.Color = claBlack
+      Position.X = 4.000000000000000000
+      Position.Y = 6.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 413.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claYellow
+      Stroke.Thickness = 2.000000000000000000
+    end
+    object Rectangle2: TRectangle
+      Align = Scale
+      Fill.Kind = None
+      Position.X = 236.000000000000000000
+      Position.Y = 6.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 413.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claYellow
+      Stroke.Thickness = 2.000000000000000000
+    end
+    object Rectangle3: TRectangle
+      Align = Scale
+      Fill.Color = claBlack
+      Position.X = 468.000000000000000000
+      Position.Y = 6.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 413.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claYellow
+      Stroke.Thickness = 2.000000000000000000
+    end
+  end
+end

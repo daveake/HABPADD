@@ -1,0 +1,225 @@
+inherited frmDirection: TfrmDirection
+  Caption = ''
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    object lblAltitude: TLabel
+      Align = Scale
+      StyledSettings = [Family, Style, FontColor, Other]
+      Position.X = 496.000000000000000000
+      Position.Y = 185.000000000000000000
+      Size.Width = 192.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'YellowLabelRectangleStyle'
+      TextSettings.Font.Size = 32.000000000000000000
+      TabOrder = 2
+    end
+    object crcCompass: TCircle
+      Align = Scale
+      Fill.Kind = None
+      Position.X = 2.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 414.000000000000000000
+      Size.Height = 400.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFF1DF6F
+      Stroke.Thickness = 40.000000000000000000
+      object crcDot: TCircle
+        Align = Scale
+        Fill.Color = claRed
+        Position.X = 191.833663940429700000
+        Position.Y = 1.723196983337402000
+        Size.Width = 35.251480102539060000
+        Size.Height = 37.048732757568360000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 2.000000000000000000
+      end
+      object Label1: TLabel
+        Align = Client
+        StyledSettings = [Style]
+        Margins.Top = 64.000000000000000000
+        Size.Width = 414.000000000000000000
+        Size.Height = 336.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Swiss911 UCm BT'
+        TextSettings.Font.Size = 36.000000000000000000
+        TextSettings.FontColor = xFFF1DF6F
+        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Leading
+        Text = 'Distance'
+        TabOrder = 1
+      end
+      object lblDistance: TLabel
+        Align = Client
+        StyledSettings = [Style]
+        Margins.Bottom = 24.000000000000000000
+        Size.Width = 414.000000000000000000
+        Size.Height = 376.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Swiss911 UCm BT'
+        TextSettings.Font.Size = 96.000000000000000000
+        TextSettings.FontColor = claYellow
+        TextSettings.HorzAlign = Center
+        TabOrder = 2
+      end
+      object lblRelativeAltitude: TLabel
+        Align = Client
+        StyledSettings = [Style]
+        Margins.Bottom = 48.000000000000000000
+        Size.Width = 414.000000000000000000
+        Size.Height = 352.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Swiss911 UCm BT'
+        TextSettings.Font.Size = 36.000000000000000000
+        TextSettings.FontColor = claYellow
+        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Trailing
+        TabOrder = 3
+      end
+      object chkPrediction: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 111.000000000000000000
+        Position.Y = 256.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'Use Prediction'
+        TabOrder = 4
+        OnClick = chkPredictionClick
+      end
+    end
+    object lblAscentRate: TLabel
+      Align = Scale
+      StyledSettings = [Family, Style, FontColor, Other]
+      Position.X = 496.000000000000000000
+      Position.Y = 270.000000000000000000
+      Size.Width = 194.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'YellowLabelRectangleStyle'
+      TextSettings.Font.Size = 32.000000000000000000
+      TabOrder = 7
+    end
+    object Label3: TLabel
+      Align = Scale
+      StyledSettings = [Style]
+      Margins.Bottom = 64.000000000000000000
+      Position.X = 430.000000000000000000
+      Position.Y = 185.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Swiss911 UCm BT'
+      TextSettings.Font.Size = 36.000000000000000000
+      TextSettings.FontColor = xFFF1DF6F
+      TextSettings.HorzAlign = Trailing
+      Text = 'Alt:'
+      TabOrder = 6
+    end
+    object Label2: TLabel
+      Align = Scale
+      StyledSettings = [Style]
+      Margins.Bottom = 64.000000000000000000
+      Position.X = 430.000000000000000000
+      Position.Y = 270.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Swiss911 UCm BT'
+      TextSettings.Font.Size = 36.000000000000000000
+      TextSettings.FontColor = xFFF1DF6F
+      TextSettings.HorzAlign = Trailing
+      Text = 'Rate:'
+      TabOrder = 4
+    end
+    object Label4: TLabel
+      Align = Scale
+      StyledSettings = [Style]
+      Margins.Bottom = 64.000000000000000000
+      Position.X = 430.000000000000000000
+      Position.Y = 14.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Swiss911 UCm BT'
+      TextSettings.Font.Size = 36.000000000000000000
+      TextSettings.FontColor = xFFF1DF6F
+      TextSettings.HorzAlign = Trailing
+      Text = 'Lat:'
+      TabOrder = 5
+    end
+    object lblLatitude: TLabel
+      Align = Scale
+      StyledSettings = [Family, Style, FontColor, Other]
+      Position.X = 496.000000000000000000
+      Position.Y = 14.000000000000000000
+      Size.Width = 192.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'YellowLabelRectangleStyle'
+      TextSettings.Font.Size = 32.000000000000000000
+      TabOrder = 0
+    end
+    object Label6: TLabel
+      Align = Scale
+      StyledSettings = [Style]
+      Margins.Bottom = 64.000000000000000000
+      Position.X = 430.000000000000000000
+      Position.Y = 99.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Swiss911 UCm BT'
+      TextSettings.Font.Size = 36.000000000000000000
+      TextSettings.FontColor = xFFF1DF6F
+      TextSettings.HorzAlign = Trailing
+      Text = 'Lon:'
+      TabOrder = 1
+    end
+    object lblLongitude: TLabel
+      Align = Scale
+      StyledSettings = [Family, Style, FontColor, Other]
+      Position.X = 496.000000000000000000
+      Position.Y = 99.000000000000000000
+      Size.Width = 194.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'YellowLabelRectangleStyle'
+      TextSettings.Font.Size = 32.000000000000000000
+      TabOrder = 3
+    end
+    object lblTTL: TLabel
+      Align = Scale
+      StyledSettings = [Family, Style, FontColor, Other]
+      Position.X = 496.000000000000000000
+      Position.Y = 356.000000000000000000
+      Size.Width = 194.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'YellowLabelRectangleStyle'
+      TextSettings.Font.Size = 32.000000000000000000
+      TabOrder = 8
+    end
+    object Label5: TLabel
+      Align = Scale
+      StyledSettings = [Style]
+      Margins.Bottom = 64.000000000000000000
+      Position.X = 430.000000000000000000
+      Position.Y = 356.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Swiss911 UCm BT'
+      TextSettings.Font.Size = 36.000000000000000000
+      TextSettings.FontColor = xFFF1DF6F
+      TextSettings.HorzAlign = Trailing
+      Text = 'TTL:'
+      TabOrder = 9
+    end
+  end
+end

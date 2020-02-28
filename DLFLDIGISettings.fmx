@@ -1,0 +1,66 @@
+inherited frmDLFLDIGISettings: TfrmDLFLDIGISettings
+  Caption = 'frmSettingsBase1'
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    inherited Panel1: TPanel
+      Size.Height = 261.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Height = 253.000000000000000000
+        inherited Memo1: TMemo
+          Lines.Strings = (
+            '"Port" is the UDP port to listen on.'#11
+            ''
+            
+              'To use this feature, the computer running dl-fldigi (or fldigi) ' +
+              'needs to run the "dl-fldigi UDP broadcaster" which receives tele' +
+              'metry from dl-fldigi via TCP/IP port 7322, and then broadcasts i' +
+              't on a UDP port.')
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Size.Height = 247.000000000000000000
+          Viewport.Width = 675.000000000000000000
+          Viewport.Height = 247.000000000000000000
+        end
+      end
+    end
+    inherited Panel3: TPanel
+      Size.Height = 89.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Height = 81.000000000000000000
+        object Label1: TLabel
+          StyledSettings = [Family, Size, Style, FontColor, Other]
+          Position.X = 184.000000000000000000
+          Position.Y = 24.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          Text = 'Port:'
+          TabOrder = 0
+        end
+        object edtPort: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 1
+          TextSettings.Font.Size = 32.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 320.000000000000000000
+          Position.Y = 16.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtPortChangeTracking
+          Size.Width = 105.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.2'
+          Lookup.Separator = ';'
+        end
+      end
+    end
+    inherited Panel2: TPanel
+      Position.Y = 89.000000000000000000
+    end
+  end
+end

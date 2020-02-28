@@ -1,0 +1,35 @@
+inherited frmLoRaGatewaySettings2: TfrmLoRaGatewaySettings2
+  Caption = 'frmLoRaGatewaySettings1'
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    inherited Panel1: TPanel
+      inherited Rectangle3: TRectangle
+        inherited Memo1: TMemo
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Viewport.Width = 675.000000000000000000
+          Viewport.Height = 183.000000000000000000
+        end
+      end
+    end
+    inherited Panel3: TPanel
+      inherited Label2: TLabel
+        TabOrder = 17
+      end
+      inherited edtMode1: TTMSFMXEdit
+        TabOrder = 14
+      end
+      inherited Label5: TLabel
+        TabOrder = 22
+      end
+      inherited edtFrequency2: TTMSFMXEdit
+        TabOrder = 16
+      end
+      inherited Label6: TLabel
+        TabOrder = 20
+      end
+      inherited edtMode2: TTMSFMXEdit
+        TabOrder = 13
+      end
+    end
+  end
+end

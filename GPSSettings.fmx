@@ -1,0 +1,157 @@
+inherited frmGPSSettings: TfrmGPSSettings
+  Caption = 'frmSettingsBase1'
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    inherited Panel1: TPanel
+      Size.Height = 221.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Height = 213.000000000000000000
+        inherited Memo1: TMemo
+          Lines.Strings = (
+            
+              '"Enable Upload" enables uploading of your position to Habitat, w' +
+              'here it will appear as a chase car icon.'
+            ''
+            
+              '"Chase Car ID" is the label used for that icon.  "_chase" is aut' +
+              'omatically appended so you don'#39't need to include that yourself.'
+            ''
+            
+              '"Period" is the time, in seconds, between position updates to Ha' +
+              'bitat.')
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Size.Height = 207.000000000000000000
+          Viewport.Width = 675.000000000000000000
+          Viewport.Height = 207.000000000000000000
+        end
+      end
+    end
+    inherited Panel3: TPanel
+      Size.Height = 129.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Height = 121.000000000000000000
+        object edtPort: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 0
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 192.000000000000000000
+          Position.Y = 8.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtPortChangeTracking
+          Size.Width = 137.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object edtPeriod: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 1
+          KeyboardType = NumberPad
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 600.000000000000000000
+          Position.Y = 64.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtPortChangeTracking
+          Size.Width = 65.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object edtCallsign: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 2
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 192.000000000000000000
+          Position.Y = 64.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtPortChangeTracking
+          Size.Width = 241.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object Label1: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = 48.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 36.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 16.000000000000000000
+          Text = 'Serial Port:'
+          TabOrder = 3
+        end
+        object Label2: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = 464.000000000000000000
+          Position.Y = 64.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 36.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 16.000000000000000000
+          Text = 'Period (s):'
+          TabOrder = 4
+        end
+        object Label3: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = 24.000000000000000000
+          Position.Y = 64.000000000000000000
+          Size.Width = 145.000000000000000000
+          Size.Height = 36.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 16.000000000000000000
+          Text = 'Chase Car ID:'
+          TabOrder = 5
+        end
+      end
+      object chkUpload: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 512.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 161.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'Enable Upload'
+        TabOrder = 1
+        OnClick = chkSettingsClick
+      end
+    end
+    inherited Panel2: TPanel
+      Position.Y = 129.000000000000000000
+    end
+  end
+end

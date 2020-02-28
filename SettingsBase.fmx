@@ -1,0 +1,120 @@
+inherited frmSettingsBase: TfrmSettingsBase
+  Caption = 'frmBase1'
+  ClientHeight = 390
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    Size.Height = 390.000000000000000000
+    object Panel1: TPanel
+      Align = Client
+      Size.Width = 700.000000000000000000
+      Size.Height = 245.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'BasePanelStyle'
+      TabOrder = 0
+      object Rectangle3: TRectangle
+        Align = Client
+        Fill.Kind = None
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        Size.Width = 684.000000000000000000
+        Size.Height = 237.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claWhite
+        object Memo1: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          StyledSettings = [Family, Style, FontColor]
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.WordWrap = True
+          Align = Client
+          Margins.Left = 6.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 3.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Size.Width = 675.000000000000000000
+          Size.Height = 231.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSMemoStyle'
+          TabOrder = 0
+          Viewport.Width = 675.000000000000000000
+          Viewport.Height = 231.000000000000000000
+        end
+      end
+      object tmrLoadSettings: TTimer
+        Enabled = False
+        Interval = 100
+        OnTimer = tmrLoadSettingsTimer
+        Left = 496
+        Top = 282
+      end
+    end
+    object Panel3: TPanel
+      Align = Top
+      Size.Width = 700.000000000000000000
+      Size.Height = 105.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'BasePanelStyle'
+      TabOrder = 2
+      object Rectangle1: TRectangle
+        Align = Client
+        Fill.Kind = None
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        Size.Width = 684.000000000000000000
+        Size.Height = 97.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claWhite
+        OnClick = Rectangle1Click
+      end
+    end
+    object Panel2: TPanel
+      Align = Top
+      Position.Y = 105.000000000000000000
+      Size.Width = 700.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'BasePanelStyle'
+      TabOrder = 1
+      object btnApply: TButton
+        StaysPressed = True
+        Align = Right
+        Enabled = False
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 530.000000000000000000
+        Size.Width = 81.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 0
+        Text = 'Apply'
+        TextSettings.Font.Size = 28.000000000000000000
+        OnClick = btnApplyClick
+      end
+      object btnCancel: TButton
+        StaysPressed = True
+        Align = Right
+        Enabled = False
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 615.000000000000000000
+        Size.Width = 81.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 1
+        Text = 'Cancel'
+        TextSettings.Font.Size = 28.000000000000000000
+        OnClick = btnCancelClick
+      end
+    end
+  end
+end

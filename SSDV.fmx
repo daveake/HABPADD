@@ -1,0 +1,5 @@
+inherited frmSSDV: TfrmSSDV
+  Caption = ''
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+end

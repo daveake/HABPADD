@@ -1,0 +1,19 @@
+inherited frmDebug: TfrmDebug
+  Caption = 'frmBase1'
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    object lstDebug: TListBox
+      Align = Client
+      Size.Width = 700.000000000000000000
+      Size.Height = 424.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 696.000000000000000000
+      Viewport.Height = 420.000000000000000000
+    end
+  end
+end

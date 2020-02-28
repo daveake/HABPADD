@@ -1,0 +1,322 @@
+inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
+  Caption = 'frmSettingsBase1'
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    inherited Panel1: TPanel
+      Size.Height = 197.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Height = 189.000000000000000000
+        inherited Memo1: TMemo
+          Lines.Strings = (
+            
+              '"Network Address" is the hostname or IP address of the Raspberry' +
+              ' Pi running the LoRa Gateway program.  If using hostname, please' +
+              ' enable UDP broadcast on the gateway(s) and UDP listening, on th' +
+              'e same port, in Settings/UDP'
+            ''
+            '"Port" is the TCP/IP port used by the gateway.'
+            ''
+            
+              'Channel frequency and mode are sent to the gateway after Apply i' +
+              's touched.'
+            ''
+            
+              'To configure the gateway, use a line such as the following in ga' +
+              'teway.txt, ensuring that the port number matches that used here.' +
+              #11
+            ''
+            #11
+            ''
+            'ServerPort=6004')
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Size.Height = 183.000000000000000000
+          Viewport.Width = 675.000000000000000000
+          Viewport.Height = 183.000000000000000000
+        end
+      end
+    end
+    inherited Panel3: TPanel
+      Size.Height = 153.000000000000000000
+      inherited Rectangle1: TRectangle
+        Align = Scale
+        Size.Height = 145.000000000000000000
+      end
+      object Label1: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 16.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 131.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Network Address:'
+        TabOrder = 4
+      end
+      object edtHost: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 0
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Position.X = 152.000000000000000000
+        Position.Y = 8.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnChangeTracking = edtHostChangeTracking
+        Size.Width = 329.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+      object Label3: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 496.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 57.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Port:'
+        TabOrder = 9
+      end
+      object edtPort: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 1
+        KeyboardType = NumberPad
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Position.X = 560.000000000000000000
+        Position.Y = 8.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnChangeTracking = edtHostChangeTracking
+        Size.Width = 113.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+      object Label2: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 4.000000000000000000
+        Position.Y = 48.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.HorzAlign = Trailing
+        Text = 'Ch0 Frequency:'
+        TabOrder = 20
+      end
+      object edtFrequency1: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 15
+        KeyboardType = DecimalNumberPad
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Position.X = 152.000000000000000000
+        Position.Y = 54.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnChangeTracking = edtHostChangeTracking
+        Size.Width = 202.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+      object Label4: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 368.000000000000000000
+        Position.Y = 57.000000000000000000
+        Size.Width = 97.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Mode:'
+        TabOrder = 21
+      end
+      object btnModeDown: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 476.000000000000000000
+        Position.Y = 57.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = '<'
+        TabOrder = 7
+        OnClick = btnModeDownClick
+      end
+      object edtMode1: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 13
+        ReadOnly = True
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Position.X = 551.000000000000000000
+        Position.Y = 57.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnChangeTracking = edtHostChangeTracking
+        Size.Width = 52.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+      object btnModeUp: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 614.000000000000000000
+        Position.Y = 57.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = '>'
+        TabOrder = 8
+        OnClick = btnModeUpClick
+      end
+      object Label5: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 6.000000000000000000
+        Position.Y = 96.000000000000000000
+        Size.Width = 141.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.HorzAlign = Trailing
+        Text = 'Ch1 Frequency:'
+        TabOrder = 19
+      end
+      object edtFrequency2: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 14
+        KeyboardType = DecimalNumberPad
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Position.X = 152.000000000000000000
+        Position.Y = 102.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnChangeTracking = edtHostChangeTracking
+        Size.Width = 200.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+      object Label6: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 368.000000000000000000
+        Position.Y = 105.000000000000000000
+        Size.Width = 97.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Mode:'
+        TabOrder = 18
+      end
+      object Label7: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 476.000000000000000000
+        Position.Y = 105.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = '<'
+        TabOrder = 5
+        OnClick = Label7Click
+      end
+      object edtMode2: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 12
+        ReadOnly = True
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Position.X = 551.000000000000000000
+        Position.Y = 105.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnChangeTracking = edtHostChangeTracking
+        Size.Width = 52.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+      object Label8: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 614.000000000000000000
+        Position.Y = 105.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = '>'
+        TabOrder = 6
+        OnClick = Label8Click
+      end
+    end
+    inherited Panel2: TPanel
+      Position.Y = 153.000000000000000000
+    end
+  end
+end
