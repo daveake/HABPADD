@@ -634,7 +634,7 @@ begin
     if frmPayloads <> nil then begin
         for Index := Low(Payloads) to High(Payloads) do begin
             if Payloads[Index].Position.InUse and (Payloads[Index].Position.ReceivedAt > 0) then begin
-                frmPayloads.ShowTimeSinceUpdate(Index, Now - Payloads[Index].Position.ReceivedAt);
+                frmPayloads.ShowTimeSinceUpdate(Index, Now - Payloads[Index].Position.ReceivedAt, Payloads[Index].Position.Repeated);
                 if (Now - Payloads[Index].Position.ReceivedAt) > 60/86400 then begin
                     if not Payloads[Index].LoggedLoss then begin
                         Payloads[Index].Button.TextSettings.FontColor := TAlphaColorRec.Red;

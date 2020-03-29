@@ -21,7 +21,7 @@ type
   public
     { Public declarations }
     procedure NewPosition(Index: Integer; HABPosition: THABPosition); override;
-    procedure ShowTimeSinceUpdate(Index: Integer; TimeSinceUpdate: TDateTime);
+    procedure ShowTimeSinceUpdate(Index: Integer; TimeSinceUpdate: TDateTime; Repeated: Boolean);
   end;
 
 var
@@ -33,11 +33,20 @@ implementation
 
 uses Main;
 
+function RepeatString(Repeated: Boolean): String;
+begin
+    if Repeated then begin
+        Result := ' (R)';
+    end else begin
+        Result := '';
+    end;
+end;
+
 procedure TfrmPayloads.NewPosition(Index: Integer; HABPosition: THABPosition);
 begin
     if (Index >= Low(Rectangles)) and (Index <= High(Rectangles)) then begin
         Labels[Index,0].Text := HABPosition.PayloadID;
-        Labels[Index,1].Text := '00:00';
+        Labels[Index,1].Text := '00:00' + RepeatString(HABPosition.Repeated);
 
         Labels[Index,3].Text := FormatDateTime('hh:mm:ss', HABPosition.TimeStamp);
         Labels[Index,4].Text := FormatFloat('0.00000', HABPosition.Latitude) + ',' + FormatFloat('0.00000', HABPosition.Longitude);
@@ -94,10 +103,10 @@ begin
     end;
 end;
 
-procedure TfrmPayloads.ShowTimeSinceUpdate(Index: Integer; TimeSinceUpdate: TDateTime);
+procedure TfrmPayloads.ShowTimeSinceUpdate(Index: Integer; TimeSinceUpdate: TDateTime; Repeated: Boolean);
 begin
     if (Index >= Low(Rectangles)) and (Index <= High(Rectangles)) then begin
-        Labels[Index,1].Text := FormatDateTime('nn:ss', TimeSinceUpdate);
+        Labels[Index,1].Text := FormatDateTime('nn:ss', TimeSinceUpdate) + RepeatString(Repeated);
     end;
 end;
 
