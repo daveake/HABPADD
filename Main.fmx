@@ -82,7 +82,7 @@ object frmMain: TfrmMain
         Tag = 2
         Align = Scale
         StyledSettings = [Family]
-        Opacity = 0.699999988079071100
+        Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
         Position.X = 46.000000000000000000
         Size.Width = 40.000000000000000000
@@ -98,7 +98,7 @@ object frmMain: TfrmMain
         Tag = 2
         Align = Scale
         StyledSettings = [Family]
-        Opacity = 0.699999988079071100
+        Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
         Position.X = 89.000000000000000000
         Size.Width = 40.000000000000000000
@@ -114,7 +114,7 @@ object frmMain: TfrmMain
         Tag = 2
         Align = Scale
         StyledSettings = [Family]
-        Opacity = 0.699999988079071100
+        Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
         Position.X = 3.000000000000000000
         Size.Width = 40.000000000000000000
@@ -130,7 +130,7 @@ object frmMain: TfrmMain
           Position.X = 32.000003814697270000
           Position.Y = 0.959999918937683100
           Size.Width = 7.111110687255859000
-          Size.Height = 7.679998397827149000
+          Size.Height = 7.679998397827148000
           Size.PlatformDefault = False
         end
       end
@@ -138,7 +138,7 @@ object frmMain: TfrmMain
         Tag = 2
         Align = Scale
         StyledSettings = [Family]
-        Opacity = 0.699999988079071100
+        Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
         Position.X = 218.000000000000000000
         Size.Width = 40.000000000000000000
@@ -154,7 +154,7 @@ object frmMain: TfrmMain
         Tag = 2
         Align = Scale
         StyledSettings = [Family]
-        Opacity = 0.699999988079071100
+        Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
         Position.X = 175.000000000000000000
         Size.Width = 40.000000000000000000
@@ -170,7 +170,7 @@ object frmMain: TfrmMain
           Position.X = 32.000003814697270000
           Position.Y = 0.959999918937683100
           Size.Width = 7.111110687255859000
-          Size.Height = 7.679998397827149000
+          Size.Height = 7.679998397827148000
           Size.PlatformDefault = False
         end
       end
@@ -178,7 +178,7 @@ object frmMain: TfrmMain
         Tag = 2
         Align = Scale
         StyledSettings = [Family]
-        Opacity = 0.699999988079071100
+        Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
         Position.X = 132.000000000000000000
         Size.Width = 40.000000000000000000
@@ -194,7 +194,7 @@ object frmMain: TfrmMain
           Position.X = 32.000000000000000000
           Position.Y = 0.959999918937683100
           Size.Width = 7.111114501953125000
-          Size.Height = 7.679998397827149000
+          Size.Height = 7.679998397827148000
           Size.PlatformDefault = False
         end
       end
@@ -202,7 +202,7 @@ object frmMain: TfrmMain
         Tag = 2
         Align = Scale
         StyledSettings = [Family]
-        Opacity = 0.699999988079071100
+        Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
         Position.X = 261.000000000000000000
         Size.Width = 40.000000000000000000
@@ -1058,7 +1058,7 @@ object frmMain: TfrmMain
           Tag = 1
           Align = Scale
           StyledSettings = [Family]
-          Opacity = 0.699999988079071100
+          Opacity = 0.699999988079071000
           Position.X = 2.981072425842285000
           Size.Width = 99.369087219238280000
           Size.Height = 25.000000000000000000
@@ -1072,7 +1072,7 @@ object frmMain: TfrmMain
           Tag = 2
           Align = Scale
           StyledSettings = [Family]
-          Opacity = 0.699999988079071100
+          Opacity = 0.699999988079071000
           Position.X = 105.331230163574200000
           Size.Width = 99.369087219238280000
           Size.Height = 25.000000000000000000
@@ -1086,7 +1086,7 @@ object frmMain: TfrmMain
           Tag = 3
           Align = Scale
           StyledSettings = [Family]
-          Opacity = 0.699999988079071100
+          Opacity = 0.699999988079071000
           Position.X = 207.681365966796900000
           Size.Width = 99.369110107421880000
           Size.Height = 25.000000000000000000
@@ -1142,7 +1142,7 @@ object frmMain: TfrmMain
         StyledSettings = [Family, Other]
         Position.Y = 275.478271484375000000
         Size.Width = 96.000000000000000000
-        Size.Height = 52.173919677734370000
+        Size.Height = 52.173919677734380000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSButtonStyle'
         TabOrder = 1
@@ -1155,7 +1155,7 @@ object frmMain: TfrmMain
         StyledSettings = [Family, Other]
         Position.Y = 103.304344177246100000
         Size.Width = 96.000000000000000000
-        Size.Height = 52.173912048339850000
+        Size.Height = 52.173912048339840000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSButtonStyle'
         TabOrder = 2
@@ -1168,7 +1168,7 @@ object frmMain: TfrmMain
         StyledSettings = [Family, Other]
         Position.Y = 160.695648193359400000
         Size.Width = 96.000000000000000000
-        Size.Height = 52.173919677734370000
+        Size.Height = 52.173919677734380000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSButtonStyle'
         TabOrder = 3
@@ -1181,7 +1181,7 @@ object frmMain: TfrmMain
         StyledSettings = [Family, Other]
         Position.Y = -11.478260993957520000
         Size.Width = 96.000000000000000000
-        Size.Height = 52.173912048339850000
+        Size.Height = 52.173912048339840000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSButtonStyle'
         TabOrder = 4
@@ -1194,7 +1194,7 @@ object frmMain: TfrmMain
         StyledSettings = [Family, Other]
         Position.Y = 332.869567871093800000
         Size.Width = 96.000000000000000000
-        Size.Height = 52.173919677734370000
+        Size.Height = 52.173919677734380000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSButtonStyle'
         TabOrder = 5
@@ -1220,7 +1220,7 @@ object frmMain: TfrmMain
         StyledSettings = [Family, Other]
         Position.Y = 390.260864257812500000
         Size.Width = 96.000000000000000000
-        Size.Height = 52.173919677734370000
+        Size.Height = 52.173919677734380000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSButtonStyle'
         TabOrder = 6

@@ -29,7 +29,6 @@ uses
   GatewaySource in '..\HABRx\GatewaySource.pas',
   GPSSource in '..\HABRx\GPSSource.pas',
   HabitatSource in '..\HABRx\HabitatSource.pas',
-  HABTypes in '..\HABRx\HABTypes.pas',
   Miscellaneous in '..\HABRx\Miscellaneous.pas',
   SerialSource in '..\HABRx\SerialSource.pas',
   SocketSource in '..\HABRx\SocketSource.pas',

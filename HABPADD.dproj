@@ -692,7 +692,6 @@
         <DCCReference Include="..\HABRx\GatewaySource.pas"/>
         <DCCReference Include="..\HABRx\GPSSource.pas"/>
         <DCCReference Include="..\HABRx\HabitatSource.pas"/>
-        <DCCReference Include="..\HABRx\HABTypes.pas"/>
         <DCCReference Include="..\HABRx\Miscellaneous.pas"/>
         <DCCReference Include="..\HABRx\SerialSource.pas"/>
         <DCCReference Include="..\HABRx\SocketSource.pas"/>

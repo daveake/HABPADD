@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  TargetForm, FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox, Source,
+  TargetForm, FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox, Miscellaneous, Source,
   FMX.Colors, FMX.Objects, Math;
 
 type
@@ -47,7 +47,7 @@ begin
     if (Index >= Low(Rectangles)) and (Index <= High(Rectangles)) then begin
         Labels[Index,0].Text := HABPosition.PayloadID;
         Labels[Index,1].Text := '00:00' + RepeatString(HABPosition.Repeated);
-
+        Labels[Index,2].Text := HABPosition.Counter.ToString;
         Labels[Index,3].Text := FormatDateTime('hh:mm:ss', HABPosition.TimeStamp);
         Labels[Index,4].Text := FormatFloat('0.00000', HABPosition.Latitude) + ',' + FormatFloat('0.00000', HABPosition.Longitude);
         if HABPosition.MaxAltitude > HABPosition.Altitude then begin
@@ -56,6 +56,8 @@ begin
             Labels[Index,5].Text := HABPosition.Altitude.ToString + 'm';
         end;
         Labels[Index,6].Text := FormatFloat('0.0', HABPosition.AscentRate) + ' m/s';
+
+        Labels[Index,7].Text := FormatFloat('0.0', HABPosition.Distance / 1000) + ' km, ' + FormatFloat('0.0', HABPosition.Elevation) + '°';
 
         if HABPosition.ContainsPrediction then begin
             Labels[Index,8].Text := FormatFloat('0.00000', HABPosition.PredictedLatitude) + ',' + FormatFloat('0.00000', HABPosition.PredictedLongitude);

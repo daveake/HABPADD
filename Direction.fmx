@@ -6,7 +6,7 @@ inherited frmDirection: TfrmDirection
       Align = Scale
       StyledSettings = [Family, Style, FontColor, Other]
       Position.X = 496.000000000000000000
-      Position.Y = 185.000000000000000000
+      Position.Y = 149.000000000000000000
       Size.Width = 192.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
@@ -97,7 +97,7 @@ inherited frmDirection: TfrmDirection
       Align = Scale
       StyledSettings = [Family, Style, FontColor, Other]
       Position.X = 496.000000000000000000
-      Position.Y = 270.000000000000000000
+      Position.Y = 218.000000000000000000
       Size.Width = 194.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
@@ -110,7 +110,7 @@ inherited frmDirection: TfrmDirection
       StyledSettings = [Style]
       Margins.Bottom = 64.000000000000000000
       Position.X = 430.000000000000000000
-      Position.Y = 185.000000000000000000
+      Position.Y = 149.000000000000000000
       Size.Width = 50.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
@@ -126,7 +126,7 @@ inherited frmDirection: TfrmDirection
       StyledSettings = [Style]
       Margins.Bottom = 64.000000000000000000
       Position.X = 430.000000000000000000
-      Position.Y = 270.000000000000000000
+      Position.Y = 218.000000000000000000
       Size.Width = 50.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
@@ -142,7 +142,7 @@ inherited frmDirection: TfrmDirection
       StyledSettings = [Style]
       Margins.Bottom = 64.000000000000000000
       Position.X = 430.000000000000000000
-      Position.Y = 14.000000000000000000
+      Position.Y = 10.000000000000000000
       Size.Width = 50.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
@@ -157,7 +157,7 @@ inherited frmDirection: TfrmDirection
       Align = Scale
       StyledSettings = [Family, Style, FontColor, Other]
       Position.X = 496.000000000000000000
-      Position.Y = 14.000000000000000000
+      Position.Y = 10.000000000000000000
       Size.Width = 192.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
@@ -170,7 +170,7 @@ inherited frmDirection: TfrmDirection
       StyledSettings = [Style]
       Margins.Bottom = 64.000000000000000000
       Position.X = 430.000000000000000000
-      Position.Y = 99.000000000000000000
+      Position.Y = 79.000000000000000000
       Size.Width = 50.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
@@ -185,7 +185,7 @@ inherited frmDirection: TfrmDirection
       Align = Scale
       StyledSettings = [Family, Style, FontColor, Other]
       Position.X = 496.000000000000000000
-      Position.Y = 99.000000000000000000
+      Position.Y = 79.000000000000000000
       Size.Width = 194.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
@@ -193,25 +193,41 @@ inherited frmDirection: TfrmDirection
       TextSettings.Font.Size = 32.000000000000000000
       TabOrder = 3
     end
-    object lblTTL: TLabel
+    object lblElevation: TLabel
       Align = Scale
       StyledSettings = [Family, Style, FontColor, Other]
       Position.X = 496.000000000000000000
-      Position.Y = 356.000000000000000000
+      Position.Y = 360.000000000000000000
       Size.Width = 194.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'YellowLabelRectangleStyle'
       TextSettings.Font.Size = 32.000000000000000000
-      TabOrder = 8
+      TabOrder = 9
     end
     object Label5: TLabel
       Align = Scale
       StyledSettings = [Style]
       Margins.Bottom = 64.000000000000000000
-      Position.X = 430.000000000000000000
-      Position.Y = 356.000000000000000000
-      Size.Width = 50.000000000000000000
+      Position.X = 388.000000000000000000
+      Position.Y = 360.000000000000000000
+      Size.Width = 92.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Swiss911 UCm BT'
+      TextSettings.Font.Size = 36.000000000000000000
+      TextSettings.FontColor = xFFF1DF6F
+      TextSettings.HorzAlign = Trailing
+      Text = 'Elevation:'
+      TabOrder = 11
+    end
+    object Label9: TLabel
+      Align = Scale
+      StyledSettings = [Style]
+      Margins.Bottom = 64.000000000000000000
+      Position.X = 388.000000000000000000
+      Position.Y = 288.000000000000000000
+      Size.Width = 92.000000000000000000
       Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Family = 'Swiss911 UCm BT'
@@ -219,7 +235,19 @@ inherited frmDirection: TfrmDirection
       TextSettings.FontColor = xFFF1DF6F
       TextSettings.HorzAlign = Trailing
       Text = 'TTL:'
-      TabOrder = 9
+      TabOrder = 10
+    end
+    object lblTTL: TLabel
+      Align = Scale
+      StyledSettings = [Family, Style, FontColor, Other]
+      Position.X = 496.000000000000000000
+      Position.Y = 288.000000000000000000
+      Size.Width = 194.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'YellowLabelRectangleStyle'
+      TextSettings.Font.Size = 32.000000000000000000
+      TabOrder = 8
     end
   end
 end
