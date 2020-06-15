@@ -7,7 +7,8 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, Math, Habitat, Miscellaneous,
   GPSSource, Source, Base, CarUpload, GatewaySource, HabitatSource, UDPSource, SerialSource, BluetoothSource,
-  System.DateUtils, System.TimeSpan, System.Sensors, System.Sensors.Components, BLESource;
+  System.DateUtils, System.TimeSpan, System.Sensors, System.Sensors.Components, BLESource,
+  IdBaseComponent, IdComponent, IdUDPBase, IdUDPClient;
 
 type
   TSourcePanel = record
@@ -62,6 +63,7 @@ type
     Label12: TLabel;
     lblGateway2RSSI: TLabel;
     lblSerialRSSI: TLabel;
+    UDPClient: TIdUDPClient;
     procedure FormCreate(Sender: TObject);
     procedure tmrGPSTimer(Sender: TObject);
     procedure OrientationSensor1SensorChoosing(Sender: TObject;
@@ -354,6 +356,7 @@ end;
 procedure TfrmSources.HABCallback(ID: Integer; Connected: Boolean; Line: String; Position: THABPosition);
 var
     Callsign: String;
+    Port: Integer;
 begin
     // New Position
     if Position.InUse then begin
@@ -372,6 +375,13 @@ begin
                 if Callsign <> '' then begin
                     HabitatUploader.SaveTelemetryToHabitat(ID, Position.Line, Callsign);
                 end;
+            end;
+        end;
+
+        if ID in [SERIAL_SOURCE, BLUETOOTH_SOURCE] then begin
+            Port := GetSettingInteger('General', 'UDPTxPort', 0);
+            if Port > 0 then begin
+                UDPClient.Broadcast(Position.Line, Port);
             end;
         end;
 

@@ -10,12 +10,16 @@ inherited frmUDPSettings: TfrmUDPSettings
         inherited Memo1: TMemo
           Lines.Strings = (
             
-              '"Port" is the UDP port to listen on.  To listen on more than one' +
-              ' port, separate them with commas.'#11
+              '"UDP Tx Port" is the port to transmit local telemetry (from USB ' +
+              'or Bluetooth) on to the local network.'
             ''
             
-              'Accepted formats are raw sentences, "SENTENCE" messages from the' +
-              ' HABDEC UDP broadcaster, OZIMUX and OZIPLOT formats.')
+              '"UDP Rx Port" is the port to receivel telemetry on over local ne' +
+              'twork'
+            ''
+            
+              'Accepted formats are raw UKHAS sentences, "SENTENCE" messages fr' +
+              'om the HABDEC UDP broadcaster, OZIMUX and OZIPLOT formats.')
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           Size.Height = 247.000000000000000000
@@ -31,17 +35,17 @@ inherited frmUDPSettings: TfrmUDPSettings
         object Label1: TLabel
           Align = Scale
           StyledSettings = [Family, Style, FontColor, Other]
-          Position.X = 40.000000000000000000
-          Position.Y = 16.000000000000000000
-          Size.Width = 57.000000000000000000
+          Position.X = 372.000000000000000000
+          Position.Y = 20.000000000000000000
+          Size.Width = 105.000000000000000000
           Size.Height = 36.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'LCARSLabelStyle'
           TextSettings.Font.Size = 16.000000000000000000
-          Text = 'Port:'
+          Text = 'UDP Rx Port:'
           TabOrder = 0
         end
-        object edtPort: TTMSFMXEdit
+        object edtUDPRxPort: TTMSFMXEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Scale
           StyleLookup = 'LCARSTMSFMXEdit1Style'
@@ -49,14 +53,48 @@ inherited frmUDPSettings: TfrmUDPSettings
           KeyboardType = DecimalNumberPad
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.FontColor = claWhite
-          Position.X = 112.000000000000000000
-          Position.Y = 16.000000000000000000
+          Position.X = 492.000000000000000000
+          Position.Y = 20.000000000000000000
           Margins.Left = 8.000000000000000000
           Margins.Right = 8.000000000000000000
           Margins.Bottom = 8.000000000000000000
           StyledSettings = [Family, Style]
-          OnChangeTracking = edtPortChangeTracking
-          Size.Width = 545.000000000000000000
+          OnChangeTracking = edtUDPRxPortChangeTracking
+          Size.Width = 153.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object Label2: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = 48.000000000000000000
+          Position.Y = 20.000000000000000000
+          Size.Width = 105.000000000000000000
+          Size.Height = 36.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 16.000000000000000000
+          Text = 'UDP Tx Port:'
+          TabOrder = 2
+        end
+        object edtUDPTxPort: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 3
+          KeyboardType = DecimalNumberPad
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 168.000000000000000000
+          Position.Y = 20.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtUDPRxPortChangeTracking
+          Size.Width = 153.000000000000000000
           Size.Height = 41.000000000000000000
           Size.PlatformDefault = False
           Version = '1.4.4.5'

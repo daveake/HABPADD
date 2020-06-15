@@ -5,7 +5,7 @@
     </ProjectExtensions>
     <PropertyGroup>
         <DeviceId Condition="'$(Platform)'=='Android'">E1R161017</DeviceId>
-        <DeviceId Condition="'$(Platform)'=='Android64'">ZY224D6SF4</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android64'">E1R161017</DeviceId>
         <DeviceId Condition="'$(Platform)'=='iOSDevice32'"/>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSSimulator'">iPhone</DeviceId>
@@ -443,18 +443,18 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\balloon-yellow.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="Images\x-blue.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD.app\StartUp\Documents\</RemoteDir>
-            <RemoteName>balloon-yellow.png</RemoteName>
+            <RemoteName>x-blue.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\x-blue.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="Images\balloon-yellow.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD.app\StartUp\Documents\</RemoteDir>
-            <RemoteName>x-blue.png</RemoteName>
+            <RemoteName>balloon-yellow.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -996,15 +996,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(NDKBasePath)\prebuilt\android-arm\gdbserver\gdbserver" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\library\lib\armeabi-v7a\</RemoteDir>
-            <RemoteName>gdbserver</RemoteName>
-            <DeployClass>AndroidGDBServer</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Android\Debug\splash_image_def.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD\res\drawable\</RemoteDir>
             <RemoteName>splash_image_def.xml</RemoteName>
@@ -1357,15 +1348,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(NDKBasePath)\prebuilt\android-arm\gdbserver\gdbserver" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>HABPADD\library\lib\armeabi-v7a\</RemoteDir>
-            <RemoteName>gdbserver</RemoteName>
-            <DeployClass>AndroidGDBServer</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Images\car-blue.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\assets\internal\</RemoteDir>
             <RemoteName>car-blue.png</RemoteName>
@@ -1565,15 +1547,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\library\lib\armeabi\</RemoteDir>
-            <RemoteName>libHABPADD.so</RemoteName>
-            <DeployClass>AndroidLibnativeArmeabiFile</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Android\Debug\classes.dex" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD\classes\</RemoteDir>
             <RemoteName>classes.dex</RemoteName>
@@ -1758,15 +1731,6 @@
             <RemoteDir>HABPADD\res\drawable-xxhdpi\</RemoteDir>
             <RemoteName>ic_notification.png</RemoteName>
             <DeployClass>Android_NotificationIcon72</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(BDS)\lib\android\debug\mips\libnative-activity.so" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\library\lib\mips\</RemoteDir>
-            <RemoteName>libHABPADD.so</RemoteName>
-            <DeployClass>AndroidLibnativeMipsFile</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -2677,6 +2641,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="AndroidManifest.template.xml" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\assets\internal\</RemoteDir>
+            <RemoteName>AndroidManifest.template.xml</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Images\Android\Splash_960.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\res\drawable-xlarge\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
@@ -2709,6 +2682,15 @@
             <RemoteName>balloon-invisible.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android\Release\libHABPADD.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>libHABPADD.so</RemoteName>
+            <DeployClass>ProjectOutput_Android32</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>

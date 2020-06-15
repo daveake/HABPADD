@@ -11,9 +11,11 @@ uses
 type
   TfrmUDPSettings = class(TfrmSettingsBase)
     Label1: TLabel;
-    edtPort: TTMSFMXEdit;
+    edtUDPRxPort: TTMSFMXEdit;
+    Label2: TLabel;
+    edtUDPTxPort: TTMSFMXEdit;
     procedure FormCreate(Sender: TObject);
-    procedure edtPortChangeTracking(Sender: TObject);
+    procedure edtUDPRxPortChangeTracking(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,12 +37,13 @@ implementation
 procedure TfrmUDPSettings.FormCreate(Sender: TObject);
 begin
     inherited;
-    Group := 'UDP';
+    Group := 'General';
 end;
 
 procedure TfrmUDPSettings.ApplyChanges;
 begin
-    SetSettingString(Group, 'Port', edtPort.Text);
+    SetSettingInteger(Group, 'UDPTxPort', StrToIntDef(edtUDPTxPort.Text, 0));
+    SetSettingString('UDP', 'Port', edtUDPRxPort.Text);
 
     inherited;
 end;
@@ -49,11 +52,13 @@ procedure TfrmUDPSettings.CancelChanges;
 begin
     inherited;
 
-    edtPort.Text := GetSettingString(Group, 'Port', '');
+    edtUDPTxPort.Text := IntToStr(GetSettingInteger(Group, 'UDPTxPort', 0));
+
+    edtUDPRxPort.Text := GetSettingString('UDP', 'Port', '');
 end;
 
 
-procedure TfrmUDPSettings.edtPortChangeTracking(Sender: TObject);
+procedure TfrmUDPSettings.edtUDPRxPortChangeTracking(Sender: TObject);
 begin
     SetingsHaveChanged;
 end;
