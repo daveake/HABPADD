@@ -80,3 +80,4 @@ Win32/
 key.pas
 
 Keys/
+*.keystore

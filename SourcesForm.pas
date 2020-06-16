@@ -355,7 +355,7 @@ end;
 
 procedure TfrmSources.HABCallback(ID: Integer; Connected: Boolean; Line: String; Position: THABPosition);
 var
-    Callsign: String;
+    Temp, Callsign: String;
     Port: Integer;
 begin
     // New Position
@@ -405,15 +405,20 @@ begin
     end;
 
     if Position.HasPacketRSSI then begin
-        Sources[ID].PacketRSSI := ',    Packet RSSI ' + IntToStr(Position.PacketRSSI);
+        Sources[ID].PacketRSSI := ', Packet RSSI ' + IntToStr(Position.PacketRSSI);
     end;
 
     if Position.HasFrequency then begin
-        Sources[ID].FreqError := ',    Frequency Offset = ' + FormatFloat('0', Position.FrequencyError*1000) + ' Hz';
+        Sources[ID].FreqError := ', Frequency Offset = ' + FormatFloat('0', Position.FrequencyError*1000) + ' Hz';
     end;
 
     if Sources[ID].RSSILabel <> nil then begin
-        Sources[ID].RSSILabel.Text := Sources[ID].CurrentRSSI + Sources[ID].PacketRSSI + Sources[ID].FreqError;
+        Temp := Sources[ID].CurrentRSSI + Sources[ID].PacketRSSI + Sources[ID].FreqError;
+        if (Temp <> '') and (ID in [GATEWAY_SOURCE_1, GATEWAY_SOURCE_2]) then begin
+            Sources[ID].RSSILabel.Text := 'Ch' + IntToStr(Position.Channel) + ': ' + Temp;
+        end else begin
+            Sources[ID].RSSILabel.Text := Temp;
+        end;
     end;
 end;
 

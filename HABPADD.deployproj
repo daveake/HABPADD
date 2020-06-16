@@ -443,18 +443,18 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\x-blue.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="Images\balloon-yellow.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD.app\StartUp\Documents\</RemoteDir>
-            <RemoteName>x-blue.png</RemoteName>
+            <RemoteName>balloon-yellow.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\balloon-yellow.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="Images\x-blue.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD.app\StartUp\Documents\</RemoteDir>
-            <RemoteName>balloon-yellow.png</RemoteName>
+            <RemoteName>x-blue.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
