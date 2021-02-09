@@ -27,38 +27,40 @@ inherited frmLoRaSerialSettings: TfrmLoRaSerialSettings
     inherited Panel3: TPanel
       Size.Height = 137.000000000000000000
       inherited Rectangle1: TRectangle
+        Align = Scale
         Size.Height = 129.000000000000000000
       end
       object Label2: TLabel
         Align = Scale
         StyledSettings = [Family, Style, FontColor, Other]
-        Position.X = 24.000000000000000000
-        Position.Y = 8.000000000000000000
+        Position.X = 28.000000000000000000
+        Position.Y = 48.000000000000000000
         Size.Width = 89.000000000000000000
-        Size.Height = 41.000000000000000000
+        Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSLabelStyle'
         TextSettings.Font.Size = 16.000000000000000000
         Text = 'Frequency:'
-        TabOrder = 9
+        TabOrder = 12
       end
       object edtFrequency: TTMSFMXEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         Align = Scale
         StyleLookup = 'LCARSTMSFMXEdit1Style'
-        TabOrder = 1
+        TabOrder = 3
         KeyboardType = DecimalNumberPad
+        Text = '21212121'
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
-        Position.X = 124.000000000000000000
-        Position.Y = 14.000000000000000000
+        Position.X = 128.000000000000000000
+        Position.Y = 48.000000000000000000
         Margins.Left = 8.000000000000000000
         Margins.Right = 8.000000000000000000
         Margins.Bottom = 8.000000000000000000
         StyledSettings = [Family, Style]
         OnChangeTracking = edtPortChangeTracking
-        Size.Width = 202.000000000000000000
-        Size.Height = 35.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
         Version = '1.4.4.5'
         Lookup.Separator = ';'
@@ -67,49 +69,49 @@ inherited frmLoRaSerialSettings: TfrmLoRaSerialSettings
         Align = Scale
         StyledSettings = [Family, Style, FontColor, Other]
         Position.X = 16.000000000000000000
-        Position.Y = 80.000000000000000000
-        Size.Width = 97.000000000000000000
-        Size.Height = 25.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSLabelStyle'
         TextSettings.Font.Size = 16.000000000000000000
         Text = 'Mode:'
-        TabOrder = 8
+        TabOrder = 11
       end
       object btnModeDown: TLabel
         Align = Scale
         StyledSettings = [Family, Style, Other]
         HitTest = True
         Position.X = 124.000000000000000000
-        Position.Y = 73.000000000000000000
+        Position.Y = 88.000000000000000000
         Size.Width = 67.000000000000000000
-        Size.Height = 32.000000000000000000
+        Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'lCARSCheckButton'
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
         Text = '<'
-        TabOrder = 6
+        TabOrder = 9
         OnClick = btnModeDownClick
       end
       object edtMode: TTMSFMXEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         Align = Scale
         StyleLookup = 'LCARSTMSFMXEdit1Style'
-        TabOrder = 0
+        TabOrder = 2
         ReadOnly = True
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
         TextSettings.HorzAlign = Center
-        Position.X = 199.000000000000000000
-        Position.Y = 73.000000000000000000
+        Position.X = 200.000000000000000000
+        Position.Y = 88.000000000000000000
         Margins.Left = 8.000000000000000000
         Margins.Right = 8.000000000000000000
         Margins.Bottom = 8.000000000000000000
         StyledSettings = [Family, Style]
         OnChangeTracking = edtPortChangeTracking
-        Size.Width = 52.000000000000000000
-        Size.Height = 32.000000000000000000
+        Size.Width = 49.000000000000000000
+        Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
         Version = '1.4.4.5'
         Lookup.Separator = ';'
@@ -119,48 +121,166 @@ inherited frmLoRaSerialSettings: TfrmLoRaSerialSettings
         StyledSettings = [Family, Style, Other]
         HitTest = True
         Position.X = 262.000000000000000000
-        Position.Y = 73.000000000000000000
+        Position.Y = 88.000000000000000000
         Size.Width = 67.000000000000000000
-        Size.Height = 32.000000000000000000
+        Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'lCARSCheckButton'
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
         Text = '>'
-        TabOrder = 4
+        TabOrder = 6
         OnClick = btnModeUpClick
       end
       object chkHabitat: TLabel
         Align = Scale
         StyledSettings = [Family, Style, Other]
         HitTest = True
-        Position.X = 439.000000000000000000
-        Position.Y = 12.000000000000000000
-        Size.Width = 241.000000000000000000
-        Size.Height = 45.000000000000000000
+        Position.X = 262.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 219.000000000000000000
+        Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'lCARSCheckButton'
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
         Text = 'Enable Telemetry Upload'
-        TabOrder = 5
+        TabOrder = 8
         OnClick = chkHabitatClick
       end
       object chkSSDV: TLabel
         Align = Scale
         StyledSettings = [Family, Style, Other]
         HitTest = True
-        Position.X = 438.000000000000000000
-        Position.Y = 69.000000000000000000
-        Size.Width = 243.000000000000000000
-        Size.Height = 44.000000000000000000
+        Position.X = 488.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'lCARSCheckButton'
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
         Text = 'Enable SSDV Upload'
-        TabOrder = 2
+        TabOrder = 4
         OnClick = chkHabitatClick
+      end
+      object Label1: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 32.000000000000000000
+        Position.Y = 4.000000000000000000
+        Size.Width = 85.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Serial Port:'
+        TabOrder = 5
+      end
+      object edtPort: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 1
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.FontColor = claWhite
+        Position.X = 128.000000000000000000
+        Position.Y = 8.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnChangeTracking = edtPortChangeTracking
+        Size.Width = 121.000000000000000000
+        Size.Height = 29.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+      object chkAFC: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 262.000000000000000000
+        Position.Y = 48.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 29.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'AFC'
+        TabOrder = 7
+        OnClick = chkHabitatClick
+      end
+      object btnSearch: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Position.X = 528.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 152.000000000000000000
+        Size.Height = 28.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 0
+        Text = 'Search +/- 10kHz'
+        TextSettings.Font.Size = 28.000000000000000000
+        OnClick = btnSearchClick
+      end
+      object rectProgressHolder: TRectangle
+        Align = Scale
+        Fill.Kind = None
+        Position.X = 352.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 161.000000000000000000
+        Size.Height = 28.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claWhite
+        Visible = False
+        object rectProgressBar: TRectangle
+          Align = Left
+          Fill.Color = xFFF1DF6F
+          Size.Width = 40.000000000000000000
+          Size.Height = 28.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = claWhite
+        end
+      end
+      object tmrSearch: TTimer
+        Enabled = False
+        Interval = 5000
+        OnTimer = tmrSearchTimer
+        Left = 440
+        Top = 95
+      end
+      object tmrReceive: TTimer
+        OnTimer = tmrReceiveTimer
+        Left = 392
+        Top = 95
+      end
+      object rectRx: TRectangle
+        Align = Scale
+        Fill.Color = claLime
+        Position.X = 640.000000000000000000
+        Position.Y = 48.000000000000000000
+        Size.Width = 41.000000000000000000
+        Size.Height = 29.000000000000000000
+        Size.PlatformDefault = False
+        Visible = False
+        object lblRx: TLabel
+          Align = Client
+          StyledSettings = [Family, Style, FontColor]
+          Size.Width = 41.000000000000000000
+          Size.Height = 29.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.HorzAlign = Center
+          Text = 'Rx'
+        end
       end
     end
     inherited Panel2: TPanel

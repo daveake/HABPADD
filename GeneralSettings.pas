@@ -12,7 +12,6 @@ type
   TfrmGeneralSettings = class(TfrmSettingsBase)
     Label3: TLabel;
     edtCallsign: TTMSFMXEdit;
-    chkTweet: TLabel;
     chkPositionBeeps: TLabel;
     chkAlarmBeeps: TLabel;
     chkSpeech: TLabel;
@@ -49,7 +48,7 @@ begin
     SetSettingBoolean(Group, 'PositionBeeps', LCARSLabelIsChecked(chkPositionBeeps));
     SetSettingBoolean(Group, 'AlarmBeeps', LCARSLabelIsChecked(chkAlarmBeeps));
     SetSettingBoolean(Group, 'Speech', LCARSLabelIsChecked(chkSpeech));
-    SetSettingBoolean(Group, 'Tweet', LCARSLabelIsChecked(chkTweet));
+    // SetSettingBoolean(Group, 'Tweet', LCARSLabelIsChecked(chkTweet));
 
     inherited;
 end;
@@ -63,7 +62,7 @@ begin
     CheckLCARSLabel(chkPositionBeeps, GetSettingBoolean(Group, 'PositionBeeps', False));
     CheckLCARSLabel(chkAlarmBeeps, GetSettingBoolean(Group, 'AlarmBeeps', False));
     CheckLCARSLabel(chkSpeech, GetSettingBoolean(Group, 'Speech', False));
-    CheckLCARSLabel(chkTweet, GetSettingBoolean(Group, 'Tweet', False));
+    // CheckLCARSLabel(chkTweet, GetSettingBoolean(Group, 'Tweet', False));
 
     inherited;
 end;
@@ -84,7 +83,7 @@ begin
     inherited;
 
     Label3.Font.Size := Label3.Size.Height * 0.5;
-    chkTweet.Font.Size := chkTweet.Size.Height * 18/42;
+    // chkTweet.Font.Size := chkTweet.Size.Height * 18/42;
     chkPositionBeeps.Font.Size := chkPositionBeeps.Size.Height * 18/42;
     chkAlarmBeeps.Font.Size := chkAlarmBeeps.Size.Height * 18/42;
     chkSpeech.Font.Size := chkSpeech.Size.Height * 18/42;

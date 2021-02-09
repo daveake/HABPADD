@@ -70,29 +70,13 @@ inherited frmGeneralSettings: TfrmGeneralSettings
           TabOrder = 1
         end
       end
-      object chkTweet: TLabel
-        Align = Scale
-        StyledSettings = [Family, Style, Other]
-        HitTest = True
-        Position.X = 16.000000000000000000
-        Position.Y = 72.000000000000000000
-        Size.Width = 249.000000000000000000
-        Size.Height = 41.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'lCARSCheckButton'
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        Text = 'Post Updates To Twitter'
-        TabOrder = 3
-        OnClick = chkSettingsClick
-      end
       object chkPositionBeeps: TLabel
         Align = Scale
         StyledSettings = [Family, Style, Other]
         HitTest = True
-        Position.X = 272.000000000000000000
+        Position.X = 20.000000000000000000
         Position.Y = 72.000000000000000000
-        Size.Width = 161.000000000000000000
+        Size.Width = 205.000000000000000000
         Size.Height = 41.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'lCARSCheckButton'
@@ -106,9 +90,9 @@ inherited frmGeneralSettings: TfrmGeneralSettings
         Align = Scale
         StyledSettings = [Family, Style, Other]
         HitTest = True
-        Position.X = 440.000000000000000000
+        Position.X = 300.000000000000000000
         Position.Y = 72.000000000000000000
-        Size.Width = 137.000000000000000000
+        Size.Width = 169.000000000000000000
         Size.Height = 41.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'lCARSCheckButton'
@@ -122,9 +106,9 @@ inherited frmGeneralSettings: TfrmGeneralSettings
         Align = Scale
         StyledSettings = [Family, Style, Other]
         HitTest = True
-        Position.X = 584.000000000000000000
+        Position.X = 568.000000000000000000
         Position.Y = 72.000000000000000000
-        Size.Width = 97.000000000000000000
+        Size.Width = 113.000000000000000000
         Size.Height = 41.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'lCARSCheckButton'

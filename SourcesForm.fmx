@@ -1,6 +1,7 @@
 inherited frmSources: TfrmSources
   Caption = 'frmSource1'
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   inherited pnlMain: TPanel
     object Rectangle1: TRectangle
@@ -15,25 +16,27 @@ inherited frmSources: TfrmSources
       Size.Height = 54.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
+      OnResize = Rectangle1Resize
       object Label2: TLabel
         Align = Left
         StyledSettings = [Family, Style]
-        Margins.Left = -20.000000000000000000
+        Margins.Left = 5.000000000000000000
         Margins.Right = -10.000000000000000000
-        Position.X = -20.000000000000000000
-        RotationAngle = -90.000000000000000000
-        Size.Width = 64.000000000000000000
+        Position.X = 5.000000000000000000
+        RotationCenter.X = 0.000000000000000000
+        RotationCenter.Y = 0.000000000000000000
+        Size.Width = 48.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Leading
         Text = 'GW1'
         TabOrder = 0
       end
       object Label10: TLabel
         Align = Client
-        Size.Width = 663.000000000000000000
+        Size.Width = 654.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         Text = 'Label1'
@@ -42,7 +45,7 @@ inherited frmSources: TfrmSources
           Align = Bottom
           StyledSettings = [Style]
           Position.Y = 22.000000000000000000
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'Courier New'
@@ -55,7 +58,7 @@ inherited frmSources: TfrmSources
         object lblGateway1: TLabel
           Align = Client
           StyledSettings = [Family, Style]
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
@@ -82,23 +85,24 @@ inherited frmSources: TfrmSources
       object Label3: TLabel
         Align = Left
         StyledSettings = [Family, Style]
-        Margins.Left = -20.000000000000000000
+        Margins.Left = 5.000000000000000000
         Margins.Right = -10.000000000000000000
-        Position.X = -20.000000000000000000
-        RotationAngle = -90.000000000000000000
-        Size.Width = 64.000000000000000000
+        Position.X = 5.000000000000000000
+        RotationCenter.X = 0.000000000000000000
+        RotationCenter.Y = 0.000000000000000000
+        Size.Width = 48.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Leading
         Text = 'GPS'
         TabOrder = 0
       end
       object Label6: TLabel
         Align = Client
         StyledSettings = [Style]
-        Size.Width = 663.000000000000000000
+        Size.Width = 654.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'Courier New'
@@ -111,7 +115,7 @@ inherited frmSources: TfrmSources
           Align = Bottom
           StyledSettings = [Style]
           Position.Y = 22.000000000000000000
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'Courier New'
@@ -124,7 +128,7 @@ inherited frmSources: TfrmSources
         object lblGPS: TLabel
           Align = Client
           StyledSettings = [Family, Style]
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
@@ -151,7 +155,7 @@ inherited frmSources: TfrmSources
       object lblHabitat: TLabel
         Align = Client
         StyledSettings = [Family, Style]
-        Size.Width = 663.000000000000000000
+        Size.Width = 654.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
@@ -164,16 +168,17 @@ inherited frmSources: TfrmSources
       object Label5: TLabel
         Align = Left
         StyledSettings = [Family, Style]
-        Margins.Left = -20.000000000000000000
+        Margins.Left = 5.000000000000000000
         Margins.Right = -10.000000000000000000
-        Position.X = -20.000000000000000000
-        RotationAngle = -90.000000000000000000
-        Size.Width = 64.000000000000000000
+        Position.X = 5.000000000000000000
+        RotationCenter.X = 0.000000000000000000
+        RotationCenter.Y = 0.000000000000000000
+        Size.Width = 48.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Leading
         Text = 'HH'
         TabOrder = 1
       end
@@ -193,22 +198,23 @@ inherited frmSources: TfrmSources
       object Label9: TLabel
         Align = Left
         StyledSettings = [Family, Style]
-        Margins.Left = -20.000000000000000000
+        Margins.Left = 5.000000000000000000
         Margins.Right = -10.000000000000000000
-        Position.X = -20.000000000000000000
-        RotationAngle = -90.000000000000000000
-        Size.Width = 64.000000000000000000
+        Position.X = 5.000000000000000000
+        RotationCenter.X = 0.000000000000000000
+        RotationCenter.Y = 0.000000000000000000
+        Size.Width = 48.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Leading
         Text = 'BT'
         TabOrder = 0
       end
       object Label1: TLabel
         Align = Client
-        Size.Width = 663.000000000000000000
+        Size.Width = 654.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         Text = 'Label1'
@@ -216,7 +222,7 @@ inherited frmSources: TfrmSources
         object lblBT: TLabel
           Align = Client
           StyledSettings = [Family, Style]
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
@@ -230,7 +236,7 @@ inherited frmSources: TfrmSources
           Align = Bottom
           StyledSettings = [Style]
           Position.Y = 22.000000000000000000
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'Courier New'
@@ -257,22 +263,23 @@ inherited frmSources: TfrmSources
       object Label11: TLabel
         Align = Left
         StyledSettings = [Family, Style]
-        Margins.Left = -20.000000000000000000
+        Margins.Left = 5.000000000000000000
         Margins.Right = -10.000000000000000000
-        Position.X = -20.000000000000000000
-        RotationAngle = -90.000000000000000000
-        Size.Width = 64.000000000000000000
+        Position.X = 5.000000000000000000
+        RotationCenter.X = 0.000000000000000000
+        RotationCenter.Y = 0.000000000000000000
+        Size.Width = 48.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Leading
         Text = 'USB'
         TabOrder = 0
       end
       object Label7: TLabel
         Align = Client
-        Size.Width = 663.000000000000000000
+        Size.Width = 654.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         Text = 'Label7'
@@ -280,7 +287,7 @@ inherited frmSources: TfrmSources
         object lblSerial: TLabel
           Align = Client
           StyledSettings = [Family, Style]
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
@@ -294,7 +301,7 @@ inherited frmSources: TfrmSources
           Align = Bottom
           StyledSettings = [Style]
           Position.Y = 22.000000000000000000
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'Courier New'
@@ -321,23 +328,24 @@ inherited frmSources: TfrmSources
       object Label4: TLabel
         Align = Left
         StyledSettings = [Family, Style]
-        Margins.Left = -20.000000000000000000
+        Margins.Left = 5.000000000000000000
         Margins.Right = -10.000000000000000000
-        Position.X = -20.000000000000000000
-        RotationAngle = -90.000000000000000000
-        Size.Width = 64.000000000000000000
+        Position.X = 5.000000000000000000
+        RotationCenter.X = 0.000000000000000000
+        RotationCenter.Y = 0.000000000000000000
+        Size.Width = 48.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Leading
         Text = 'UDP'
         TabOrder = 0
       end
       object lblUDP: TLabel
         Align = Client
         StyledSettings = [Family, Style]
-        Size.Width = 663.000000000000000000
+        Size.Width = 654.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
@@ -363,22 +371,23 @@ inherited frmSources: TfrmSources
       object Label8: TLabel
         Align = Left
         StyledSettings = [Family, Style]
-        Margins.Left = -20.000000000000000000
+        Margins.Left = 5.000000000000000000
         Margins.Right = -10.000000000000000000
-        Position.X = -20.000000000000000000
-        RotationAngle = -90.000000000000000000
-        Size.Width = 64.000000000000000000
+        Position.X = 5.000000000000000000
+        RotationCenter.X = 0.000000000000000000
+        RotationCenter.Y = 0.000000000000000000
+        Size.Width = 48.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Leading
         Text = 'GW2'
         TabOrder = 0
       end
       object Label12: TLabel
         Align = Client
-        Size.Width = 663.000000000000000000
+        Size.Width = 654.000000000000000000
         Size.Height = 54.000000000000000000
         Size.PlatformDefault = False
         Text = 'Label1'
@@ -387,7 +396,7 @@ inherited frmSources: TfrmSources
           Align = Bottom
           StyledSettings = [Style]
           Position.Y = 22.000000000000000000
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'Courier New'
@@ -400,7 +409,7 @@ inherited frmSources: TfrmSources
         object lblGateway2: TLabel
           Align = Client
           StyledSettings = [Family, Style]
-          Size.Width = 663.000000000000000000
+          Size.Width = 654.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
@@ -420,6 +429,8 @@ inherited frmSources: TfrmSources
     Top = 68
   end
   object LocationSensor: TLocationSensor
+    ActivityType = Other
+    UsageAuthorization = WhenInUse
     Left = 136
     Top = 68
   end

@@ -3,7 +3,7 @@ inherited frmMap: TfrmMap
   OnCreate = FormCreate
   DesignerMasterStyle = 0
   inherited pnlMain: TPanel
-    object pnlTop: TPanel
+    object V: TPanel
       Align = Top
       Size.Width = 700.000000000000000000
       Size.Height = 32.000000000000000000
@@ -13,8 +13,8 @@ inherited frmMap: TfrmMap
       object btnCar: TButton
         Align = Scale
         StyledSettings = [Family, Other]
-        Position.X = 346.000000000000000000
-        Size.Width = 116.000000000000000000
+        Position.X = 339.000000000000000000
+        Size.Width = 118.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSButtonStyle'
@@ -26,8 +26,8 @@ inherited frmMap: TfrmMap
       object btnPayload: TButton
         Align = Scale
         StyledSettings = [Family, Other]
-        Position.X = 584.000000000000000000
-        Size.Width = 115.000000000000000000
+        Position.X = 581.000000000000000000
+        Size.Width = 118.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSButtonStyle'
@@ -39,8 +39,8 @@ inherited frmMap: TfrmMap
       object btnFree: TButton
         Align = Scale
         StyledSettings = [Family, Other]
-        Position.X = 465.000000000000000000
-        Size.Width = 116.000000000000000000
+        Position.X = 460.000000000000000000
+        Size.Width = 118.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSButtonStyle'
@@ -61,7 +61,7 @@ inherited frmMap: TfrmMap
       object Rectangle6: TRectangle
         Align = Scale
         Fill.Color = xFFF1DF6F
-        Size.Width = 31.000000000000000000
+        Size.Width = 30.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
         Stroke.Thickness = 0.000000000000000000
@@ -69,7 +69,7 @@ inherited frmMap: TfrmMap
       object Rectangle1: TRectangle
         Align = Scale
         Fill.Color = claBlue
-        Position.X = 34.000000000000000000
+        Position.X = 32.000000000000000000
         Size.Width = 100.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
@@ -78,7 +78,7 @@ inherited frmMap: TfrmMap
       object Rectangle2: TRectangle
         Align = Scale
         Fill.Color = claRed
-        Position.X = 138.000000000000000000
+        Position.X = 134.000000000000000000
         Size.Width = 100.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
@@ -87,7 +87,7 @@ inherited frmMap: TfrmMap
       object Rectangle3: TRectangle
         Align = Scale
         Fill.Color = claLime
-        Position.X = 242.000000000000000000
+        Position.X = 236.000000000000000000
         Size.Width = 100.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
@@ -112,7 +112,7 @@ inherited frmMap: TfrmMap
         Size.PlatformDefault = False
         object GMap: TTMSFMXWebGMaps
           Align = Client
-          Version = '3.1.5.0'
+          Version = '3.2.0.1'
           Size.Width = 697.000000000000000000
           Size.Height = 388.000000000000000000
           Size.PlatformDefault = False

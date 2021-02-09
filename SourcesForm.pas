@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, Math, Habitat, Miscellaneous,
+  FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, Math, Habitat, SSDV, Miscellaneous,
   GPSSource, Source, Base, CarUpload, GatewaySource, HabitatSource, UDPSource, SerialSource, BluetoothSource,
   System.DateUtils, System.TimeSpan, System.Sensors, System.Sensors.Components, BLESource,
   IdBaseComponent, IdComponent, IdUDPBase, IdUDPClient;
@@ -15,9 +15,12 @@ type
       Source:       TSource;
       ValueLabel:   TLabel;
       RSSILabel:    TLabel;
+      CurrentFreq:  String;
       CurrentRSSI:  String;
       PacketRSSI:   String;
       FreqError:    String;
+      PacketCount:  Integer;
+      FrequencyError:   Double;
   end;
 
 //type
@@ -68,11 +71,13 @@ type
     procedure tmrGPSTimer(Sender: TObject);
     procedure OrientationSensor1SensorChoosing(Sender: TObject;
       const Sensors: TSensorArray; var ChoseSensorIndex: Integer);
-    procedure pnlMainResized(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure Rectangle1Resize(Sender: TObject);
   private
     { Private declarations }
     CarUploader: TCarUpload;
     HabitatUploader: THabitatThread;
+    SSDVUploader: TSSDVThread;
     Sources: Array[1..6] of TSourcePanel;
     CompassPresent: Boolean;
     MagneticHeading, Declination: Double;
@@ -88,12 +93,19 @@ type
     procedure NewGPSPosition(Timestamp: TDateTime; Latitude, Longitude, Altitude, Direction: Double; UsingCompass: Boolean);
     procedure HABCallback(ID: Integer; Connected: Boolean; Line: String; Position: THABPosition);
 //    function SavePosition(Latitude, Longitude: Double): TGPSPosition;
+    procedure CloseThread(Thread: TThread);
+    procedure WaitForThread(Thread: TThread);
   public
     { Public declarations }
     procedure UpdatePayloadList(PayloadList: String);
     procedure SendParameterToSource(SourceIndex: Integer; ValueName, Value: String);
     procedure EnableGPS;
     procedure EnableCompass;
+    function GetPacketCount(SourceIndex: Integer): Integer;
+    procedure ResetPacketCount(SourceIndex: Integer);
+    function FrequencyError(SourceIndex: Integer): Double;
+    procedure SendUplink(SourceIndex: Integer; When: TUplinkWhen; WhenValue, Channel: Integer; Prefix, Msg, Password: String);
+    function WaitingToSend(SourceIndex: Integer): Boolean;
 end;
 
 var
@@ -122,6 +134,9 @@ begin
 
     // Habitat uploader
     HabitatUploader := THabitatThread.Create(HabitatStatusCallback);
+
+    // SSDV Uploader
+    SSDVUploader := TSSDVThread.Create(nil);
 
     // GPS Source
 {$IFDEF MSWINDOWS}
@@ -171,11 +186,59 @@ begin
     Sources[HABITAT_SOURCE].RSSILabel := nil;
 end;
 
+procedure TfrmSources.CloseThread(Thread: TThread);
+begin
+    if Thread <> nil then begin
+        Thread.Terminate;
+    end;
+end;
+
+
+procedure TfrmSources.WaitForThread(Thread: TThread);
+begin
+    if Thread <> nil then begin
+        Thread.WaitFor;
+    end;
+end;
+procedure TfrmSources.FormDestroy(Sender: TObject);
+var
+    Index: Integer;
+begin
+    // Close and wait for threads
+
+    for Index := Low(Sources) to High(Sources) do begin
+        CloseThread(Sources[Index].Source);
+    end;
+
+    CloseThread(CarUploader);
+    CloseThread(HabitatUploader);
+    CloseThread(SSDVUploader);
+
+{$IFDEF MSWINDOWS}
+    CloseThread(GPSSource);
+    WaitForThread(GPSSource);
+{$ENDIF}
+
+    WaitForThread(CarUploader);
+    WaitForThread(HabitatUploader);
+    WaitForThread(SSDVUploader);
+
+    for Index := Low(Sources) to High(Sources) do begin
+        WaitForThread(Sources[Index].Source);
+    end;
+
+    Caption := '';
+end;
+
 {$IFDEF MSWINDOWS}
 procedure TfrmSources.GPSCallback(ID: Integer; Connected: Boolean; Line: String; Position: THABPosition);
 begin
-    if Position.InUse and not Application.Terminated then begin
-        NewGPSPosition(Position.TimeStamp, Position.Latitude, Position.Longitude, Position.Altitude, Position.Direction, False);
+    if not Application.Terminated then begin
+        if Position.InUse then begin
+            NewGPSPosition(Position.TimeStamp, Position.Latitude, Position.Longitude, Position.Altitude, Position.Direction, False);
+        end else if Line <> '' then begin
+            lblGPS.Text := Line;
+        end;
     end;
 end;
 {$ENDIF}
@@ -275,10 +338,23 @@ begin
     end;
 end;
 
-procedure TfrmSources.pnlMainResized(Sender: TObject);
+procedure TfrmSources.Rectangle1Resize(Sender: TObject);
+var
+    i, FontSize: Integer;
 begin
-  inherited;
+    FontSize := Round(lblSerialRSSI.Width / 64);
 
+    for i := Low(Sources) to High(Sources) do begin
+        if Sources[i].ValueLabel <> nil then begin
+            Sources[i].ValueLabel.TextSettings.Font.Size := FontSize;
+        end;
+        if Sources[i].RSSILabel <> nil then begin
+            Sources[i].RSSILabel.TextSettings.Font.Size := FontSize;
+        end;
+    end;
+
+    lblGPS.TextSettings.Font.Size := FontSize;
+    lblDirection.TextSettings.Font.Size := FontSize;
 end;
 
 // this function x,y,z axis for the phone in vertical orientation (portrait)
@@ -360,6 +436,8 @@ var
 begin
     // New Position
     if Position.InUse then begin
+        Inc(Sources[ID].PacketCount);
+
         frmMain.NewPosition(ID, Position);
 
         if ID = SERIAL_SOURCE then begin
@@ -395,25 +473,44 @@ begin
         if GetSettingBoolean('LoRaSerial', 'SSDV', False) then begin
             Callsign := GetSettingString('LoRaSerial', 'Callsign', '');
             if Callsign <> '' then begin
-                HabitatUploader.SaveSSDVToHabitat(Position.Line, Callsign);
+                SSDVUploader.SaveSSDVToHabitat(Position.Line, Callsign);
             end;
         end;
     end;
 
+    if Position.CurrentFrequency > 0 then begin
+        Sources[ID].CurrentFreq := 'Curr Freq ' + FormatFloat('0.000#', Position.CurrentFrequency) + ' MHz';
+    end;
+
     if Position.HasCurrentRSSI then begin
-        Sources[ID].CurrentRSSI := 'Current RSSI ' + IntToStr(Position.CurrentRSSI)
+        Sources[ID].CurrentRSSI := '  Curr RSSI ' + IntToStr(Position.CurrentRSSI)
     end;
 
     if Position.HasPacketRSSI then begin
-        Sources[ID].PacketRSSI := ', Packet RSSI ' + IntToStr(Position.PacketRSSI);
+        Sources[ID].PacketRSSI := '  Pkt RSSI ' + IntToStr(Position.PacketRSSI);
     end;
 
     if Position.HasFrequency then begin
-        Sources[ID].FreqError := ', Frequency Offset = ' + FormatFloat('0', Position.FrequencyError*1000) + ' Hz';
+        Sources[ID].FrequencyError := Position.FrequencyError;
+        Sources[ID].FreqError := '  Freq Err = ' + FormatFloat('0', Position.FrequencyError*1000) + ' Hz';
+
+        // AFC
+        if (Position.CurrentFrequency > 0) and (abs(Position.FrequencyError) > 1) then begin
+            if ID = SERIAL_SOURCE then begin
+                if GetSettingBoolean('LoRaSerial', 'AFC', False) then begin
+                    Sources[ID].Source.SendSetting('F', FormatFloat('0.0000', Position.CurrentFrequency + Position.FrequencyError / 1000));
+                end;
+            end else if ID = BLUETOOTH_SOURCE then begin
+                if GetSettingBoolean('LoRaBluetooth', 'AFC', False) then begin
+                    Sources[ID].Source.SendSetting('F', FormatFloat('0.0000', Position.CurrentFrequency + Position.FrequencyError / 1000));
+                end;
+            end;
+        end;
     end;
 
     if Sources[ID].RSSILabel <> nil then begin
-        Temp := Sources[ID].CurrentRSSI + Sources[ID].PacketRSSI + Sources[ID].FreqError;
+        Temp := Sources[ID].CurrentFreq + Sources[ID].CurrentRSSI + Sources[ID].PacketRSSI + Sources[ID].FreqError;
+
         if (Temp <> '') and (ID in [GATEWAY_SOURCE_1, GATEWAY_SOURCE_2]) then begin
             Sources[ID].RSSILabel.Text := 'Ch' + IntToStr(Position.Channel) + ': ' + Temp;
         end else begin
@@ -440,53 +537,29 @@ begin
     MotionSensor1.Active := True;
 end;
 
-(*
-function TfrmSources.SavePosition(Latitude, Longitude: Double): TGPSPosition;
-var
-    i, j, Best: Integer;
-    Distance: Double;
+function TfrmSources.GetPacketCount(SourceIndex: Integer): Integer;
 begin
-    if GPSCount = 0 then begin
-        GPSCount := High(GPSPositions);
-        for i := 1 to GPSCount do begin
-            GPSPositions[i].Latitude := Latitude;
-            GPSPositions[i].Longitude := Longitude;
-        end;
-    end;
-
-    for i := 1 to GPSCount-1 do begin
-        GPSPositions[i] := GPSPositions[i+1];
-    end;
-
-    GPSPositions[GPSCount].Latitude := Latitude;
-    GPSPositions[GPSCount].Longitude := Longitude;
-
-    // Use or reject latest value
-
-    for i := 1 to GPSCount do begin
-        GPSPositions[i].Score := 0;
-        for j := 1 to GPSCount do begin
-            if j <> i then begin
-                Distance := CalculateDistance(GPSPositions[i].Latitude, GPSPositions[i].Longitude, GPSPositions[j].Latitude, GPSPositions[j].Longitude);
-                if Distance < (100 * abs(i-j)) then begin
-                    Inc(GPSPositions[i].Score);
-                end;
-            end;
-        end;
-    end;
-
-    if GPSPositions[GPSCount].Score >= 3 then begin
-        Result := GPSPositions[GPSCount];
-    end else begin
-        Best := 1;
-        for i := 2 to GPSCount do begin
-            if GPSPositions[i].Score >= GPSPositions[Best].Score then begin
-                Best := i;
-            end;
-        end;
-        Result := GPSPositions[Best];
-    end;
+    Result := Sources[SourceIndex].PacketCount;
 end;
-*)
+
+procedure TfrmSources.ResetPacketCount(SourceIndex: Integer);
+begin
+    Sources[SourceIndex].PacketCount := 0;
+end;
+
+function TfrmSources.FrequencyError(SourceIndex: Integer): Double;
+begin
+    Result := Sources[SourceIndex].FrequencyError;
+end;
+
+procedure TfrmSources.SendUplink(SourceIndex: Integer; When: TUplinkWhen; WhenValue, Channel: Integer; Prefix, Msg, Password: String);
+begin
+    Sources[SourceIndex].Source.SendUplink(When, WhenValue, Channel, Prefix, Msg, Password);
+end;
+
+function TfrmSources.WaitingToSend(SourceIndex: Integer): Boolean;
+begin
+    Result := Sources[SourceIndex].Source.WaitingToSend;
+end;
 
 end.

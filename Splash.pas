@@ -10,6 +10,9 @@ uses
   Androidapi.JNI.JavaTypes, Androidapi.Helpers,
   Androidapi.JNI.GraphicsContentViewText,
 {$ENDIF}
+{$IFDEF MSWINDOWS}
+    Windows,
+{$ENDIF}
   Base, FMX.Objects, FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox;
 
 type
@@ -43,6 +46,17 @@ var
     PackageManager: JPackageManager;
     PackageInfo: JPackageInfo;
 {$ENDIF}
+{$IFDEF MSWINDOWS}
+var
+    verblock:PVSFIXEDFILEINFO;
+    versionMS,versionLS:cardinal;
+    verlen:cardinal;
+    rs:TResourceStream;
+    m:TMemoryStream;
+    p:pointer;
+    s:cardinal;
+    AppVersionString: String;
+{$ENDIF}
 begin
 {$IFDEF ANDROID}
     try
@@ -50,6 +64,39 @@ begin
         PackageInfo := PackageManager.getPackageInfo(TAndroidHelper.Context.getPackageName, 0);  //SharedActivityContext.getPackageName, 0);
         lblVersion.Text := JStringToString(PackageInfo.versionName);
     except
+    end;
+{$ENDIF}
+{$IFDEF MSWINDOWS}
+    m:=TMemoryStream.Create;
+    try
+        rs:=TResourceStream.CreateFromID(HInstance,1,RT_VERSION);
+        try
+            m.CopyFrom(rs,rs.Size);
+        finally
+            rs.Free;
+        end;
+
+        m.Position:=0;
+
+        if VerQueryValue(m.Memory,'\',pointer(verblock),verlen) then begin
+            VersionMS:=verblock.dwFileVersionMS;
+            VersionLS:=verblock.dwFileVersionLS;
+            AppVersionString := IntToStr(versionMS shr 16)+'.'+
+                                IntToStr(versionMS and $FFFF)+'.'+
+                                IntToStr(VersionLS shr 16)+'.'+
+                                IntToStr(VersionLS and $FFFF);
+        end;
+
+        if VerQueryValue(m.Memory,PChar('\\StringFileInfo\\'+
+          IntToHex(GetThreadLocale,4)+IntToHex(GetACP,4)+'\\FileDescription'),p,s) or
+            VerQueryValue(m.Memory,'\\StringFileInfo\\040904E4\\FileDescription',p,s) then begin
+                lblVersion.Text := pChar(p) + ' ' + AppVersionString;
+        end else begin
+            lblVersion.Text := Application.Title + ' ' + AppVersionString;
+        end;
+
+   finally
+        m.Free;
     end;
 {$ENDIF}
 end;

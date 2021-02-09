@@ -4290,15 +4290,15 @@ inherited frmSplash: TfrmSplash
       object rectLoading: TRectangle
         Align = Bottom
         Fill.Color = claBlack
-        Position.Y = 312.000000000000000000
+        Position.Y = 304.000000000000000000
         Size.Width = 700.000000000000000000
-        Size.Height = 112.000000000000000000
+        Size.Height = 120.000000000000000000
         Size.PlatformDefault = False
         object Label1: TLabel
           Align = Client
           StyledSettings = [Style]
           Size.Width = 700.000000000000000000
-          Size.Height = 112.000000000000000000
+          Size.Height = 120.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'Swiss911 XCm BT'
           TextSettings.Font.Size = 36.000000000000000000

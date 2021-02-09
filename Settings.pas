@@ -31,6 +31,7 @@ type
     procedure btnGeneralClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnGateway2Click(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
     CurrentForm: TfrmSettingsBase;
@@ -125,6 +126,22 @@ begin
     frmBluetoothSettings := TfrmBluetoothSettings.Create(nil);
     frmUDPSettings := TfrmUDPSettings.Create(nil);
     frmGeneralSettings := TfrmGeneralSettings.Create(nil);
+end;
+
+procedure TfrmSettings.FormDestroy(Sender: TObject);
+begin
+    frmGPSSettings.Free;
+    frmLoRaGatewaySettings.Free;
+    frmLoRaGatewaySettings2.Free;
+    frmHabitatSettings.Free;
+
+    {$IF Defined(MSWINDOWS) or Defined(ANDROID)}
+        frmLoRaSerialSettings.Free;
+    {$ENDIF}
+
+    frmBluetoothSettings.Free;
+    frmUDPSettings.Free;
+    frmGeneralSettings.Free;
 end;
 
 procedure TfrmSettings.LoadForm;

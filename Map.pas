@@ -27,7 +27,7 @@ type
     Rectangle1: TRectangle;
     Rectangle2: TRectangle;
     Rectangle3: TRectangle;
-    pnlTop: TPanel;
+    V: TPanel;
     btnCar: TButton;
     btnPayload: TButton;
     btnFree: TButton;

@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.ScrollBox, FMX.Memo, System.IOUtils,
   Math, Source, Miscellaneous, SourcesForm, Debug, FMX.Styles.Objects,
-  Base, Splash, Map, Direction, Log, Payloads, SSDV, Navigate,
+  Base, Splash, Map, Direction, Log, Payloads, SSDVForm, Navigate, Uplink,
 {$IFDEF ANDROID}
   Androidapi.JNIBridge, AndroidApi.JNI.Media,
   Androidapi.JNI.JavaTypes, Androidapi.JNI.GraphicsContentViewText, Androidapi.Helpers, Androidapi.JNI.Net,
@@ -29,6 +29,7 @@ type
       ColourName:   String;
       GoodPosition: Boolean;
       LoggedLoss:   Boolean;
+      SourceMask:   Integer;
   end;
 
 type
@@ -47,7 +48,7 @@ type
     btnSSDV: TButton;
     btnDirection: TButton;
     btnNavigate: TButton;
-    btnLog: TButton;
+    btnUplink: TButton;
     btnSettings: TButton;
     btnGateway1: TButton;
     btnLoRaSerial: TButton;
@@ -89,7 +90,7 @@ type
     procedure btnSSDVClick(Sender: TObject);
     procedure btnDirectionClick(Sender: TObject);
     procedure btnNavigateClick(Sender: TObject);
-    procedure btnLogClick(Sender: TObject);
+    procedure btnUplinkClick(Sender: TObject);
     procedure btnSettingsClick(Sender: TObject);
     procedure tmrUpdatesTimer(Sender: TObject);
     procedure btnSourcesClick(Sender: TObject);
@@ -113,7 +114,7 @@ type
     SelectedPayload: Integer;
     procedure LoadMapIfNotLoaded;
     procedure ShowSelectedButton(Button: TButton);
-    function PlacePayloadInList(var Position: THABPosition): Integer;
+    function PlacePayloadInList(SourceID: Integer; var Position: THABPosition): Integer;
     procedure SelectPayload(Button: TButton);
     procedure ShowSelectedPayloadPosition;
     function FindOrAddPayload(Position: THABPosition): Integer;
@@ -137,6 +138,7 @@ type
     procedure NavigateToPayload(PayloadIndex: Integer; UsePrediction: Boolean; OffRoad: Boolean = False);
     procedure ShowRouteToPayload(PayloadIndex: Integer; UsePrediction: Boolean);
     procedure ShowSourceStatus(SourceID: Integer; Active, Recent: Boolean);
+    function GetSourceMask(PayloadIndex: Integer): Integer;
   end;
 
 var
@@ -151,9 +153,11 @@ begin
     LoadForm(TButton(Sender), frmDirection);
 end;
 
-procedure TfrmMain.btnLogClick(Sender: TObject);
+procedure TfrmMain.btnUplinkClick(Sender: TObject);
 begin
-    LoadForm(TButton(Sender), frmLog);
+    if LoadForm(TButton(Sender), frmUplink) then begin
+        frmUplink.NewSelection(SelectedPayload);
+    end;
 end;
 
 procedure TfrmMain.btnMapClick(Sender: TObject);
@@ -320,6 +324,11 @@ end;
 
 function TfrmMain.LoadForm(Button: TButton; NewForm: TfrmBase): Boolean;
 begin
+    if (frmSettings <> nil) and (NewForm <> frmSettings) then begin
+        frmSettings.Free;
+        frmSettings := nil;
+    end;
+
     if NewForm <> nil then begin
         ShowSelectedButton(Button);
 
@@ -345,7 +354,7 @@ begin
     btnSSDV.TextSettings.Font.Style := btnSSDV.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnDirection.TextSettings.Font.Style := btnDirection.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnNavigate.TextSettings.Font.Style := btnNavigate.TextSettings.Font.Style - [TFontStyle.fsUnderline];
-    btnLog.TextSettings.Font.Style := btnLog.TextSettings.Font.Style - [TFontStyle.fsUnderline];
+    btnUplink.TextSettings.Font.Style := btnUplink.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnSettings.TextSettings.Font.Style := btnSettings.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnSources.TextSettings.Font.Style := btnSources.TextSettings.Font.Style - [TFontStyle.fsUnderline];
 
@@ -474,7 +483,7 @@ var
 begin
     ShowSourceStatus(SourceID, True, True);
 
-    Index := PlacePayloadInList(Position);
+    Index := PlacePayloadInList(SourceID, Position);
 
     if Position.IsChase or (Index > 0) then begin
         if Position.IsChase then begin
@@ -539,9 +548,9 @@ begin
 //    if SourceID = 5 then Label5.FontColor := TAlphaColorRec.Black;
 end;
 
-function TfrmMain.PlacePayloadInList(var Position: THABPosition): Integer;
+function TfrmMain.PlacePayloadInList(SourceID: Integer; var Position: THABPosition): Integer;
 var
-    Index: Integer;
+    NewMask, Index: Integer;
     PayloadChanged: Boolean;
 begin
     Result := 0;
@@ -550,6 +559,12 @@ begin
         Index := FindOrAddPayload(Position);
 
         if Index > 0 then begin
+            NewMask := Payloads[Index].SourceMask or ((1 shl (SourceID * 2)) shl Position.Channel);
+            if NewMask <> Payloads[Index].SourceMask then begin
+                Payloads[Index].SourceMask := NewMask;
+                if frmUplink <> nil then frmUplink.NewSelection(SelectedPayload);
+            end;
+
             // Update forms with payload list, if it has changed
             if (not Payloads[Index].Position.InUse) or (Position.PayloadID <> Payloads[Index].Position.PayloadID) then begin
                 frmLog.AddMessage(Position.PayloadID, 'Online', True, True);
@@ -640,6 +655,7 @@ begin
     frmSSDV := TfrmSSDV.Create(nil);
     frmDirection := TfrmDirection.Create(nil);
     frmNavigate := TfrmNavigate.Create(nil);
+    frmUplink := TfrmUplink.Create(nil);
     frmLog := TfrmLog.Create(nil);
 
     // Sources Form
@@ -801,6 +817,7 @@ begin
             if frmSSDV <> nil then frmSSDV.NewSelection(SelectedPayload);
             if frmDirection <> nil then frmDirection.NewSelection(SelectedPayload);
             if frmNavigate <> nil then frmNavigate.NewSelection(SelectedPayload);
+            if frmUplink <> nil then frmUplink.NewSelection(SelectedPayload);
             if frmMap <> nil then frmMap.NewSelection(SelectedPayload);
 
             // Update main screen
@@ -957,7 +974,8 @@ begin
     frmSources.UpdatePayloadList(PayloadList);
 
     for i := Low(Payloads) to High(Payloads) do begin
-        frmNavigate.UpdatePayloadID(i, Payloads[i].Position.PayloadID);
+        if frmNavigate <> nil then frmNavigate.UpdatePayloadID(i, Payloads[i].Position.PayloadID);
+        if frmUplink <> nil then frmUplink.UpdatePayloadID(i, Payloads[i].Position.PayloadID);
     end;
 end;
 
@@ -1029,6 +1047,11 @@ begin
             end;
         end;
     end;
+end;
+
+function TfrmMain.GetSourceMask(PayloadIndex: Integer): Integer;
+begin
+    Result := Payloads[PayloadIndex].SourceMask;
 end;
 
 end.

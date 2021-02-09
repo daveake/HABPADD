@@ -11,7 +11,7 @@ uses
   TargetForm in 'TargetForm.pas' {frmTarget},
   Log in 'Log.pas' {frmLog},
   Payloads in 'Payloads.pas' {frmPayloads},
-  SSDV in 'SSDV.pas' {frmSSDV},
+  SSDVForm in 'SSDVForm.pas' {frmSSDV},
   UDPSettings in 'UDPSettings.pas' {frmUDPSettings},
   Settings in 'Settings.pas' {frmSettings},
   SettingsBase in 'SettingsBase.pas' {frmSettingsBase},
@@ -39,7 +39,9 @@ uses
   LoRaGatewaySettings2 in 'LoRaGatewaySettings2.pas' {frmLoRaGatewaySettings2},
   Androidapi.JNI.Interfaces.JGeomagneticField in '..\HABRx\Androidapi.JNI.Interfaces.JGeomagneticField.pas',
   HABLink in '..\HABRx\HABLink.pas',
-  BLESource in '..\HABRx\BLESource.pas';
+  BLESource in '..\HABRx\BLESource.pas',
+  SSDV in '..\HABRx\SSDV.pas',
+  Uplink in 'Uplink.pas' {frmUplink};
 
 {$R *.res}
 
@@ -47,5 +49,6 @@ begin
   Application.Initialize;
   Application.FormFactor.Orientations := [TFormOrientation.Landscape, TFormOrientation.InvertedLandscape];
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmUplink, frmUplink);
   Application.Run;
 end.

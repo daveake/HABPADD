@@ -87,7 +87,7 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
         StyleLookup = 'LCARSLabelStyle'
         TextSettings.Font.Size = 16.000000000000000000
         Text = 'Port:'
-        TabOrder = 9
+        TabOrder = 11
       end
       object edtPort: TTMSFMXEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -122,13 +122,13 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.HorzAlign = Trailing
         Text = 'Ch0 Frequency:'
-        TabOrder = 20
+        TabOrder = 22
       end
       object edtFrequency1: TTMSFMXEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         Align = Scale
         StyleLookup = 'LCARSTMSFMXEdit1Style'
-        TabOrder = 15
+        TabOrder = 17
         KeyboardType = DecimalNumberPad
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
@@ -139,7 +139,7 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
         Margins.Bottom = 8.000000000000000000
         StyledSettings = [Family, Style]
         OnChangeTracking = edtHostChangeTracking
-        Size.Width = 202.000000000000000000
+        Size.Width = 177.000000000000000000
         Size.Height = 35.000000000000000000
         Size.PlatformDefault = False
         Version = '1.4.4.5'
@@ -148,15 +148,15 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
       object Label4: TLabel
         Align = Scale
         StyledSettings = [Family, Style, FontColor, Other]
-        Position.X = 368.000000000000000000
+        Position.X = 400.000000000000000000
         Position.Y = 57.000000000000000000
-        Size.Width = 97.000000000000000000
+        Size.Width = 65.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSLabelStyle'
         TextSettings.Font.Size = 16.000000000000000000
         Text = 'Mode:'
-        TabOrder = 21
+        TabOrder = 23
       end
       object btnModeDown: TLabel
         Align = Scale
@@ -171,14 +171,14 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
         Text = '<'
-        TabOrder = 7
+        TabOrder = 9
         OnClick = btnModeDownClick
       end
       object edtMode1: TTMSFMXEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         Align = Scale
         StyleLookup = 'LCARSTMSFMXEdit1Style'
-        TabOrder = 13
+        TabOrder = 15
         ReadOnly = True
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
@@ -209,7 +209,7 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
         Text = '>'
-        TabOrder = 8
+        TabOrder = 10
         OnClick = btnModeUpClick
       end
       object Label5: TLabel
@@ -224,13 +224,13 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.HorzAlign = Trailing
         Text = 'Ch1 Frequency:'
-        TabOrder = 19
+        TabOrder = 21
       end
       object edtFrequency2: TTMSFMXEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         Align = Scale
         StyleLookup = 'LCARSTMSFMXEdit1Style'
-        TabOrder = 14
+        TabOrder = 16
         KeyboardType = DecimalNumberPad
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
@@ -241,7 +241,7 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
         Margins.Bottom = 8.000000000000000000
         StyledSettings = [Family, Style]
         OnChangeTracking = edtHostChangeTracking
-        Size.Width = 200.000000000000000000
+        Size.Width = 177.000000000000000000
         Size.Height = 35.000000000000000000
         Size.PlatformDefault = False
         Version = '1.4.4.5'
@@ -250,15 +250,15 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
       object Label6: TLabel
         Align = Scale
         StyledSettings = [Family, Style, FontColor, Other]
-        Position.X = 368.000000000000000000
+        Position.X = 408.000000000000000000
         Position.Y = 105.000000000000000000
-        Size.Width = 97.000000000000000000
+        Size.Width = 57.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSLabelStyle'
         TextSettings.Font.Size = 16.000000000000000000
         Text = 'Mode:'
-        TabOrder = 18
+        TabOrder = 20
       end
       object Label7: TLabel
         Align = Scale
@@ -280,7 +280,7 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         Align = Scale
         StyleLookup = 'LCARSTMSFMXEdit1Style'
-        TabOrder = 12
+        TabOrder = 14
         ReadOnly = True
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
@@ -311,8 +311,38 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
         TextSettings.Font.Size = 16.000000000000000000
         TextSettings.FontColor = claWhite
         Text = '>'
-        TabOrder = 6
+        TabOrder = 8
         OnClick = Label8Click
+      end
+      object chkAFC1: TLabel
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 340.000000000000000000
+        Position.Y = 56.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'AFC'
+        TabOrder = 7
+        OnClick = chkAFC1Click
+      end
+      object chkAFC2: TLabel
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 340.000000000000000000
+        Position.Y = 102.000000000000000000
+        Size.Width = 67.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'AFC'
+        TabOrder = 6
+        OnClick = chkAFC1Click
       end
     end
     inherited Panel2: TPanel

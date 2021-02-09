@@ -2,6 +2,7 @@ inherited frmSettings: TfrmSettings
   Caption = 'frmBase1'
   StyleBook = frmMain.StyleBook1
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   inherited pnlMain: TPanel
     object Rectangle2: TRectangle

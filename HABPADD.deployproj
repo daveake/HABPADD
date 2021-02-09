@@ -6,9 +6,8 @@
     <PropertyGroup>
         <DeviceId Condition="'$(Platform)'=='Android'">E1R161017</DeviceId>
         <DeviceId Condition="'$(Platform)'=='Android64'">E1R161017</DeviceId>
-        <DeviceId Condition="'$(Platform)'=='iOSDevice32'"/>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
-        <DeviceId Condition="'$(Platform)'=='iOSSimulator'">iPhone</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='iOSSimulator'">iPhone5</DeviceId>
     </PropertyGroup>
     <ItemGroup Condition="'$(Platform)'=='iOSDevice64'">
         <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_57x57.png" Condition="'$(Config)'=='Debug'">
@@ -443,18 +442,18 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\balloon-yellow.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="Images\x-blue.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD.app\StartUp\Documents\</RemoteDir>
-            <RemoteName>balloon-yellow.png</RemoteName>
+            <RemoteName>x-blue.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\x-blue.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="Images\balloon-yellow.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD.app\StartUp\Documents\</RemoteDir>
-            <RemoteName>x-blue.png</RemoteName>
+            <RemoteName>balloon-yellow.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -896,8 +895,43 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Win64'"/>
-    <ItemGroup Condition="'$(Platform)'=='iOSDevice32'"/>
     <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="Win32\Release\AppxManifest.xml" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\</RemoteDir>
+            <RemoteName>AppxManifest.xml</RemoteName>
+            <DeployClass>ProjectUWPManifest</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="AndroidManifest.template.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>HABPADD\</RemoteDir>
+            <RemoteName>AndroidManifest.template.xml</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="AndroidManifest.template.xml" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\</RemoteDir>
+            <RemoteName>AndroidManifest.template.xml</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Images\Windows\Icon_144.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\Assets\</RemoteDir>
+            <RemoteName>Logo150x150.png</RemoteName>
+            <DeployClass>UWP_DelphiLogo150</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Win32\Debug\HABPADD.exe" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD\</RemoteDir>
             <RemoteName>HABPADD.exe</RemoteName>
@@ -918,21 +952,10 @@
             <Overwrite>True</Overwrite>
             <Required>True</Required>
         </DeployFile>
-    </ItemGroup>
-    <ItemGroup Condition="'$(Platform)'=='OSX32'">
-        <DeployFile Include="$(BDS)\Redist\osx32\libcgsqlite3.dylib">
-            <RemoteDir>HABPADD.app\Contents\MacOS\</RemoteDir>
-            <RemoteName>libcgsqlite3.dylib</RemoteName>
-            <DeployClass>DependencyModule</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib">
-            <RemoteDir>HABPADD.app\Contents\MacOS\</RemoteDir>
-            <RemoteName>libcgunwind.1.0.dylib</RemoteName>
-            <DeployClass>DependencyModule</DeployClass>
+        <DeployFile Include="Images\Windows\Icon_48.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\Assets\</RemoteDir>
+            <RemoteName>Logo44x44.png</RemoteName>
+            <DeployClass>UWP_DelphiLogo44</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -996,6 +1019,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="$(NDKBasePath)\prebuilt\android-arm\gdbserver\gdbserver" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>gdbserver</RemoteName>
+            <DeployClass>AndroidGDBServer</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Android\Debug\splash_image_def.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD\res\drawable\</RemoteDir>
             <RemoteName>splash_image_def.xml</RemoteName>
@@ -1023,15 +1055,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Fonts\tt0106m0.TTF" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>HABPADD\assets\internal\</RemoteDir>
-            <RemoteName>Swiss911 UCm BT.TTF</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Images\payload-green.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\assets\internal\</RemoteDir>
             <RemoteName>payload-green.png</RemoteName>
@@ -1046,6 +1069,15 @@
             <RemoteName>ic_notification.png</RemoteName>
             <DeployClass>Android_NotificationIcon48</DeployClass>
             <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Fonts\tt0106m0.ttf" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>HABPADD\assets\internal\</RemoteDir>
+            <RemoteName>Swiss911 UCm BT.ttf</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -1131,9 +1163,9 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Fonts\tt0106m0.TTF" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="Fonts\tt0106m0.ttf" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\assets\internal\</RemoteDir>
-            <RemoteName>Swiss911 UCm BT.TTF</RemoteName>
+            <RemoteName>Swiss911 UCm BT.ttf</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -1185,6 +1217,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="AndroidManifest.template.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>HABPADD\assets\internal\</RemoteDir>
+            <RemoteName>AndroidManifest.template.xml</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Images\Android\Icon_36.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD\res\drawable-ldpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
@@ -1216,6 +1257,15 @@
             <RemoteDir>HABPADD\res\drawable-xhdpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
             <DeployClass>Android_LauncherIcon96</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\lib\android\debug\mips\libnative-activity.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>HABPADD\library\lib\mips\</RemoteDir>
+            <RemoteName>libHABPADD.so</RemoteName>
+            <DeployClass>AndroidLibnativeMipsFile</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -1344,6 +1394,15 @@
             <RemoteName>car-green-w.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(NDKBasePath)\prebuilt\android-arm\gdbserver\gdbserver" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>HABPADD\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>gdbserver</RemoteName>
+            <DeployClass>AndroidGDBServer</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -1547,6 +1606,24 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\library\lib\armeabi\</RemoteDir>
+            <RemoteName>libHABPADD.so</RemoteName>
+            <DeployClass>AndroidLibnativeArmeabiFile</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="AndroidManifest.template.xml" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\assets\internal\</RemoteDir>
+            <RemoteName>AndroidManifest.template.xml</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Android\Debug\classes.dex" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD\classes\</RemoteDir>
             <RemoteName>classes.dex</RemoteName>
@@ -1731,6 +1808,24 @@
             <RemoteDir>HABPADD\res\drawable-xxhdpi\</RemoteDir>
             <RemoteName>ic_notification.png</RemoteName>
             <DeployClass>Android_NotificationIcon72</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>HABPADD\library\lib\armeabi\</RemoteDir>
+            <RemoteName>libHABPADD.so</RemoteName>
+            <DeployClass>AndroidLibnativeArmeabiFile</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\lib\android\debug\mips\libnative-activity.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\library\lib\mips\</RemoteDir>
+            <RemoteName>libHABPADD.so</RemoteName>
+            <DeployClass>AndroidLibnativeMipsFile</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -1992,15 +2087,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Fonts\tt0106m0.TTF" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>HABPADD\assets\internal\</RemoteDir>
-            <RemoteName>Swiss911 UCm BT.TTF</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_24x24.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\res\drawable-mdpi\</RemoteDir>
             <RemoteName>ic_notification.png</RemoteName>
@@ -2031,6 +2117,15 @@
         <DeployFile Include="Images\Map\parachute-green.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HABPADD\assets\internal\</RemoteDir>
             <RemoteName>parachute-green.png</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Fonts\tt0106m0.ttf" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>HABPADD\</RemoteDir>
+            <RemoteName>tt0106m0.ttf</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
             <LocalCommand/>
@@ -2082,20 +2177,20 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Fonts\tt0106m0.TTF" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\assets\internal\</RemoteDir>
-            <RemoteName>Swiss911 UCm BT.TTF</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Images\Android\Splash_470.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\res\drawable-normal\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
             <DeployClass>Android_SplashImage470</DeployClass>
             <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Fonts\tt0106m0.ttf" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\</RemoteDir>
+            <RemoteName>tt0106m0.ttf</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -2682,15 +2777,6 @@
             <RemoteName>balloon-invisible.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="Android\Release\libHABPADD.so" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\library\lib\armeabi-v7a\</RemoteDir>
-            <RemoteName>libHABPADD.so</RemoteName>
-            <DeployClass>ProjectOutput_Android32</DeployClass>
-            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>

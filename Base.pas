@@ -41,7 +41,7 @@ end;
 
 procedure TfrmBase.pnlMainResized(Sender: TObject);
 begin
-    ResizeFonts;
+    // ResizeFonts;
 end;
 
 procedure TfrmBase.HideForm;
@@ -63,17 +63,25 @@ begin
     if Rectangle <> nil then begin
         if Checked then begin
             Rectangle.Stroke.Color := TAlphaColorRec.Yellow;
-            TLabel(Sender).Tag := 1;
+            // TLabel(Sender).Tag := TLabel(Sender).Tag or 65536;
         end else begin
             Rectangle.Stroke.Color := TAlphaColorRec.Silver;
-            TLabel(Sender).Tag := 0;
+            // TLabel(Sender).Tag := TLabel(Sender).Tag and 65535;
         end;
     end;
 end;
 
 function TfrmBase.LCARSLabelIsChecked(Sender: TObject): Boolean;
+var
+    Rectangle: TRoundRect;
 begin
-    Result := TLabel(Sender).Tag <> 0;
+    Rectangle := TRoundRect(TLabel(Sender).FindStyleResource('rectangle'));
+
+    if Rectangle <> nil then begin
+        Result := Rectangle.Stroke.Color = TAlphaColorRec.Yellow;
+    end else begin
+        Result := False;
+    end;
 end;
 
 procedure TfrmBase.ResizeFonts;

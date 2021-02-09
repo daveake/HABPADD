@@ -14,7 +14,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   TargetForm, FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox, IPPeerClient,
   REST.Client, REST.Types, Data.Bind.Components, Data.Bind.ObjectScope,
-  REST.Authenticator.OAuth, FMX.Objects, HABLink;
+  REST.Authenticator.OAuth, FMX.Objects;
 
 type
   TfrmLog = class(TfrmTarget)
@@ -23,16 +23,7 @@ type
     RESTClient: TRESTClient;
     RESTRequest: TRESTRequest;
     RESTResponse: TRESTResponse;
-    Rectangle1: TRectangle;
-    Button3: TButton;
-    Button1: TButton;
-    Button2: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    Button6: TButton;
-    Button7: TButton;
     lstSpeech: TListBox;
-    procedure btnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure tmrUpdatesTimer(Sender: TObject);
   private
@@ -40,9 +31,6 @@ type
   {$IFDEF ANDROID}
     tts: JTextToSpeech;
   {$ENDIF}
-    HabLinkUploader: THABLinkThread;
-    procedure ResetRESTComponentsToDefaults;
-    procedure PostTweet(Temp: String);
     procedure TextToSpeech(Temp: String);
   public
     { Public declarations }
@@ -92,25 +80,6 @@ begin
     if Speak and GetSettingBoolean('General', 'Speech', False) then begin
         lstSpeech.Items.Add(Speech);
     end;
-
-    // Twitter
-    if Tweet and GetSettingBoolean('General', 'Tweet', False) then begin
-        PostTweet('HAB PADD: ' + TimedMsg);
-    end;
-
-    // hab.link
-    if Tweet then begin
-        HabLinkUploader.SendMessage('MESSAGE:' + Speech);
-    end;
-end;
-
-procedure TfrmLog.btnClick(Sender: TObject);
-var
-    Temp: String;
-begin
-    Temp := TButton(Sender).Text;
-
-    AddMessage('', Temp, False, True);
 end;
 
 procedure TfrmLog.FormCreate(Sender: TObject);
@@ -120,32 +89,6 @@ begin
   {$IFDEF ANDROID}
     tts := TJTextToSpeech.JavaClass.init(SharedActivityContext, nil); // ttsListener);
   {$ENDIF}
-
-    // hab.link uploader
-    HabLinkUploader := THABLinkThread.Create(nil);
-end;
-
-procedure TfrmLog.PostTweet(Temp: String);
-begin
-    ResetRESTComponentsToDefaults;
-
-    RESTClient.BaseURL := 'https://api.twitter.com';
-    RESTClient.Authenticator := OAuth1_Twitter;
-
-    RESTRequest.Resource := '1.1/statuses/update.json';
-
-    RESTRequest.Method := TRESTRequestMethod.rmPOST;
-
-    RESTRequest.Params.AddItem('status', Temp, TRESTRequestParameterKind.pkGETorPOST);
-
-    RESTRequest.Execute;
-end;
-
-procedure TfrmLog.ResetRESTComponentsToDefaults;
-begin
-    RESTRequest.ResetToDefaults;
-    RESTClient.ResetToDefaults;
-    RESTResponse.ResetToDefaults;
 end;
 
 {$IFDEF ANDROID}
