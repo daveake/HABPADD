@@ -6,7 +6,7 @@
         android:versionName="%versionName%">
 
     <!-- This is the platform API where NativeActivity was introduced. -->
-    <uses-sdk android:minSdkVersion="%minSdkVersion%" android:targetSdkVersion="28" />
+    <uses-sdk android:minSdkVersion="%minSdkVersion%" android:targetSdkVersion="29" />
 <%uses-permission%>
     <application android:persistent="%persistent%" 
         android:restoreAnyVersion="%restoreAnyVersion%" 
