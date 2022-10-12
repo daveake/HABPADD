@@ -1,5 +1,5 @@
 inherited frmGeneralSettings: TfrmGeneralSettings
-  Caption = 'frmSettingsBase1'
+  Caption = ''
   OnCreate = FormCreate
   DesignerMasterStyle = 0
   inherited pnlMain: TPanel
@@ -11,19 +11,16 @@ inherited frmGeneralSettings: TfrmGeneralSettings
           Lines.Strings = (
             
               '"Your Callsign" is used for telemetry uploads from this program.' +
-              '  Normally we leave it to the telemetry receiver (e.g. dl-fldigi' +
-              ' or the LoRa Gateway) to upload to Habitat, but sometimes you ma' +
-              'y use a source (e.g. the a Bluetooth LoRa Receiver) that does no' +
-              't upload.'
+              '  It is used for USB and Bluetooth sources; the LoRaGateway has ' +
+              'its own upload code.'
             ''
             
               '"Position Beeps" enables a short speaker beep for every incoming' +
               ' telemetry position.'
             ''
-            '"Alarm Beeps" enables beeps for alarms such as Signal Loss.'#11
-            
-              '"Speech" enables text-to-speech for log entries.  Works on Andro' +
-              'id only.')
+            '"Alarm Beeps" enables beeps for alarms such as Signal Loss.'
+            ''
+            '"Speech" enables text-to-speech for log entries.')
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           Size.Height = 207.000000000000000000

@@ -5,9 +5,7 @@ inherited frmLog: TfrmLog
   inherited pnlMain: TPanel
     object lstLog: TListBox
       Align = Client
-      Margins.Left = 8.000000000000000000
-      Margins.Right = 8.000000000000000000
-      Size.Width = 684.000000000000000000
+      Size.Width = 700.000000000000000000
       Size.Height = 424.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'LCARSListBoxStyle'
@@ -18,7 +16,7 @@ inherited frmLog: TfrmLog
       DefaultItemStyles.ItemStyle = 'LCARSListBoxItemStyleCentred'
       DefaultItemStyles.GroupHeaderStyle = ''
       DefaultItemStyles.GroupFooterStyle = ''
-      Viewport.Width = 664.000000000000000000
+      Viewport.Width = 680.000000000000000000
       Viewport.Height = 404.000000000000000000
       object lstSpeech: TListBox
         Position.X = 96.000000000000000000
@@ -36,6 +34,10 @@ inherited frmLog: TfrmLog
         Viewport.Height = 293.000000000000000000
       end
     end
+  end
+  inherited tmrUpdates: TTimer
+    Left = 68
+    Top = 344
   end
   object OAuth1_Twitter: TOAuth1Authenticator
     AccessToken = '23782664-LzmHiup9BrwW9Ii8TkPBiof08Y2tBGPj2BKOmHd6w'

@@ -1,0 +1,120 @@
+inherited frmDownloadSettings: TfrmDownloadSettings
+  Caption = 'frmSettingsBase1'
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    inherited Panel1: TPanel
+      Size.Height = 215.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Height = 207.000000000000000000
+        inherited Memo1: TMemo
+          Lines.Strings = (
+            
+              '"White List" adds these payload IDs (comma-separated if more tha' +
+              'n one) to the downloads from enabled online sources, so you can ' +
+              'chase payloads that you aren'#39't receiving from directly.'
+            ''
+            
+              'Check the Enable buttons for whichever online sources you wish t' +
+              'o use.')
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Size.Height = 201.000000000000000000
+          Viewport.Width = 675.000000000000000000
+          Viewport.Height = 201.000000000000000000
+        end
+      end
+    end
+    inherited Panel3: TPanel
+      Size.Height = 135.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Height = 127.000000000000000000
+        object chkEnableHABHUB: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, Other]
+          HitTest = True
+          Position.X = 34.000000000000000000
+          Position.Y = 71.000000000000000000
+          Size.Width = 185.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'lCARSCheckButton'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.FontColor = claWhite
+          Text = 'Enable HABHUB'
+          TabOrder = 4
+          OnClick = chkEnableSondehubClick
+        end
+        object chkEnableHABLINK: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, Other]
+          HitTest = True
+          Position.X = 470.000000000000000000
+          Position.Y = 71.000000000000000000
+          Size.Width = 185.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'lCARSCheckButton'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.FontColor = claWhite
+          Text = 'Enable HabLink'
+          TabOrder = 3
+          OnClick = chkEnableSondehubClick
+        end
+      end
+      object chkEnableSondehub: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, Other]
+        HitTest = True
+        Position.X = 262.000000000000000000
+        Position.Y = 71.000000000000000000
+        Size.Width = 185.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'lCARSCheckButton'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Text = 'Enable Sondehub'
+        TabOrder = 3
+        OnClick = chkEnableSondehubClick
+      end
+      object Label1: TLabel
+        Align = Scale
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 36.000000000000000000
+        Position.Y = 22.000000000000000000
+        Size.Width = 91.000000000000000000
+        Size.Height = 27.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSLabelStyle'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'White List:'
+        TabOrder = 2
+      end
+      object edtWhiteList: TTMSFMXEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Scale
+        StyleLookup = 'LCARSTMSFMXEdit1Style'
+        TabOrder = 0
+        Text = '0'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claWhite
+        Position.X = 136.000000000000000000
+        Position.Y = 18.000000000000000000
+        Margins.Left = 8.000000000000000000
+        Margins.Right = 8.000000000000000000
+        Margins.Bottom = 8.000000000000000000
+        StyledSettings = [Family, Style]
+        OnKeyDown = edtWhiteListKeyDown
+        Size.Width = 515.000000000000000000
+        Size.Height = 37.000000000000000000
+        Size.PlatformDefault = False
+        Version = '1.4.4.5'
+        Lookup.Separator = ';'
+      end
+    end
+    inherited Panel2: TPanel
+      Position.Y = 135.000000000000000000
+    end
+  end
+end

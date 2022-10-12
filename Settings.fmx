@@ -2,7 +2,6 @@ inherited frmSettings: TfrmSettings
   Caption = 'frmBase1'
   StyleBook = frmMain.StyleBook1
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   inherited pnlMain: TPanel
     object Rectangle2: TRectangle
@@ -38,7 +37,7 @@ inherited frmSettings: TfrmSettings
         StyledSettings = [Family]
         IsPressed = True
         Margins.Right = 4.000000000000000000
-        Position.X = 536.000000000000000000
+        Position.X = 448.000000000000000000
         Size.Width = 65.000000000000000000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
@@ -54,8 +53,8 @@ inherited frmSettings: TfrmSettings
         StyledSettings = [Family]
         IsPressed = True
         Margins.Right = 4.000000000000000000
-        Position.X = 448.000000000000000000
-        Size.Width = 84.000000000000000000
+        Position.X = 378.000000000000000000
+        Size.Width = 66.000000000000000000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSTabButtonStyle'
@@ -70,8 +69,8 @@ inherited frmSettings: TfrmSettings
         StyledSettings = [Family]
         IsPressed = True
         Margins.Right = 4.000000000000000000
-        Position.X = 364.000000000000000000
-        Size.Width = 81.000000000000000000
+        Position.X = 304.000000000000000000
+        Size.Width = 71.000000000000000000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSTabButtonStyle'
@@ -87,30 +86,30 @@ inherited frmSettings: TfrmSettings
         IsPressed = True
         Margins.Right = 4.000000000000000000
         Position.X = 156.000000000000000000
-        Size.Width = 101.000000000000000000
+        Size.Width = 70.000000000000000000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSTabButtonStyle'
         TabOrder = 4
-        Text = 'Gateway 1'
+        Text = 'GW 1'
         TextSettings.Font.Size = 24.000000000000000000
         OnClick = btnGateway1Click
       end
-      object btnHabitat: TButton
+      object btnDownloads: TButton
         StaysPressed = True
         Align = Scale
         StyledSettings = [Family]
         IsPressed = True
         Margins.Right = 4.000000000000000000
-        Position.X = 605.000000000000000000
+        Position.X = 517.000000000000000000
         Size.Width = 84.000000000000000000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSTabButtonStyle'
-        TabOrder = 5
-        Text = 'Habitat'
+        TabOrder = 6
+        Text = 'From Web'
         TextSettings.Font.Size = 24.000000000000000000
-        OnClick = btnHabitatClick
+        OnClick = btnDownloadsClick
       end
       object btnGeneral: TButton
         StaysPressed = True
@@ -122,7 +121,7 @@ inherited frmSettings: TfrmSettings
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSTabButtonStyle'
-        TabOrder = 6
+        TabOrder = 7
         Text = 'General'
         TextSettings.Font.Size = 24.000000000000000000
         OnClick = btnGeneralClick
@@ -133,15 +132,31 @@ inherited frmSettings: TfrmSettings
         StyledSettings = [Family]
         IsPressed = True
         Margins.Right = 4.000000000000000000
-        Position.X = 260.000000000000000000
-        Size.Width = 101.000000000000000000
+        Position.X = 230.000000000000000000
+        Size.Width = 70.000000000000000000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSTabButtonStyle'
-        TabOrder = 7
-        Text = 'Gateway 2'
+        TabOrder = 8
+        Text = 'GW 2'
         TextSettings.Font.Size = 24.000000000000000000
         OnClick = btnGateway2Click
+      end
+      object btnUploads: TButton
+        StaysPressed = True
+        Align = Scale
+        StyledSettings = [Family]
+        IsPressed = True
+        Margins.Right = 4.000000000000000000
+        Position.X = 604.000000000000000000
+        Size.Width = 84.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'LCARSTabButtonStyle'
+        TabOrder = 5
+        Text = 'To Web'
+        TextSettings.Font.Size = 24.000000000000000000
+        OnClick = btnUploadsClick
       end
     end
   end

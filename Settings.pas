@@ -19,19 +19,20 @@ type
     btnLoRaBT: TButton;
     btnLoRaSerial: TButton;
     btnGateway1: TButton;
-    btnHabitat: TButton;
+    btnDownloads: TButton;
     btnGeneral: TButton;
     btnGateway2: TButton;
+    btnUploads: TButton;
     procedure btnGPSClick(Sender: TObject);
     procedure btnGateway1Click(Sender: TObject);
     procedure btnLoRaSerialClick(Sender: TObject);
     procedure btnLoRaBTClick(Sender: TObject);
     procedure btnUDPClick(Sender: TObject);
-    procedure btnHabitatClick(Sender: TObject);
+    procedure btnDownloadsClick(Sender: TObject);
     procedure btnGeneralClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnGateway2Click(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
+    procedure btnUploadsClick(Sender: TObject);
   private
     { Private declarations }
     CurrentForm: TfrmSettingsBase;
@@ -40,6 +41,7 @@ type
   public
     { Public declarations }
     procedure LoadForm; override;
+    procedure LoadPage(PageIndex: Integer);
   end;
 
 var
@@ -49,7 +51,7 @@ implementation
 
 {$R *.fmx}
 
-uses Main, GPSSettings, LoRaGatewaySettings, LoRaGatewaySettings2, HabitatSettings, LoRaSerialSettings, UDPSettings, LoRaBluetoothSettings;
+uses Main, GPSSettings, LoRaGatewaySettings, LoRaGatewaySettings2, DownloadSettings, LoRaSerialSettings, UDPSettings, LoRaBluetoothSettings, UploadSettings;
 
 procedure TfrmSettings.LoadSettingsForm(Button: TButton; NewForm: TfrmSettingsBase);
 begin
@@ -58,6 +60,7 @@ begin
     if CurrentForm <> nil then begin
         CurrentForm.pnlMain.Parent := CurrentForm;
         CurrentForm.HideForm;
+        CurrentForm.Free;
     end;
 
     NewForm.pnlMain.Parent := pnlMain;
@@ -67,99 +70,98 @@ end;
 
 procedure TfrmSettings.btnGateway1Click(Sender: TObject);
 begin
-    LoadSettingsForm(TButton(Sender), frmLoRaGatewaySettings);
+    frmLoRaGatewaySettings := TfrmLoRaGatewaySettings.Create(nil);
+
+    LoadSettingsForm(btnGateway1, frmLoRaGatewaySettings);
 end;
 
 procedure TfrmSettings.btnGateway2Click(Sender: TObject);
 begin
-    LoadSettingsForm(TButton(Sender), frmLoRaGatewaySettings2);
+    frmLoRaGatewaySettings2 := TfrmLoRaGatewaySettings2.Create(nil);
+
+    LoadSettingsForm(btnGateway2, frmLoRaGatewaySettings2);
 end;
 
 procedure TfrmSettings.btnGeneralClick(Sender: TObject);
 begin
-    LoadSettingsForm(TButton(Sender), frmGeneralSettings);
+    frmGeneralSettings := TfrmGeneralSettings.Create(nil);
+
+    LoadSettingsForm(btnGeneral, frmGeneralSettings);
 end;
 
 procedure TfrmSettings.btnGPSClick(Sender: TObject);
 begin
-    LoadSettingsForm(TButton(Sender), frmGPSSettings);
+    frmGPSSettings := TfrmGPSSettings.Create(nil);
+
+    LoadSettingsForm(btnGPS, frmGPSSettings);
 end;
 
-procedure TfrmSettings.btnHabitatClick(Sender: TObject);
+procedure TfrmSettings.btnDownloadsClick(Sender: TObject);
 begin
-    LoadSettingsForm(TButton(Sender), frmHabitatSettings);
+    frmDownloadSettings := TfrmDownloadSettings.Create(nil);
+
+    LoadSettingsForm(btnDownloads, frmDownloadSettings);
 end;
 
 procedure TfrmSettings.btnLoRaSerialClick(Sender: TObject);
 begin
-    if frmLoRaSerialSettings <> nil then begin
-        LoadSettingsForm(TButton(Sender), frmLoRaSerialSettings);
-    end;
+    {$IF Defined(MSWINDOWS) or Defined(ANDROID)}
+        frmLoRaSerialSettings := TfrmLoRaSerialSettings.Create(nil);
+        LoadSettingsForm(btnLoRaSerial, frmLoRaSerialSettings);
+    {$ENDIF}
 end;
 
 procedure TfrmSettings.btnUDPClick(Sender: TObject);
 begin
-    LoadSettingsForm(TButton(Sender), frmUDPSettings);
+    frmUDPSettings := TfrmUDPSettings.Create(nil);
+
+    LoadSettingsForm(btnUDP, frmUDPSettings);
+end;
+
+procedure TfrmSettings.btnUploadsClick(Sender: TObject);
+begin
+    frmUploadSettings := TfrmUploadSettings.Create(nil);
+
+    LoadSettingsForm(btnUploads, frmUploadSettings);
 end;
 
 procedure TfrmSettings.btnLoRaBTClick(Sender: TObject);
 begin
-    LoadSettingsForm(TButton(Sender), frmBluetoothSettings);
+    frmBluetoothSettings := TfrmBluetoothSettings.Create(nil);
+
+    LoadSettingsForm(btnLoRaBT, frmBluetoothSettings);
 end;
 
 procedure TfrmSettings.FormCreate(Sender: TObject);
 begin
     inherited;
 
-    frmGPSSettings := TfrmGPSSettings.Create(nil);
-    frmLoRaGatewaySettings := TfrmLoRaGatewaySettings.Create(nil);
-    frmLoRaGatewaySettings2 := TfrmLoRaGatewaySettings2.Create(nil);
-    frmHabitatSettings := TfrmHabitatSettings.Create(nil);
-
     {$IF Defined(MSWINDOWS) or Defined(ANDROID)}
-        frmLoRaSerialSettings := TfrmLoRaSerialSettings.Create(nil);
     {$ELSE}
         btnLoRaSerial.Text := '';
         btnLoRaBT.Text := 'BLE';
     {$ENDIF}
-
-    frmBluetoothSettings := TfrmBluetoothSettings.Create(nil);
-    frmUDPSettings := TfrmUDPSettings.Create(nil);
-    frmGeneralSettings := TfrmGeneralSettings.Create(nil);
-end;
-
-procedure TfrmSettings.FormDestroy(Sender: TObject);
-begin
-    frmGPSSettings.Free;
-    frmLoRaGatewaySettings.Free;
-    frmLoRaGatewaySettings2.Free;
-    frmHabitatSettings.Free;
-
-    {$IF Defined(MSWINDOWS) or Defined(ANDROID)}
-        frmLoRaSerialSettings.Free;
-    {$ENDIF}
-
-    frmBluetoothSettings.Free;
-    frmUDPSettings.Free;
-    frmGeneralSettings.Free;
 end;
 
 procedure TfrmSettings.LoadForm;
 begin
     inherited;
 
-    LoadSettingsForm(btnGeneral, frmGeneralSettings);
+//    frmGeneralSettings := TfrmGeneralSettings.Create(nil);
+//
+//    LoadSettingsForm(btnGeneral, frmGeneralSettings);
+//
+//    Application.ProcessMessages;
 
-    Application.ProcessMessages;
-
-    btnGeneral.Font.Size := btnGeneral.Size.Height * 0.9;
-    btnGPS.Font.Size := btnGeneral.Size.Height * 0.9;
-    btnGateway1.Font.Size := btnGeneral.Size.Height * 0.9;
-    btnGateway2.Font.Size := btnGeneral.Size.Height * 0.9;
-    btnLoRaSerial.Font.Size := btnGeneral.Size.Height * 0.9;
-    btnLoRaBT.Font.Size := btnGeneral.Size.Height * 0.9;
-    btnUDP.Font.Size := btnGeneral.Size.Height * 0.9;
-    btnHabitat.Font.Size := btnGeneral.Size.Height * 0.9;
+    btnGeneral.Font.Size := btnGeneral.Size.Height * 0.8;
+    btnGPS.Font.Size := btnGeneral.Size.Height * 0.8;
+    btnGateway1.Font.Size := btnGeneral.Size.Height * 0.8;
+    btnGateway2.Font.Size := btnGeneral.Size.Height * 0.8;
+    btnLoRaSerial.Font.Size := btnGeneral.Size.Height * 0.8;
+    btnLoRaBT.Font.Size := btnGeneral.Size.Height * 0.8;
+    btnUDP.Font.Size := btnGeneral.Size.Height * 0.8;
+    btnDownloads.Font.Size := btnGeneral.Size.Height * 0.8;
+    btnUploads.Font.Size := btnGeneral.Size.Height * 0.8;
 end;
 
 procedure TfrmSettings.ShowSelectedButton(Button: TButton);
@@ -167,13 +169,29 @@ begin
     btnGeneral.TextSettings.Font.Style := btnGeneral.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnGPS.TextSettings.Font.Style := btnGPS.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnLoRaSerial.TextSettings.Font.Style := btnLoRaSerial.TextSettings.Font.Style - [TFontStyle.fsUnderline];
-    btnHabitat.TextSettings.Font.Style := btnHabitat.TextSettings.Font.Style - [TFontStyle.fsUnderline];
+    btnDownloads.TextSettings.Font.Style := btnDownloads.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnLoRaBT.TextSettings.Font.Style := btnLoRaBT.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnUDP.TextSettings.Font.Style := btnUDP.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnGateway1.TextSettings.Font.Style := btnGateway1.TextSettings.Font.Style - [TFontStyle.fsUnderline];
     btnGateway2.TextSettings.Font.Style := btnGateway2.TextSettings.Font.Style - [TFontStyle.fsUnderline];
+    btnUploads.TextSettings.Font.Style := btnUploads.TextSettings.Font.Style - [TFontStyle.fsUnderline];
 
     Button.TextSettings.Font.Style := Button.TextSettings.Font.Style + [TFontStyle.fsUnderline];
+end;
+
+procedure TfrmSettings.LoadPage(PageIndex: Integer);
+begin
+    case PageIndex of
+        0:  btnGeneralClick(nil);
+        1:  btnGPSClick(nil);
+        2:  btnGateway1Click(nil);
+        3:  btnGateway2Click(nil);
+        4:  btnLoRaSerialClick(nil);
+        5:  btnLoRaBTClick(nil);
+        6:  btnUDPClick(nil);
+        7:  btnDownloadsClick(nil);
+        8:  btnUploadsClick(nil);
+    end;
 end;
 
 end.

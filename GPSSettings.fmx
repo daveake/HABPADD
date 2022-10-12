@@ -10,16 +10,17 @@ inherited frmGPSSettings: TfrmGPSSettings
         inherited Memo1: TMemo
           Lines.Strings = (
             
-              '"Enable Upload" enables uploading of your position to Habitat, w' +
-              'here it will appear as a chase car icon.'
+              '"Enable Upload" enables uploading of your position to whichever ' +
+              'online services you have also enabled - see the "To Web" page.'
             ''
             
-              '"Chase Car ID" is the label used for that icon.  "_chase" is aut' +
-              'omatically appended so you don'#39't need to include that yourself.'
+              '"Chase Car ID" is the label used for that your position.  "_chas' +
+              'e" is automatically appended so you don'#39't need to include that y' +
+              'ourself.'
             ''
             
-              '"Period" is the time, in seconds, between position updates to Ha' +
-              'bitat.')
+              '"Period" is the time, in seconds, between position updates to HA' +
+              'BHUB/Sondehub.')
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           Size.Height = 207.000000000000000000

@@ -16,7 +16,7 @@ type
     btnModeDown: TLabel;
     edtMode: TTMSFMXEdit;
     btnModeUp: TLabel;
-    chkHabitat: TLabel;
+    chkTelemetry: TLabel;
     chkSSDV: TLabel;
     Label1: TLabel;
     edtPort: TTMSFMXEdit;
@@ -35,7 +35,7 @@ type
     procedure edtPortChangeTracking(Sender: TObject);
     procedure btnModeDownClick(Sender: TObject);
     procedure btnModeUpClick(Sender: TObject);
-    procedure chkHabitatClick(Sender: TObject);
+    procedure chkTelemetryClick(Sender: TObject);
     procedure btnSearchClick(Sender: TObject);
     procedure tmrSearchTimer(Sender: TObject);
     procedure tmrReceiveTimer(Sender: TObject);
@@ -70,7 +70,7 @@ begin
     SetSettingString(Group, 'Frequency', edtFrequency.Text);
     SetSettingString(Group, 'Mode', edtMode.Text);
 
-    SetSettingBoolean(Group, 'Habitat', LCARSLabelIsChecked(chkHabitat));
+    SetSettingBoolean(Group, 'Upload', LCARSLabelIsChecked(chkTelemetry));
     SetSettingBoolean(Group, 'SSDV', LCARSLabelIsChecked(chkSSDV));
 
     SetSettingBoolean(Group, 'AFC', LCARSLabelIsChecked(chkAFC));
@@ -120,7 +120,7 @@ begin
 
     edtFrequency.Text := GetSettingString(Group, 'Frequency', '');
     edtMode.Text := GetSettingString(Group, 'Mode', '');
-    CheckLCARSLabel(chkHabitat, GetSettingBoolean(Group, 'Habitat', False));
+    CheckLCARSLabel(chkTelemetry, GetSettingBoolean(Group, 'Upload', False));
     CheckLCARSLabel(chkSSDV, GetSettingBoolean(Group, 'SSDV', False));
     CheckLCARSLabel(chkAFC, GetSettingBoolean(Group, 'AFC', False));
 end;
@@ -131,7 +131,7 @@ begin
     frmSources.SendParameterToSource(SERIAL_SOURCE, 'M', edtMode.Text);
 end;
 
-procedure TfrmLoRaSerialSettings.chkHabitatClick(Sender: TObject);
+procedure TfrmLoRaSerialSettings.chkTelemetryClick(Sender: TObject);
 begin
     SetingsHaveChanged;
     LCARSLabelClick(Sender);

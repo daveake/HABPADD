@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   SettingsBase, FMX.TMSCustomEdit, FMX.TMSEdit, FMX.Objects, Miscellaneous,
-  FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo;
+  FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo, FMX.Memo.Types;
 
 type
   TfrmGPSSettings = class(TfrmSettingsBase)
@@ -35,6 +35,8 @@ var
 
 implementation
 
+uses Main;
+
 {$R *.fmx}
 
 procedure TfrmGPSSettings.FormCreate(Sender: TObject);
@@ -56,6 +58,8 @@ begin
     SetSettingString('CHASE', 'Callsign', edtCallsign.Text);
     SetSettingBoolean('CHASE', 'Upload', LCARSLabelIsChecked(chkUpload));
     SetSettingInteger('CHASE', 'Period', edtPeriod.Text.ToInteger);
+
+    frmMain.UpdateCarUploadSettings;
 end;
 
 procedure TfrmGPSSettings.CancelChanges;

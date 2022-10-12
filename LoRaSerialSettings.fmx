@@ -12,10 +12,11 @@ inherited frmLoRaSerialSettings: TfrmLoRaSerialSettings
             
               'Set the frequency and mode to match your payload.  These setting' +
               's are sent to the attached receiver after you touch Apply.'
-            #11
+            ''
             
               'The Enable buttons enable uploading telemetry/SSDV from this dev' +
-              'ice to Habitat.')
+              'ice to online sources, but remember to enable those sources in t' +
+              'he "To Web" page.')
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           Size.Height = 199.000000000000000000
@@ -132,7 +133,7 @@ inherited frmLoRaSerialSettings: TfrmLoRaSerialSettings
         TabOrder = 6
         OnClick = btnModeUpClick
       end
-      object chkHabitat: TLabel
+      object chkTelemetry: TLabel
         Align = Scale
         StyledSettings = [Family, Style, Other]
         HitTest = True
@@ -146,7 +147,7 @@ inherited frmLoRaSerialSettings: TfrmLoRaSerialSettings
         TextSettings.FontColor = claWhite
         Text = 'Enable Telemetry Upload'
         TabOrder = 8
-        OnClick = chkHabitatClick
+        OnClick = chkTelemetryClick
       end
       object chkSSDV: TLabel
         Align = Scale
@@ -162,7 +163,7 @@ inherited frmLoRaSerialSettings: TfrmLoRaSerialSettings
         TextSettings.FontColor = claWhite
         Text = 'Enable SSDV Upload'
         TabOrder = 4
-        OnClick = chkHabitatClick
+        OnClick = chkTelemetryClick
       end
       object Label1: TLabel
         Align = Scale
@@ -211,7 +212,7 @@ inherited frmLoRaSerialSettings: TfrmLoRaSerialSettings
         TextSettings.FontColor = claWhite
         Text = 'AFC'
         TabOrder = 7
-        OnClick = chkHabitatClick
+        OnClick = chkTelemetryClick
       end
       object btnSearch: TButton
         StaysPressed = True

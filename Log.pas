@@ -29,12 +29,12 @@ type
   private
     { Private declarations }
   {$IFDEF ANDROID}
-    tts: JTextToSpeech;
+    ftts: JTextToSpeech;
   {$ENDIF}
     procedure TextToSpeech(Temp: String);
   public
     { Public declarations }
-    procedure AddMessage(PayloadID, Temp: String; Speak, Tweet: Boolean);
+    procedure AddMessage(PayloadID, Temp: String; Speak: Boolean);
   end;
 
 var
@@ -57,7 +57,7 @@ begin
     end;
 end;
 
-procedure TfrmLog.AddMessage(PayloadID, Temp: String; Speak, Tweet: Boolean);
+procedure TfrmLog.AddMessage(PayloadID, Temp: String; Speak: Boolean);
 var
     Speech, Msg, TimedMsg: String;
 begin
@@ -86,9 +86,10 @@ procedure TfrmLog.FormCreate(Sender: TObject);
 begin
     inherited;
 
-  {$IFDEF ANDROID}
-    tts := TJTextToSpeech.JavaClass.init(SharedActivityContext, nil); // ttsListener);
-  {$ENDIF}
+    {$IFDEF ANDROID}
+    // tts := TJTextToSpeech.JavaClass.init(SharedActivityContext, nil); // ttsListener);
+        ftts := TJTextToSpeech.JavaClass.init(SharedActivityContext, nil);  // fttsListener);
+    {$ENDIF}
 end;
 
 {$IFDEF ANDROID}
@@ -99,7 +100,7 @@ begin
     text := StringToJString(temp);
 
     // tts.speak(text, TJTextToSpeech.JavaClass.QUEUE_FLUSH, nil);
-    tts.speak(text, TJTextToSpeech.JavaClass.QUEUE_ADD, nil);
+    ftts.speak(text, TJTextToSpeech.JavaClass.QUEUE_ADD, nil);
 end;
 {$ELSE}
 procedure TfrmLog.TextToSpeech(Temp: String);

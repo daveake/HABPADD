@@ -1,4 +1,4 @@
-program HABPADD;
+program HABExplora;
 
 uses
   System.StartUpCopy,
@@ -14,7 +14,9 @@ uses
   SettingsBase in 'SettingsBase.pas' {frmSettingsBase},
   GPSSettings in 'GPSSettings.pas' {frmGPSSettings},
   LoRaBluetoothSettings in 'LoRaBluetoothSettings.pas' {frmBluetoothSettings},
+  OtherSettings in 'OtherSettings.pas' {frmOtherSettings},
   SourcesForm in 'SourcesForm.pas' {frmSources},
+  Debug in 'Debug.pas' {frmDebug},
   BluetoothSource in '..\HABRx\BluetoothSource.pas',
   Androidapi.JNI.WiFiManager in '..\HABRx\Androidapi.JNI.WiFiManager.pas',
   GatewaySource in '..\HABRx\GatewaySource.pas',
@@ -34,26 +36,13 @@ uses
   Tawhiri in '..\HABRx\Tawhiri.pas',
   Sondehub in '..\HABRx\Sondehub.pas',
   Misc in 'Misc.pas',
-  MQTTSource in '..\HABRx\MQTTSource.pas',
-  MQTTUplink in '..\HABRx\MQTTUplink.pas',
-  Debug in 'Debug.pas' {frmDebug},
-  GeneralSettings in 'GeneralSettings.pas' {frmGeneralSettings},
-  Log in 'Log.pas' {frmLog},
-  LoRaGatewaySettings in 'LoRaGatewaySettings.pas' {frmLoRaGatewaySettings},
-  LoRaGatewaySettings2 in 'LoRaGatewaySettings2.pas' {frmLoRaGatewaySettings2},
-  Navigate in 'Navigate.pas' {frmNavigate},
-  DownloadSettings in 'DownloadSettings.pas' {frmDownloadSettings},
-  SSDVForm in 'SSDVForm.pas' {frmSSDV},
-  UDPSettings in 'UDPSettings.pas' {frmUDPSettings},
-  UploadSettings in 'UploadSettings.pas' {frmUploadSettings},
-  CarUpload in '..\HABRx\CarUpload.pas',
-  WSMQTTSource in '..\HABRx\WSMQTTSource.pas';
+  MQTTSource in '..\HABRx\MQTTSource.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.FormFactor.Orientations := [TFormOrientation.Landscape, TFormOrientation.InvertedLandscape];
+  Application.FormFactor.Orientations := [TFormOrientation.Portrait];
   Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.

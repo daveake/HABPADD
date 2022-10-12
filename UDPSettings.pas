@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   SettingsBase, FMX.ScrollBox, FMX.Memo, FMX.Objects, FMX.Controls.Presentation,
-  FMX.TMSCustomEdit, FMX.TMSEdit, Miscellaneous;
+  FMX.TMSCustomEdit, FMX.TMSEdit, Miscellaneous, FMX.Memo.Types;
 
 type
   TfrmUDPSettings = class(TfrmSettingsBase)

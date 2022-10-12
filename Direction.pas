@@ -11,25 +11,24 @@ uses
 type
   TfrmDirection = class(TfrmTarget)
     lblAltitude: TLabel;
-    chkPrediction: TLabel;
-    crcCompass: TCircle;
-    crcDot: TCircle;
-    Label1: TLabel;
-    lblDistance: TLabel;
-    lblRelativeAltitude: TLabel;
     lblAscentRate: TLabel;
     Label3: TLabel;
     Label2: TLabel;
     Label4: TLabel;
     lblLatitude: TLabel;
-    Label6: TLabel;
-    lblLongitude: TLabel;
+    lblDistance: TLabel;
     Label5: TLabel;
     lblElevation: TLabel;
     Label9: TLabel;
     lblTTL: TLabel;
+    chkPrediction: TLabel;
+    StyleBook1: TStyleBook;
+    TMSFMXCompass1: TTMSFMXCompass;
+    Label6: TLabel;
+    lblCompass: TLabel;
     procedure chkPredictionClick(Sender: TObject);
     procedure pnlMainResized(Sender: TObject);
+    procedure tmrUpdatesTimer(Sender: TObject);
   private
     { Private declarations }
   protected
@@ -92,6 +91,12 @@ begin
     if Positions[0].Position.Inuse and Positions[SelectedIndex].Position.InUse then begin
         ProcessNewDirection(SelectedIndex);
     end;
+
+//    TMSFMXCompass1.Width := min(Label3.Position.X, pnlMain.Height * 0.95);
+//    TMSFMXCompass1.Height := TMSFMXCompass1.Width;
+//
+//    TMSFMXCompass1.Position.X := (Label3.Position.X - TMSFMXCompass1.Width) / 0 + 202;
+//    TMSFMXCompass1.Position.Y := (pnlMain.Height - TMSFMXCompass1.Height) / 2;
 end;
 
 procedure TfrmDirection.chkPredictionClick(Sender: TObject);
@@ -109,11 +114,11 @@ end;
 
 procedure TfrmDirection.ProcessNewDirection(Index: Integer);
 var
-    Distance, Direction, Elevation, Radius, Seconds: Double;
+    Distance, Direction, Elevation: Double;
 begin
     inherited;
 
-    if LCARSLabelIsChecked(chkPrediction) and Positions[SelectedIndex].Position.ContainsPrediction then begin
+    if LCARSLabelIsChecked(chkPrediction) and (Positions[SelectedIndex].Position.PredictionType <> ptNone) then begin
         Distance := Positions[SelectedIndex].Position.PredictionDistance;
         Direction := Positions[SelectedIndex].Position.PredictionDirection;
     end else begin
@@ -121,45 +126,41 @@ begin
         Direction := Positions[SelectedIndex].Position.Direction;
     end;
 
+    TMSFMXCompass1.NeedStyleLookup;
+    TMSFMXCompass1.ApplyStyleLookup;
+    if TMSFMXCompass1.GetNeedle <> nil then begin
+        TMSFMXCompass1.GetNeedle.RotationAngle := Direction * 180 / Pi;
+    end;
+
+    if Distance >= 1000 then begin
+        lblDistance.Text := MyFormatFloat('0.0', Distance/1000) + ' km';
+        // TMSFMXCompass1.GetDisplayText.Text := MyFormatFloat('0.0', Distance/1000) + ' km';
+    end else begin
+        lblDistance.Text := MyFormatFloat('0', Distance) + ' m';
+    end;
+
     Elevation := Positions[SelectedIndex].Position.Elevation;
 
-    if Distance < 2000 then begin
-        lblDistance.Text := FormatFloat('0', Distance) + 'm';
-    end else begin
-        lblDistance.Text := FormatFloat('0.0', Distance/1000) + 'km';
-    end;
-
-    Radius := Min(crcCompass.Width, crcCompass.Height) / 2;
-    Radius := Radius * (1 - crcCompass.Stroke.Thickness * 0.5 / Radius);
-
-    crcDot.Position.X := ((crcCompass.Width / 2) - crcDot.Width / 2) + Radius * sin(Direction);
-    crcDot.Position.Y := ((crcCompass.Height / 2) - crcDot.Height / 2) - Radius * cos(Direction);
-
-    if Positions[0].Position.DirectionValid then begin
-        crcDot.Fill.Color := TAlphaColorRec.Lime;
-    end else begin
-        crcDot.Fill.Color := TAlphaColorRec.Red;
-    end;
-
     // Altitude, or vertical distance to payload, as appropriate
-    if not IsNan(Positions[0].Position.Altitude) then begin
-        if Positions[SelectedIndex].Position.Altitude >= (Positions[0].Position.Altitude + 2000) then begin
-            lblRelativeAltitude.Text := '';
-        end else if Positions[SelectedIndex].Position.Altitude >= Positions[0].Position.Altitude then begin
-            lblRelativeAltitude.Text := '+' + IntToStr(Round(Positions[SelectedIndex].Position.Altitude - Positions[0].Position.Altitude)) + 'm';
-        end else begin
-            lblRelativeAltitude.Text := IntToStr(Round(Positions[SelectedIndex].Position.Altitude - Positions[0].Position.Altitude)) + 'm';
-        end;
-    end;
+//    if not IsNan(Positions[0].Position.Altitude) then begin
+//        if Positions[SelectedIndex].Position.Altitude >= (Positions[0].Position.Altitude + 2000) then begin
+//            lblRelativeAltitude.Text := '';
+//        end else if Positions[SelectedIndex].Position.Altitude >= Positions[0].Position.Altitude then begin
+//            lblRelativeAltitude.Text := '+' + IntToStr(Round(Positions[SelectedIndex].Position.Altitude - Positions[0].Position.Altitude)) + 'm';
+//        end else begin
+//            lblRelativeAltitude.Text := IntToStr(Round(Positions[SelectedIndex].Position.Altitude - Positions[0].Position.Altitude)) + 'm';
+//        end;
+//    end;
 
     if Positions[SelectedIndex].Position.FlightMode = fmDescending then begin
-        Seconds := CalculateDescentTime(Positions[SelectedIndex].Position.Altitude, -Positions[SelectedIndex].Position.AscentRate, Positions[0].Position.Altitude);
+//        Seconds := CalculateDescentTime(Positions[SelectedIndex].Position.Altitude, -Positions[SelectedIndex].Position.AscentRate, Positions[0].Position.Altitude);
 
-        if Seconds >= 60 then begin
-            lblTTL.Text := FormatFloat('0', Seconds / 60) + ' min';
-        end else begin
-            lblTTL.Text := FormatFloat('0', Seconds) + ' s';
-        end;
+//        if Seconds >= 60 then begin
+//            lblTTL.Text := FormatFloat('0', Seconds / 60) + ' min';
+//        end else begin
+//            lblTTL.Text := FormatFloat('0', Seconds) + ' s';
+//        end;
+        lblTTL.Text := FormatDateTime('nn:ss', Positions[SelectedIndex].Position.DescentTime);
     end else begin
         lblTTL.Text := '';
     end;
@@ -171,14 +172,27 @@ function TfrmDirection.ProcessNewPosition(Index: Integer): Boolean;
 begin
     if (SelectedIndex > 0) and (Index = SelectedIndex) then begin
         with Positions[SelectedIndex].Position do begin
-            lblLatitude.Text := FormatFloat('0.00000', Latitude);
-            lblLongitude.Text := FormatFloat('0.00000', Longitude);
+            lblLatitude.Text := FormatFloat('0.00000', Latitude) + ',' + FormatFloat('0.00000', Longitude);
+            // lblLongitude.Text := FormatFloat('0.00000', Longitude);
             lblAltitude.Text := FormatFloat('0', Altitude) + 'm';
             lblAscentRate.Text := FormatFloat('0.0', AscentRate) + 'm/s';
+        end;
+    end else if Index = 0 then begin
+        if Positions[0].Position.UsingCompass then begin
+            lblCompass.Text := 'MAG';
+        end else begin
+            lblCompass.Text := 'GPS';
         end;
     end;
 
     Result := inherited;
+end;
+
+procedure TfrmDirection.tmrUpdatesTimer(Sender: TObject);
+begin
+    if TMSFMXCompass1.RotationAngle <> -Positions[0].Position.Direction then begin
+        TMSFMXCompass1.RotationAngle := - Positions[0].Position.Direction;          // minus because we need to orientate the screen compass so it correctly shows North
+    end;
 end;
 
 end.

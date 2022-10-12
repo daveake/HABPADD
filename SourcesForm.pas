@@ -3,12 +3,13 @@ unit SourcesForm;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, Math, Habitat, SSDV, Miscellaneous,
-  GPSSource, Source, Base, CarUpload, GatewaySource, HabitatSource, UDPSource, SerialSource, BluetoothSource,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, Habitat,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, HabitatSource,
+  FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, Math, SSDV, Miscellaneous, CarUpload,
+  GPSSource, Source, Base, GatewaySource, UDPSource, SerialSource, BluetoothSource,
   System.DateUtils, System.TimeSpan, System.Sensors, System.Sensors.Components, BLESource,
-  IdBaseComponent, IdComponent, IdUDPBase, IdUDPClient;
+  IdBaseComponent, IdComponent, IdUDPBase, IdUDPClient, MQTTUplink, Sondehub, MQTTSource,
+  WSMQTTSource;
 
 type
   TSourcePanel = record
@@ -33,20 +34,20 @@ type
   TfrmSources = class(TfrmBase)
     LocationSensor: TLocationSensor;
     tmrGPS: TTimer;
-    Rectangle1: TRectangle;
+    rectGW1: TRectangle;
     lblGateway1: TLabel;
     Label2: TLabel;
-    Rectangle2: TRectangle;
+    rectGPS: TRectangle;
     lblGPS: TLabel;
     Label3: TLabel;
-    Rectangle3: TRectangle;
-    lblHabitat: TLabel;
+    rectSH: TRectangle;
+    lblSondehub: TLabel;
     Label5: TLabel;
-    Rectangle5: TRectangle;
+    rectBT: TRectangle;
     Label9: TLabel;
-    Rectangle6: TRectangle;
+    rectUSB: TRectangle;
     Label11: TLabel;
-    Rectangle4: TRectangle;
+    rectUDP: TRectangle;
     Label4: TLabel;
     Label7: TLabel;
     lblSerial: TLabel;
@@ -54,7 +55,7 @@ type
     Label1: TLabel;
     lblBT: TLabel;
     lblBluetoothRSSI: TLabel;
-    Rectangle7: TRectangle;
+    rectGW2: TRectangle;
     lblGateway2: TLabel;
     Label8: TLabel;
     OrientationSensor1: TOrientationSensor;
@@ -67,18 +68,33 @@ type
     lblGateway2RSSI: TLabel;
     lblSerialRSSI: TLabel;
     UDPClient: TIdUDPClient;
+    rectHH: TRectangle;
+    lblHabitat: TLabel;
+    Label14: TLabel;
+    rectHL: TRectangle;
+    lblHabLink: TLabel;
+    Label16: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure tmrGPSTimer(Sender: TObject);
     procedure OrientationSensor1SensorChoosing(Sender: TObject;
       const Sensors: TSensorArray; var ChoseSensorIndex: Integer);
     procedure FormDestroy(Sender: TObject);
-    procedure Rectangle1Resize(Sender: TObject);
+    procedure rectGW1Resize(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
+    procedure Label8Click(Sender: TObject);
+    procedure Label11Click(Sender: TObject);
+    procedure Label9Click(Sender: TObject);
+    procedure Label4Click(Sender: TObject);
+    procedure Label5Click(Sender: TObject);
+    procedure Label3Click(Sender: TObject);
   private
     { Private declarations }
     CarUploader: TCarUpload;
     HabitatUploader: THabitatThread;
+    SondehubUploader: TSondehubThread;
+    MQTTUploader, HabLinkUploader: TMQTTThread;
     SSDVUploader: TSSDVThread;
-    Sources: Array[1..6] of TSourcePanel;
+    Sources: Array[1..8] of TSourcePanel;
     CompassPresent: Boolean;
     MagneticHeading, Declination: Double;
 //    GPSPositions: Array[1..5] of TGPSPosition;
@@ -88,8 +104,15 @@ type
     procedure GPSCallback(ID: Integer; Connected: Boolean; Line: String; Position: THABPosition);
 {$ENDIF}
     function GetMagneticHeading: Double;
-    procedure HabitatStatusCallback(SourceID: Integer; Active, OK: Boolean);
-    procedure CarStatusCallback(SourceID: Integer; Active, OK: Boolean);
+
+    // Callbacks
+    procedure HabitatStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+    procedure CarStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+    procedure HabLinkStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+    procedure MQTTStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+    procedure SSDVStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+    procedure SondehubStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+
     procedure NewGPSPosition(Timestamp: TDateTime; Latitude, Longitude, Altitude, Direction: Double; UsingCompass: Boolean);
     procedure HABCallback(ID: Integer; Connected: Boolean; Line: String; Position: THABPosition);
 //    function SavePosition(Latitude, Longitude: Double): TGPSPosition;
@@ -106,6 +129,8 @@ type
     function FrequencyError(SourceIndex: Integer): Double;
     procedure SendUplink(SourceIndex: Integer; When: TUplinkWhen; WhenValue, Channel: Integer; Prefix, Msg, Password: String);
     function WaitingToSend(SourceIndex: Integer): Boolean;
+    procedure UpdateCarUploadSettings;
+    procedure UpdateMQTTUploads;
 end;
 
 var
@@ -113,7 +138,7 @@ var
 
 implementation
 
-uses Main, Debug;
+uses Main, Debug, Settings, Misc;
 
 {$R *.fmx}
 
@@ -135,8 +160,20 @@ begin
     // Habitat uploader
     HabitatUploader := THabitatThread.Create(HabitatStatusCallback);
 
+    // Sondehub uploader
+    SondehubUploader := TSondehubThread.Create(SondehubStatusCallback);
+    UpdateCarUploadSettings;
+
     // SSDV Uploader
-    SSDVUploader := TSSDVThread.Create(nil);
+    SSDVUploader := TSSDVThread.Create(SSDVStatusCallback);
+
+    // MQTT Uploader
+    MQTTUploader := TMQTTThread.Create(MQTTStatusCallback);
+
+    // HabLink uploader
+    HabLinkUploader := TMQTTThread.Create(HablinkStatusCallback);
+
+    UpdateMQTTUploads;
 
     // GPS Source
 {$IFDEF MSWINDOWS}
@@ -178,12 +215,30 @@ begin
     {$ENDIF}
 
     Sources[UDP_SOURCE].ValueLabel := lblUDP;
-    Sources[UDP_SOURCE].Source := TUDPSource.Create(UDP_SOURCE, 'UDP', HABCallback);
     Sources[UDP_SOURCE].RSSILabel := nil;
+    Sources[UDP_SOURCE].Source := TUDPSource.Create(UDP_SOURCE, 'UDP', HABCallback);
 
-    Sources[HABITAT_SOURCE].ValueLabel := lblHabitat;
-    Sources[HABITAT_SOURCE].Source := THabitatSource.Create(HABITAT_SOURCE, 'Habitat', HABCallback);
-    Sources[HABITAT_SOURCE].RSSILabel := nil;
+    Sources[SONDEHUB_SOURCE].ValueLabel := lblSondehub;
+    Sources[SONDEHUB_SOURCE].RSSILabel := nil;
+    SetSettingString('Sondehub', 'Host', 'ws-reader.v2.sondehub.org');
+    SetSettingString('Sondehub', 'Port', '443');
+    SetSettingString('Sondehub', 'Topic', 'amateur/');
+    SetSettingString('Sondehub', 'ExtraPayloads', '');
+    SetSettingBoolean('Sondehub', 'Filtered', True);
+    Sources[SONDEHUB_SOURCE].Source := TWSMQTTSource.Create(SONDEHUB_SOURCE, 'Sondehub', HABCallback);
+
+    Sources[HABLINK_SOURCE].ValueLabel := lblHabLink;
+    Sources[HABLINK_SOURCE].RSSILabel := nil;
+    SetSettingString('HabLink', 'Host', 'hab.link');
+    SetSettingString('HabLink', 'Port', '1883');
+    SetSettingString('HabLink', 'Topic', 'incoming/payloads/');
+    SetSettingString('HabLink', 'ExtraPayloads', '');
+    SetSettingBoolean('HabLink', 'Filtered', True);
+    Sources[HABLINK_SOURCE].Source := TMQTTSource.Create(HABLINK_SOURCE, 'HabLink', HABCallback);
+
+    Sources[HABHUB_SOURCE].ValueLabel := lblHabitat;
+    Sources[HABHUB_SOURCE].Source := THabitatSource.Create(HABHUB_SOURCE, 'Habitat', HABCallback);
+    Sources[HABHUB_SOURCE].RSSILabel := nil;
 end;
 
 procedure TfrmSources.CloseThread(Thread: TThread);
@@ -212,7 +267,10 @@ begin
 
     CloseThread(CarUploader);
     CloseThread(HabitatUploader);
+    CloseThread(MQTTUploader);
+    CloseThread(HabLinkUploader);
     CloseThread(SSDVUploader);
+    CloseThread(SondehubUploader);
 
 {$IFDEF MSWINDOWS}
     CloseThread(GPSSource);
@@ -221,7 +279,10 @@ begin
 
     WaitForThread(CarUploader);
     WaitForThread(HabitatUploader);
+    WaitForThread(MQTTUploader);
+    WaitForThread(HabLinkUploader);
     WaitForThread(SSDVUploader);
+    WaitForThread(SondehubUploader);
 
     for Index := Low(Sources) to High(Sources) do begin
         WaitForThread(Sources[Index].Source);
@@ -244,31 +305,32 @@ end;
 {$ENDIF}
 
 procedure TfrmSources.NewGPSPosition(Timestamp: TDateTime; Latitude, Longitude, Altitude, Direction: Double; UsingCompass: Boolean);
+const
+    LastHABLinkUpload: TDateTime = 0;
+    LastMQTTLinkUpload: TDateTime = 0;
 var
     Position: THABPosition;
-    Temp: String;
+    ChaseCallsign, Temp: String;
     CarPosition: TCarPosition;
-//    GPSPosition: TGPSPosition;
 begin
     if IsNan(Latitude) then begin
         Temp := 'Waiting for GPS ...';
         frmMain.lblGPS.Text := Temp;
         lblGPS.Text := Temp;
     end else begin
-//        GPSPosition := SavePosition(Latitude, Longitude);
-
-        FillChar(Position, SizeOf(Position), 0);
+        Position := default(THABPosition);
 
         Temp := Format('%f', [Altitude]);
         if IsNan(Altitude) then begin
             Temp := FormatDateTime('hh:nn:ss', Timestamp) + '  ' +
-                                   Format('%2.6f', [Latitude]) + ',' +
-                                   Format('%2.6f', [Longitude]);
+                                   Format('%2.5f', [Latitude]) + ',' +
+                                   Format('%2.5f', [Longitude]);
             frmMain.lblGPS.Text := Temp;
+            Altitude := 0;
         end else begin
             Temp := FormatDateTime('hh:nn:ss', Timestamp) + '  ' +
-                                   Format('%2.6f', [Latitude]) + ',' +
-                                   Format('%2.6f', [Longitude]) + ', ' +
+                                   Format('%2.5f', [Latitude]) + ',' +
+                                   Format('%2.5f', [Longitude]) + ', ' +
                                    Format('%.0f', [Altitude]) + 'm ';
             frmMain.lblGPS.Text := Temp;
         end;
@@ -298,6 +360,7 @@ begin
                 lblDirection.Text := 'GPS Direction = ' + FormatFloat('0.0', Direction);
             end;
             Position.Direction := Direction;
+            Position.UsingCompass := UsingCompass;
         end;
 
         Position.InUse := True;
@@ -306,14 +369,51 @@ begin
 
         frmMain.NewPosition(0, Position);
 
-        if CarUploader <> nil then begin
-            CarPosition.InUse := True;
-            CarPosition.TimeStamp := TTimeZone.Local.ToUniversalTime(Now);
-            CarPosition.Latitude := Position.Latitude;
-            CarPosition.Longitude := Position.Longitude;
-            CarPosition.Altitude := Position.Altitude;
+        // Upload chase position
+        if GetSettingBoolean('CHASE', 'Upload', False) then begin
+            // Send chase position to Sondehub
+            if SondehubUploader <> nil then begin
+                SondehubUploader.SetListenerPosition(Position.Latitude, Position.Longitude, Position.Altitude);
+            end;
 
-            CarUploader.SetPosition(CarPosition);
+            ChaseCallsign := GetSettingString('CHASE', 'Callsign', '');
+
+            if ChaseCallsign <> '' then begin
+                // HABHUB
+                if GetSettingBoolean('Upload', 'Habitat', False) then begin
+                    CarPosition.InUse := True;
+                    CarPosition.TimeStamp := TTimeZone.Local.ToUniversalTime(Now);
+                    CarPosition.Latitude := Position.Latitude;
+                    CarPosition.Longitude := Position.Longitude;
+                    CarPosition.Altitude := Position.Altitude;
+
+                    CarUploader.SetPosition(CarPosition);
+                end;
+
+                if GetSettingBoolean('Upload', 'MQTT', False) then begin
+                    if Now >= (LastMQTTLinkUpload + GetSettingInteger('CHASE', 'Period', 30) / 86400) then begin
+                        MQTTUploader.SendChase(ChaseCallsign + '_Chase',
+                                               FormatDateTime('hh:nn:ss', TimeStamp) + ',' +
+                                               Format('%2.5f', [Latitude]) + ',' +
+                                               Format('%2.5f', [Longitude]) + ', ' +
+                                               Format('%.0f', [Altitude]));
+
+                        LastMQTTLinkUpload := Now;
+                    end;
+                end;
+
+                if GetSettingBoolean('Upload', 'HABLINK', False) then begin
+                    if Now >= (LastHABLinkUpload + 5/ 86400) then begin
+                        HablinkUploader.SendChase(ChaseCallsign + '_Chase',
+                                                  FormatDateTime('hh:nn:ss', TimeStamp) + ',' +
+                                                  Format('%2.5f', [Latitude]) + ',' +
+                                                  Format('%2.5f', [Longitude]) + ', ' +
+                                                  Format('%.0f', [Altitude]));
+
+                        LastHABLinkUpload := Now;
+                    end;
+                end;
+            end;
         end;
     end;
 end;
@@ -338,7 +438,7 @@ begin
     end;
 end;
 
-procedure TfrmSources.Rectangle1Resize(Sender: TObject);
+procedure TfrmSources.rectGW1Resize(Sender: TObject);
 var
     i, FontSize: Integer;
 begin
@@ -419,40 +519,53 @@ begin
     end;
 end;
 
-procedure TfrmSources.CarStatusCallback(SourceID: Integer; Active, OK: Boolean);
+procedure TfrmSources.SondehubStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
 begin
-    frmMain.UploadStatus(SourceID, Active, OK);
-end;
-
-procedure TfrmSources.HabitatStatusCallback(SourceID: Integer; Active, OK: Boolean);
-begin
-    frmMain.UploadStatus(SourceID, Active, OK);
+    frmMain.UploadStatus(SourceID, SONDEHUB_UPLINK, Active, OK);
 end;
 
 procedure TfrmSources.HABCallback(ID: Integer; Connected: Boolean; Line: String; Position: THABPosition);
 var
-    Temp, Callsign: String;
+    Temp, Callsign, Topic: String;
     Port: Integer;
+    OK: Boolean;
 begin
+    frmMain.NewPosition(ID, Position);
+
     // New Position
     if Position.InUse then begin
         Inc(Sources[ID].PacketCount);
 
-        frmMain.NewPosition(ID, Position);
+//        frmMain.NewPosition(ID, Position);
 
-        if ID = SERIAL_SOURCE then begin
-            if GetSettingBoolean('LoRaSerial', 'Habitat', False) then begin
-                Callsign := GetSettingString('General', 'Callsign', '');
-                if Callsign <> '' then begin
+        // Upload enabled for this source ?
+        case ID of
+            SERIAL_SOURCE:  OK := GetSettingBoolean('LoRaSerial', 'Upload', False);
+            BLUETOOTH_SOURCE:  OK := GetSettingBoolean('LoRaBluetooth', 'Upload', False);
+            else OK := False;
+        end;
+
+        if OK then begin
+            Callsign := GetSettingString('General', 'Callsign', '');
+
+            // Callsign needed for HABHUB and Sondehub
+            if Callsign <> '' then begin
+                if GetSettingBoolean('Upload', 'Habitat', False) then begin
                     HabitatUploader.SaveTelemetryToHabitat(ID, Position.Line, Callsign);
+                end;
+
+                if GetSettingBoolean('Upload', 'Sondehub', False) and (SondehubUploader <> nil) then begin
+                    Position.Longitude := Position.Longitude + 0.01;
+                    SondehubUploader.SaveTelemetryToSondehub(ID, Position);
                 end;
             end;
-        end else if ID = BLUETOOTH_SOURCE then begin
-            if GetSettingBoolean('LoRaBluetooth', 'Habitat', False) then begin
-                Callsign := GetSettingString('General', 'Callsign', '');
-                if Callsign <> '' then begin
-                    HabitatUploader.SaveTelemetryToHabitat(ID, Position.Line, Callsign);
-                end;
+
+            if GetSettingBoolean('Upload', 'MQTT', False) then begin
+                MQTTUploader.SendTelemetry(Position.PayloadID, Position.Line);
+            end;
+
+            if GetSettingBoolean('Upload', 'HABLINK', False) then begin
+                HablinkUploader.SendTelemetry(Position.PayloadID, Position.Line);
             end;
         end;
 
@@ -470,10 +583,18 @@ begin
 
     // SSDV Packet
     if Position.IsSSDV then begin
-        if GetSettingBoolean('LoRaSerial', 'SSDV', False) then begin
-            Callsign := GetSettingString('LoRaSerial', 'Callsign', '');
+        if GetSettingBoolean('Upload', 'SSDV', False) then begin
+            Callsign := GetSettingString('General', 'Callsign', '');
             if Callsign <> '' then begin
-                SSDVUploader.SaveSSDVToHabitat(Position.Line, Callsign);
+                if ID = SERIAL_SOURCE then begin
+                    if GetSettingBoolean('LoRaSerial', 'SSDV', False) then begin
+                        SSDVUploader.SaveSSDVToHabitat(Position.Line, Callsign);
+                    end;
+                end else if ID = BLUETOOTH_SOURCE then begin
+                    if GetSettingBoolean('LoRaBluetooth', 'SSDV', False) then begin
+                        SSDVUploader.SaveSSDVToHabitat( Position.Line, Callsign);
+                    end;
+                end;
             end;
         end;
     end;
@@ -519,11 +640,36 @@ begin
     end;
 end;
 
+function RemoveDuplicatePayloads(PayloadList, WhiteList: String): String;
+var
+    Payload: String;
+begin
+    WhiteList := ',' + WhiteList + ',';
+
+    Result := '';
+
+    repeat
+        Payload := GetString(PayloadList, ',');
+        if Payload <> '' then begin
+            if Pos(',' + Payload + ',', WhiteList) = 0 then begin
+                if Result = '' then begin
+                    Result := Payload;
+                end else begin
+                    Result := Payload + ',' + Payload;
+                end;
+
+            end;
+
+        end;
+
+    until PayloadList = '';
+end;
+
 procedure TfrmSources.UpdatePayloadList(PayloadList: String);
 begin
-    if Sources[HABITAT_SOURCE].Source <> nil then begin
-        THabitatSource(Sources[HABITAT_SOURCE].Source).PayloadList := PayloadList;
-    end;
+    PayloadList := RemoveDuplicatePayloads(PayloadList, GetSettingString('Habitat', 'WhiteList', ''));
+
+    SetSettingString('Sondehub', 'ExtraPayloads', PayloadList);
 end;
 
 procedure TfrmSources.SendParameterToSource(SourceIndex: Integer; ValueName, Value: String);
@@ -560,6 +706,93 @@ end;
 function TfrmSources.WaitingToSend(SourceIndex: Integer): Boolean;
 begin
     Result := Sources[SourceIndex].Source.WaitingToSend;
+end;
+
+procedure TfrmSources.CarStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+begin
+    frmMain.UploadStatus(SourceID, HABHUB_UPLINK, Active, OK);
+end;
+
+procedure TfrmSources.HabitatStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+begin
+    frmMain.UploadStatus(SourceID, HABHUB_UPLINK, Active, OK);
+end;
+
+procedure TfrmSources.SSDVStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+begin
+    frmMain.UploadStatus(SourceID, SSDV_UPLINK, Active, OK);
+end;
+
+procedure TfrmSources.HabLinkStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+begin
+    frmMain.UploadStatus(SourceID, HABLINK_UPLINK, Active, OK);
+end;
+
+procedure TfrmSources.Label11Click(Sender: TObject);
+begin
+    frmMain.LoadSettingsPage(4);
+end;
+
+procedure TfrmSources.Label2Click(Sender: TObject);
+begin
+    frmMain.LoadSettingsPage(2);
+end;
+
+procedure TfrmSources.Label3Click(Sender: TObject);
+begin
+    frmMain.LoadSettingsPage(0);
+end;
+
+procedure TfrmSources.Label4Click(Sender: TObject);
+begin
+    frmMain.LoadSettingsPage(6);
+end;
+
+procedure TfrmSources.Label5Click(Sender: TObject);
+begin
+    frmMain.LoadSettingsPage(7);
+end;
+
+procedure TfrmSources.Label8Click(Sender: TObject);
+begin
+    frmMain.LoadSettingsPage(3);
+end;
+
+procedure TfrmSources.Label9Click(Sender: TObject);
+begin
+    frmMain.LoadSettingsPage(5);
+end;
+
+procedure TfrmSources.MQTTStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
+begin
+    frmMain.UploadStatus(SourceID, MQTT_UPLINK, Active, OK);
+end;
+
+procedure TfrmSources.UpdateCarUploadSettings;
+begin
+    SondehubUploader.SetListener(ApplicationName, ApplicationVersion,
+                                 GetSettingString('CHASE', 'Callsign', 'UNKNOWN'),
+                                 True,
+                                 GetSettingInteger('CHASE', 'Period', 30),
+                                 GetSettingBoolean('Upload', 'Upload', False));
+end;
+
+procedure TfrmSources.UpdateMQTTUploads;
+var
+    Callsign, Topic, CarTopic: String;
+begin
+    Callsign := GetSettingString('General', 'Callsign', '');
+
+    Topic := StringReplace(GetSettingString('Upload', 'MQTTTopic', ''), '$LISTENER$', Callsign, [rfReplaceAll, rfIgnoreCase]);
+
+    CarTopic := GetSettingString('Upload', 'MQTTChaseTopic', '');
+
+    MQTTUploader.SetMQTTDetails(GetSettingString('Upload', 'MQTTBroker', ''),
+                                GetSettingString('Upload', 'MQTTUserName', ''),
+                                GetSettingString('Upload', 'MQTTPassword', ''),
+                                Topic, CarTopic);
+
+    HablinkUploader.SetMQTTDetails('hab.link', 'daffyduck', 'HAB2022', 'incoming/payloads/$PAYLOAD$', 'incoming/chase/$CALLSIGN$');
 end;
 
 end.

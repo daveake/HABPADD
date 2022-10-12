@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   LoRaGatewaySettings, FMX.TMSCustomEdit, FMX.TMSEdit, FMX.ScrollBox, FMX.Memo,
-  FMX.Objects, FMX.Controls.Presentation, Miscellaneous;
+  FMX.Objects, FMX.Controls.Presentation, Miscellaneous, FMX.Memo.Types;
 
 type
   TfrmLoRaGatewaySettings2 = class(TfrmLoRaGatewaySettings)

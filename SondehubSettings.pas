@@ -1,4 +1,4 @@
-unit HabitatSettings;
+unit SondehubSettings;
 
 interface
 
@@ -9,12 +9,14 @@ uses
   Miscellaneous, FMX.TMSCustomEdit, FMX.TMSEdit, FMX.Memo.Types;
 
 type
-  TfrmHabitatSettings = class(TfrmSettingsBase)
+  TfrmSondehubSettings = class(TfrmSettingsBase)
     ChkEnable: TLabel;
     Label1: TLabel;
     edtWhiteList: TTMSFMXEdit;
     procedure FormCreate(Sender: TObject);
     procedure ChkEnableClick(Sender: TObject);
+    procedure edtWhiteListKeyDown(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -25,13 +27,13 @@ type
   end;
 
 var
-  frmHabitatSettings: TfrmHabitatSettings;
+  frmSondehubSettings: TfrmSondehubSettings;
 
 implementation
 
 {$R *.fmx}
 
-procedure TfrmHabitatSettings.ApplyChanges;
+procedure TfrmSondehubSettings.ApplyChanges;
 begin
     SetSettingBoolean(Group, 'Enabled', LCARSLabelIsChecked(chkEnable));
     SetSettingString(Group, 'WhiteList', edtWhiteList.Text);
@@ -39,7 +41,7 @@ begin
     inherited;
 end;
 
-procedure TfrmHabitatSettings.CancelChanges;
+procedure TfrmSondehubSettings.CancelChanges;
 begin
     inherited;
 
@@ -47,16 +49,22 @@ begin
     edtWhiteList.Text := GetSettingString(Group, 'WhiteList', '');
 end;
 
-procedure TfrmHabitatSettings.ChkEnableClick(Sender: TObject);
+procedure TfrmSondehubSettings.ChkEnableClick(Sender: TObject);
 begin
     SetingsHaveChanged;
     LCARSLabelClick(Sender);
 end;
 
-procedure TfrmHabitatSettings.FormCreate(Sender: TObject);
+procedure TfrmSondehubSettings.edtWhiteListKeyDown(Sender: TObject;
+  var Key: Word; var KeyChar: Char; Shift: TShiftState);
+begin
+    SetingsHaveChanged;
+end;
+
+procedure TfrmSondehubSettings.FormCreate(Sender: TObject);
 begin
     inherited;
-    Group := 'Habitat';
+    Group := 'Sondehub';
 end;
 
 end.

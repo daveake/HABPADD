@@ -19,16 +19,7 @@ inherited frmLoRaGatewaySettings: TfrmLoRaGatewaySettings
             ''
             
               'Channel frequency and mode are sent to the gateway after Apply i' +
-              's touched.'
-            ''
-            
-              'To configure the gateway, use a line such as the following in ga' +
-              'teway.txt, ensuring that the port number matches that used here.' +
-              #11
-            ''
-            #11
-            ''
-            'ServerPort=6004')
+              's touched.')
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           Size.Height = 183.000000000000000000

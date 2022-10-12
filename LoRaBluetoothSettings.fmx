@@ -88,9 +88,9 @@ inherited frmBluetoothSettings: TfrmBluetoothSettings
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.FontColor = claWhite
           Text = 'AFC'
-          OnClick = chkHabitatClick
+          OnClick = chkTelemetryClick
         end
-        object chkHabitat: TLabel
+        object chkTelemetry: TLabel
           Align = Scale
           StyledSettings = [Family, Style, Other]
           HitTest = True
@@ -103,7 +103,7 @@ inherited frmBluetoothSettings: TfrmBluetoothSettings
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.FontColor = claWhite
           Text = 'Enable Telemetry Upload'
-          OnClick = chkHabitatClick
+          OnClick = chkTelemetryClick
         end
         object chkSSDV: TLabel
           Align = Scale
@@ -118,7 +118,7 @@ inherited frmBluetoothSettings: TfrmBluetoothSettings
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.FontColor = claWhite
           Text = 'Enable SSDV Upload'
-          OnClick = chkHabitatClick
+          OnClick = chkTelemetryClick
         end
         object cmbDevices: TComboBox
           Align = Scale

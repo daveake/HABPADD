@@ -13,19 +13,22 @@ inherited frmLoRaGatewaySettings2: TfrmLoRaGatewaySettings2
     end
     inherited Panel3: TPanel
       inherited Label2: TLabel
-        TabOrder = 17
+        TabOrder = 16
+      end
+      inherited Label4: TLabel
+        TabOrder = 21
       end
       inherited edtMode1: TTMSFMXEdit
         TabOrder = 14
       end
       inherited Label5: TLabel
-        TabOrder = 22
+        TabOrder = 20
       end
       inherited edtFrequency2: TTMSFMXEdit
-        TabOrder = 16
+        TabOrder = 15
       end
       inherited Label6: TLabel
-        TabOrder = 20
+        TabOrder = 19
       end
       inherited edtMode2: TTMSFMXEdit
         TabOrder = 13

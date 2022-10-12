@@ -21,7 +21,7 @@ type
     btnModeUp: TLabel;
     Label1: TLabel;
     BluetoothLE1: TBluetoothLE;
-    chkHabitat: TLabel;
+    chkTelemetry: TLabel;
     chkSSDV: TLabel;
     chkAFC: TLabel;
     tmrReceive: TTimer;
@@ -40,7 +40,7 @@ type
     procedure BluetoothLE1DiscoverLEDevice(const Sender: TObject;
       const ADevice: TBluetoothLEDevice; Rssi: Integer;
       const ScanResponse: TScanResponse);
-    procedure chkHabitatClick(Sender: TObject);
+    procedure chkTelemetryClick(Sender: TObject);
     procedure tmrReceiveTimer(Sender: TObject);
     procedure tmrSearchTimer(Sender: TObject);
     procedure btnSearchClick(Sender: TObject);
@@ -77,7 +77,7 @@ begin
     SetSettingString(Group, 'Frequency', edtFrequency.Text);
     SetSettingString(Group, 'Mode', edtMode.Text);
 
-    SetSettingBoolean(Group, 'Habitat', LCARSLabelIsChecked(chkHabitat));
+    SetSettingBoolean(Group, 'Upload', LCARSLabelIsChecked(chkTelemetry));
     SetSettingBoolean(Group, 'SSDV', LCARSLabelIsChecked(chkSSDV));
 
     SetSettingBoolean(Group, 'AFC', LCARSLabelIsChecked(chkAFC));
@@ -134,7 +134,7 @@ begin
 
     edtFrequency.Text := GetSettingString(Group, 'Frequency', '');
     edtMode.Text := GetSettingString(Group, 'Mode', '');
-    CheckLCARSLabel(chkHabitat, GetSettingBoolean(Group, 'Habitat', False));
+    CheckLCARSLabel(chkTelemetry, GetSettingBoolean(Group, 'Upload', False));
     CheckLCARSLabel(chkSSDV, GetSettingBoolean(Group, 'SSDV', False));
     CheckLCARSLabel(chkAFC, GetSettingBoolean(Group, 'AFC', False));
 end;
@@ -172,7 +172,7 @@ begin
     end;
 end;
 
-procedure TfrmBluetoothSettings.chkHabitatClick(Sender: TObject);
+procedure TfrmBluetoothSettings.chkTelemetryClick(Sender: TObject);
 begin
     SetingsHaveChanged;
     LCARSLabelClick(Sender);

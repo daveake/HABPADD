@@ -4287,6 +4287,7 @@ inherited frmSplash: TfrmSplash
       Size.Height = 424.000000000000000000
       Size.PlatformDefault = False
       OnMouseUp = Image1MouseUp
+      OnResized = Image1Resized
       object rectLoading: TRectangle
         Align = Bottom
         Fill.Color = claBlack
@@ -4308,19 +4309,17 @@ inherited frmSplash: TfrmSplash
           TabOrder = 0
         end
       end
-    end
-    object lblVersion: TLabel
-      Align = Scale
-      StyledSettings = [Family, Style]
-      Position.X = 200.000000000000000000
-      Position.Y = 54.000000000000000000
-      Size.Width = 305.000000000000000000
-      Size.Height = 34.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 18.000000000000000000
-      TextSettings.FontColor = claSilver
-      TextSettings.HorzAlign = Center
-      TabOrder = 0
+      object lblVersion: TLabel
+        Align = Top
+        StyledSettings = [Family, Style]
+        Size.Width = 700.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.FontColor = claSilver
+        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Trailing
+      end
     end
   end
 end

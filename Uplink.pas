@@ -219,7 +219,7 @@ begin
     edtCutdownPeriod.Enabled := True;
 
 //    CheckLCARSLabel(chkCutdown, True);
-    rectWhen.Visible := TLabel(Sender).Tag in [5,6];
+    rectWhen.Visible := (TLabel(Sender) = chkSource5) or (TLabel(Sender) = chkSource6);
 
     btnSearch.Enabled := True;
 end;

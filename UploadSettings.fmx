@@ -1,0 +1,279 @@
+inherited frmUploadSettings: TfrmUploadSettings
+  Caption = 'frmSettingsBase1'
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    inherited Panel1: TPanel
+      Size.Height = 129.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Height = 121.000000000000000000
+        inherited Memo1: TMemo
+          Lines.Strings = (
+            'Enter MQTT broker details to use MQTT.'
+            ''
+            
+              'Enable whichever upload methods you wish to use.  Remember to al' +
+              'so enable upload of GPS, USB and Bluetooth as required.')
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Size.Height = 115.000000000000000000
+          Viewport.Width = 675.000000000000000000
+          Viewport.Height = 115.000000000000000000
+        end
+      end
+    end
+    inherited Panel3: TPanel
+      Size.Height = 221.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Height = 213.000000000000000000
+        object Label3: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = -98.000000000000000000
+          Position.Y = 16.000000000000000000
+          Size.Width = 233.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 18.000000000000000000
+          Text = 'MQTT Broker:'
+          TabOrder = 9
+        end
+        object edtBroker: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 8
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 154.000000000000000000
+          Position.Y = 16.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtBrokerChangeTracking
+          Size.Width = 191.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object edtPassword: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 6
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 154.000000000000000000
+          Position.Y = 96.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtBrokerChangeTracking
+          Size.Width = 223.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object Label6: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = -98.000000000000000000
+          Position.Y = 94.000000000000000000
+          Size.Width = 233.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 18.000000000000000000
+          Text = 'Password:'
+          TabOrder = 7
+        end
+        object edtTopic: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 3
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 154.000000000000000000
+          Position.Y = 136.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtBrokerChangeTracking
+          Size.Width = 287.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object Label7: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = -98.000000000000000000
+          Position.Y = 136.000000000000000000
+          Size.Width = 233.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 18.000000000000000000
+          Text = 'Payload Topic:'
+          TabOrder = 5
+        end
+        object edtUser: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 1
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 154.000000000000000000
+          Position.Y = 56.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtBrokerChangeTracking
+          Size.Width = 223.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object Label5: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = -102.000000000000000000
+          Position.Y = 58.000000000000000000
+          Size.Width = 233.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 18.000000000000000000
+          Text = 'Username:'
+          TabOrder = 0
+        end
+        object Label8: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, FontColor, Other]
+          Position.X = -98.000000000000000000
+          Position.Y = 176.000000000000000000
+          Size.Width = 233.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'LCARSLabelStyle'
+          TextSettings.Font.Size = 18.000000000000000000
+          Text = 'Chase Topic:'
+          TabOrder = 4
+        end
+        object edtChaseTopic: TTMSFMXEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Scale
+          StyleLookup = 'LCARSTMSFMXEdit1Style'
+          TabOrder = 2
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Position.X = 154.000000000000000000
+          Position.Y = 176.000000000000000000
+          Margins.Left = 8.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          StyledSettings = [Family, Style]
+          OnChangeTracking = edtBrokerChangeTracking
+          Size.Width = 287.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Version = '1.4.4.5'
+          Lookup.Separator = ';'
+        end
+        object chkHabitat: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, Other]
+          HitTest = True
+          Position.X = 463.000000000000000000
+          Position.Y = 16.000000000000000000
+          Size.Width = 200.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'lCARSCheckButton'
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Text = 'HABHUB'
+          TabOrder = 14
+          OnClick = chkHabitatClick
+        end
+        object chkSondehub: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, Other]
+          HitTest = True
+          Position.X = 463.000000000000000000
+          Position.Y = 65.000000000000000000
+          Size.Width = 200.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'lCARSCheckButton'
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Text = 'SONDEHUB'
+          TabOrder = 13
+          OnClick = chkHabitatClick
+        end
+        object chkMQTT: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, Other]
+          HitTest = True
+          Position.X = 463.000000000000000000
+          Position.Y = 115.000000000000000000
+          Size.Width = 98.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'lCARSCheckButton'
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Text = 'MQTT'
+          TabOrder = 12
+          OnClick = chkHabitatClick
+        end
+        object chkHABLINK: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, Other]
+          HitTest = True
+          Position.X = 565.000000000000000000
+          Position.Y = 115.000000000000000000
+          Size.Width = 98.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'lCARSCheckButton'
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Text = 'HABLINK'
+          TabOrder = 11
+          OnClick = chkHabitatClick
+        end
+        object chkSSDV: TLabel
+          Align = Scale
+          StyledSettings = [Family, Style, Other]
+          HitTest = True
+          Position.X = 463.000000000000000000
+          Position.Y = 164.000000000000000000
+          Size.Width = 205.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'lCARSCheckButton'
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.FontColor = claWhite
+          Text = 'Upload SSDV Images'
+          TabOrder = 10
+          OnClick = chkHabitatClick
+        end
+      end
+    end
+    inherited Panel2: TPanel
+      Position.Y = 221.000000000000000000
+    end
+  end
+end
