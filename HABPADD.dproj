@@ -281,6 +281,7 @@
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <DCC_WriteableConstants>true</DCC_WriteableConstants>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;DataSnapServerMidas;DBXDb2Driver;DBXInterBaseDriver;vclactnband;vclFireDAC;tethering;VCLTMSFNCChartPkgDXE11;FireDACADSDriver;DBXMSSQLDriver;DatasnapConnectorsFreePascal;FireDACMSSQLDriver;VCLTMSFNCCorePkgDXE11;vcltouch;vcldb;bindcompfmx;DBXOracleDriver;inetdb;FMXTMSFNCChartPkgDXE11;FmxTeeUI;emsedge;fmx;fmxdae;vclib;FireDACDBXDriver;dbexpress;IndyCore;vclx;dsnap;DataSnapCommon;IcsVclD102Run;FMXTMSFNCCorePkgDXE11;DataSnapConnectors;VCLRESTComponents;FMXTMSFNCUIPackPkgDXE11;vclie;bindengine;DBXMySQLDriver;FireDACOracleDriver;FireDACMySQLDriver;DBXFirebirdDriver;FireDACCommonODBC;DataSnapClient;bindcompdbx;IndyIPCommon;vcl;DBXSybaseASEDriver;IndyIPServer;IndySystem;FireDACDb2Driver;VCLTMSFNCUIPackPkgDXE11;dsnapcon;FireDACMSAccDriver;fmxFireDAC;FireDACInfxDriver;vclimg;TeeDB;emshosting;FireDACPgDriver;ibmonitor;FireDACASADriver;TMSWebGMapsPkgDXE11;DBXOdbcDriver;FireDACTDataDriver;FMXTee;DbxCommonDriver;ibxpress;Tee;DataSnapServer;xmlrtl;DataSnapNativeClient;fmxobj;vclwinx;ibxbindings;rtl;FireDACDSDriver;DbxClientDriver;DBXSybaseASADriver;CustomIPTransport;vcldsnap;bindcomp;appanalytics;DBXInformixDriver;IndyIPClient;bindcompvcl;TeeUI;dbxcds;VclSmp;adortl;FireDACODBCDriver;DataSnapIndy10ServerTransport;dsnapxml;DataSnapProviderClient;dbrtl;inetdbxpress;FireDACMongoDBDriver;IndyProtocols;IcsCommonD102Run;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
@@ -362,8 +363,8 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Debugger_RunParams>d:\dropbox\dev\hab\apps\HABExplora</Debugger_RunParams>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
-        <VerInfo_MinorVer>5</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.5.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_MinorVer>8</VerInfo_MinorVer>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.8.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
         <DCC_RangeChecking>true</DCC_RangeChecking>
     </PropertyGroup>
@@ -379,13 +380,13 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android)'!=''">
         <DCC_IOChecking>false</DCC_IOChecking>
-        <VerInfo_Build>1</VerInfo_Build>
+        <VerInfo_Build>3</VerInfo_Build>
         <Android_SplashImage426>Images\Splash_426.png</Android_SplashImage426>
         <Android_SplashImage470>Images\Splash_470.png</Android_SplashImage470>
         <Android_SplashImage640>Images\Splash_640.png</Android_SplashImage640>
         <Android_SplashImage960>Images\Splash_960.png</Android_SplashImage960>
         <Android_SplashTileMode>disabled</Android_SplashTileMode>
-        <VerInfo_Keys>package=com.daveakerman.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=1;versionName=V1.7.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.daveakerman.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=3;versionName=V1.8.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <Android_LauncherIcon36>Images\Android\Icon_36.png</Android_LauncherIcon36>
         <AUP_CHANGE_WIFI_MULTICAST_STATE>true</AUP_CHANGE_WIFI_MULTICAST_STATE>
         <AUP_WRITE_CALENDAR>false</AUP_WRITE_CALENDAR>
@@ -401,14 +402,19 @@
         <CfgParent>Cfg_2</CfgParent>
         <Cfg_2>true</Cfg_2>
         <DCC_IOChecking>false</DCC_IOChecking>
-        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_Build>3</VerInfo_Build>
         <Android_SplashImage426>Images\Splash_426.png</Android_SplashImage426>
         <Android_SplashImage470>Images\Splash_470.png</Android_SplashImage470>
         <Android_SplashImage640>Images\Splash_640.png</Android_SplashImage640>
         <Android_SplashImage960>Images\Splash_960.png</Android_SplashImage960>
         <Android_SplashTileMode>disabled</Android_SplashTileMode>
-        <VerInfo_Keys>package=com.daveakerman.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=2;versionName=V1.7.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.daveakerman.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=3;versionName=V1.8.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <DCC_GenerateAndroidAppBundleFile>true</DCC_GenerateAndroidAppBundleFile>
+        <BT_BuildType>AppStore</BT_BuildType>
+        <PF_KeyStore>Keys\JABPADD.keystore</PF_KeyStore>
+        <PF_KeyStorePass>850A47C55F9E0799CF74E50BA4007BF0E4130519A05A97D897C80FA28E363C94DB04A390E34B1C31C1B15774FAD1C339BABA3609043F22FC1657458CE5A722CFC949F31FD555FAFEBFE4AF0D07551D589201</PF_KeyStorePass>
+        <PF_AliasKey>habpadd</PF_AliasKey>
+        <PF_AliasKeyPass>850A47C55F9E0799CF74E50BA4007BF0E4130519A05A97D897C80FA28E363C94DB04A390E34B1C31C1B15774FAD1C339BABA3609043F22FC1657458CE5A722CFC949F31FD555FAFEBFE4AF0D07551D589201</PF_AliasKeyPass>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice64)'!=''">
         <DCC_WriteableConstants>true</DCC_WriteableConstants>
@@ -420,6 +426,10 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <Debugger_RunParams>\dropbox\dev\hab\apps\habexplora</Debugger_RunParams>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_MinorVer>7</VerInfo_MinorVer>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.7.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -478,8 +488,6 @@
         <DCCReference Include="..\HABRx\Androidapi.JNI.WiFiManager.pas"/>
         <DCCReference Include="..\HABRx\GatewaySource.pas"/>
         <DCCReference Include="..\HABRx\GPSSource.pas"/>
-        <DCCReference Include="..\HABRx\Habitat.pas"/>
-        <DCCReference Include="..\HABRx\HabitatSource.pas"/>
         <DCCReference Include="..\HABRx\Miscellaneous.pas"/>
         <DCCReference Include="..\HABRx\SerialSource.pas"/>
         <DCCReference Include="..\HABRx\Source.pas"/>
@@ -541,7 +549,6 @@
             <Form>frmUploadSettings</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\HABRx\CarUpload.pas"/>
         <DCCReference Include="..\HABRx\WSMQTTSource.pas"/>
         <None Include="AndroidManifest.template.xml"/>
         <JavaReference Include="C:\Program Files (x86)\Winsoft\ComPort for Android USB Serial\Library\classes.jar">
@@ -1557,12 +1564,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libPCRE.dylib" Class="DependencyModule">
                     <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libPCRE.dylib" Class="DependencyModule">
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
                     <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1812,6 +1819,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="Android\Release\libHABPADD.so" Configuration="Release" Class="ProjectOutput_Android32">
+                    <Platform Name="Android64">
+                        <RemoteName>libHABPADD.so</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Android\Release\splash_image_def.xml" Configuration="Release" Class="AndroidSplashImageDef">
                     <Platform Name="Android">
                         <Overwrite>true</Overwrite>
@@ -1933,6 +1946,12 @@
                 </DeployFile>
                 <DeployFile LocalName="Images\Android\Icon_192.png" Configuration="Release" Class="Android_LauncherIcon192">
                     <Platform Name="Android">
+                        <RemoteName>ic_launcher.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\Android\Icon_192.png" Configuration="Release" Class="Android_LauncherIcon192">
+                    <Platform Name="Android64">
                         <RemoteName>ic_launcher.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -2476,12 +2495,6 @@
                 </DeployFile>
                 <DeployFile LocalName="Images\Icon_144.png" Configuration="Debug" Class="Android_LauncherIcon144">
                     <Platform Name="Android">
-                        <RemoteName>ic_launcher.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Images\Icon_192.png" Configuration="Release" Class="Android_LauncherIcon192">
-                    <Platform Name="Android64">
                         <RemoteName>ic_launcher.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>

@@ -190,28 +190,12 @@ inherited frmUploadSettings: TfrmUploadSettings
           Version = '1.4.4.5'
           Lookup.Separator = ';'
         end
-        object chkHabitat: TLabel
-          Align = Scale
-          StyledSettings = [Family, Style, Other]
-          HitTest = True
-          Position.X = 463.000000000000000000
-          Position.Y = 16.000000000000000000
-          Size.Width = 200.000000000000000000
-          Size.Height = 41.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'lCARSCheckButton'
-          TextSettings.Font.Size = 18.000000000000000000
-          TextSettings.FontColor = claWhite
-          Text = 'HABHUB'
-          TabOrder = 14
-          OnClick = chkHabitatClick
-        end
         object chkSondehub: TLabel
           Align = Scale
           StyledSettings = [Family, Style, Other]
           HitTest = True
           Position.X = 463.000000000000000000
-          Position.Y = 65.000000000000000000
+          Position.Y = 16.000000000000000000
           Size.Width = 200.000000000000000000
           Size.Height = 41.000000000000000000
           Size.PlatformDefault = False
@@ -227,8 +211,8 @@ inherited frmUploadSettings: TfrmUploadSettings
           StyledSettings = [Family, Style, Other]
           HitTest = True
           Position.X = 463.000000000000000000
-          Position.Y = 115.000000000000000000
-          Size.Width = 98.000000000000000000
+          Position.Y = 65.000000000000000000
+          Size.Width = 200.000000000000000000
           Size.Height = 41.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'lCARSCheckButton'
@@ -242,9 +226,9 @@ inherited frmUploadSettings: TfrmUploadSettings
           Align = Scale
           StyledSettings = [Family, Style, Other]
           HitTest = True
-          Position.X = 565.000000000000000000
+          Position.X = 463.000000000000000000
           Position.Y = 115.000000000000000000
-          Size.Width = 98.000000000000000000
+          Size.Width = 200.000000000000000000
           Size.Height = 41.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'lCARSCheckButton'

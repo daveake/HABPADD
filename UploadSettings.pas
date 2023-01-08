@@ -20,7 +20,6 @@ type
     Label5: TLabel;
     Label8: TLabel;
     edtChaseTopic: TTMSFMXEdit;
-    chkHabitat: TLabel;
     chkSondehub: TLabel;
     chkMQTT: TLabel;
     chkHABLINK: TLabel;
@@ -73,7 +72,6 @@ begin
     SetSettingString(Group, 'MQTTTopic', edtTopic.Text);
     SetSettingString(Group, 'MQTTChaseTopic', edtChaseTopic.Text);
 
-    SetSettingBoolean(Group, 'Habitat', LCARSLabelIsChecked(chkHabitat));
     SetSettingBoolean(Group, 'HABLINK', LCARSLabelIsChecked(chkHABLINK));
     SetSettingBoolean(Group, 'MQTT', LCARSLabelIsChecked(chkMQTT));
     SetSettingBoolean(Group, 'SSDV', LCARSLabelIsChecked(chkSSDV));
@@ -100,7 +98,6 @@ begin
     edtTopic.Text := GetSettingString(Group, 'MQTTTopic', 'incoming/payloads/$PAYLOAD$/$LISTENER$/sentence');
     edtChaseTopic.Text := GetSettingString(Group, 'MQTTChaseTopic', 'incoming/chase/$CALLSIGN$/position');
 
-    CheckLCARSLabel(chkHabitat, GetSettingBoolean(Group, 'Habitat', False));
     CheckLCARSLabel(chkHABLINK, GetSettingBoolean(Group, 'HABLINK', False));
     CheckLCARSLabel(chkMQTT, GetSettingBoolean(Group, 'MQTT', False));
     CheckLCARSLabel(chkSSDV, GetSettingBoolean(Group, 'SSDV', False));

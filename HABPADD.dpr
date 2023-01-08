@@ -19,8 +19,6 @@ uses
   Androidapi.JNI.WiFiManager in '..\HABRx\Androidapi.JNI.WiFiManager.pas',
   GatewaySource in '..\HABRx\GatewaySource.pas',
   GPSSource in '..\HABRx\GPSSource.pas',
-  Habitat in '..\HABRx\Habitat.pas',
-  HabitatSource in '..\HABRx\HabitatSource.pas',
   Miscellaneous in '..\HABRx\Miscellaneous.pas',
   SerialSource in '..\HABRx\SerialSource.pas',
   Source in '..\HABRx\Source.pas',
@@ -46,7 +44,6 @@ uses
   SSDVForm in 'SSDVForm.pas' {frmSSDV},
   UDPSettings in 'UDPSettings.pas' {frmUDPSettings},
   UploadSettings in 'UploadSettings.pas' {frmUploadSettings},
-  CarUpload in '..\HABRx\CarUpload.pas',
   WSMQTTSource in '..\HABRx\WSMQTTSource.pas';
 
 {$R *.res}

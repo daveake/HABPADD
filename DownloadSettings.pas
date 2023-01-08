@@ -13,7 +13,6 @@ type
     chkEnableSondehub: TLabel;
     Label1: TLabel;
     edtWhiteList: TTMSFMXEdit;
-    chkEnableHABHUB: TLabel;
     chkEnableHABLINK: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure chkEnableSondehubClick(Sender: TObject);
@@ -37,8 +36,6 @@ implementation
 
 procedure TfrmDownloadSettings.ApplyChanges;
 begin
-    SetSettingBoolean('Habitat', 'Enabled', LCARSLabelIsChecked(chkEnableHABHUB));
-
     SetSettingBoolean(Group, 'SONDEHUB', LCARSLabelIsChecked(chkEnableSondehub));
     SetSettingBoolean(Group, 'HABLINK', LCARSLabelIsChecked(chkEnableHABLINK));
 
@@ -52,8 +49,6 @@ end;
 procedure TfrmDownloadSettings.CancelChanges;
 begin
     inherited;
-
-    CheckLCARSLabel(chkEnableHABHUB, GetSettingBoolean('Habitat', 'Enabled', False));
 
     CheckLCARSLabel(chkEnableSondehub, GetSettingBoolean(Group, 'SONDEHUB', False));
     CheckLCARSLabel(chkEnableHABLINK, GetSettingBoolean(Group, 'HABLINK', False));

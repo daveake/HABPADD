@@ -3,9 +3,9 @@ unit SourcesForm;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, Habitat,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, HabitatSource,
-  FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, Math, SSDV, Miscellaneous, CarUpload,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, Math, SSDV, Miscellaneous,
   GPSSource, Source, Base, GatewaySource, UDPSource, SerialSource, BluetoothSource,
   System.DateUtils, System.TimeSpan, System.Sensors, System.Sensors.Components, BLESource,
   IdBaseComponent, IdComponent, IdUDPBase, IdUDPClient, MQTTUplink, Sondehub, MQTTSource,
@@ -68,9 +68,6 @@ type
     lblGateway2RSSI: TLabel;
     lblSerialRSSI: TLabel;
     UDPClient: TIdUDPClient;
-    rectHH: TRectangle;
-    lblHabitat: TLabel;
-    Label14: TLabel;
     rectHL: TRectangle;
     lblHabLink: TLabel;
     Label16: TLabel;
@@ -89,8 +86,6 @@ type
     procedure Label3Click(Sender: TObject);
   private
     { Private declarations }
-    CarUploader: TCarUpload;
-    HabitatUploader: THabitatThread;
     SondehubUploader: TSondehubThread;
     MQTTUploader, HabLinkUploader: TMQTTThread;
     SSDVUploader: TSSDVThread;
@@ -106,8 +101,6 @@ type
     function GetMagneticHeading: Double;
 
     // Callbacks
-    procedure HabitatStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
-    procedure CarStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
     procedure HabLinkStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
     procedure MQTTStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
     procedure SSDVStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
@@ -153,12 +146,6 @@ end;
 procedure TfrmSources.FormCreate(Sender: TObject);
 begin
     inherited;
-
-    // Car uploader
-    CarUploader := TCarUpload.Create(CarStatusCallback);
-
-    // Habitat uploader
-    HabitatUploader := THabitatThread.Create(HabitatStatusCallback);
 
     // Sondehub uploader
     SondehubUploader := TSondehubThread.Create(SondehubStatusCallback);
@@ -235,10 +222,6 @@ begin
     SetSettingString('HabLink', 'ExtraPayloads', '');
     SetSettingBoolean('HabLink', 'Filtered', True);
     Sources[HABLINK_SOURCE].Source := TMQTTSource.Create(HABLINK_SOURCE, 'HabLink', HABCallback);
-
-    Sources[HABHUB_SOURCE].ValueLabel := lblHabitat;
-    Sources[HABHUB_SOURCE].Source := THabitatSource.Create(HABHUB_SOURCE, 'Habitat', HABCallback);
-    Sources[HABHUB_SOURCE].RSSILabel := nil;
 end;
 
 procedure TfrmSources.CloseThread(Thread: TThread);
@@ -265,8 +248,6 @@ begin
         CloseThread(Sources[Index].Source);
     end;
 
-    CloseThread(CarUploader);
-    CloseThread(HabitatUploader);
     CloseThread(MQTTUploader);
     CloseThread(HabLinkUploader);
     CloseThread(SSDVUploader);
@@ -277,8 +258,6 @@ begin
     WaitForThread(GPSSource);
 {$ENDIF}
 
-    WaitForThread(CarUploader);
-    WaitForThread(HabitatUploader);
     WaitForThread(MQTTUploader);
     WaitForThread(HabLinkUploader);
     WaitForThread(SSDVUploader);
@@ -311,7 +290,6 @@ const
 var
     Position: THABPosition;
     ChaseCallsign, Temp: String;
-    CarPosition: TCarPosition;
 begin
     if IsNan(Latitude) then begin
         Temp := 'Waiting for GPS ...';
@@ -379,17 +357,6 @@ begin
             ChaseCallsign := GetSettingString('CHASE', 'Callsign', '');
 
             if ChaseCallsign <> '' then begin
-                // HABHUB
-                if GetSettingBoolean('Upload', 'Habitat', False) then begin
-                    CarPosition.InUse := True;
-                    CarPosition.TimeStamp := TTimeZone.Local.ToUniversalTime(Now);
-                    CarPosition.Latitude := Position.Latitude;
-                    CarPosition.Longitude := Position.Longitude;
-                    CarPosition.Altitude := Position.Altitude;
-
-                    CarUploader.SetPosition(CarPosition);
-                end;
-
                 if GetSettingBoolean('Upload', 'MQTT', False) then begin
                     if Now >= (LastMQTTLinkUpload + GetSettingInteger('CHASE', 'Period', 30) / 86400) then begin
                         MQTTUploader.SendChase(ChaseCallsign + '_Chase',
@@ -550,10 +517,6 @@ begin
 
             // Callsign needed for HABHUB and Sondehub
             if Callsign <> '' then begin
-                if GetSettingBoolean('Upload', 'Habitat', False) then begin
-                    HabitatUploader.SaveTelemetryToHabitat(ID, Position.Line, Callsign);
-                end;
-
                 if GetSettingBoolean('Upload', 'Sondehub', False) and (SondehubUploader <> nil) then begin
                     Position.Longitude := Position.Longitude + 0.01;
                     SondehubUploader.SaveTelemetryToSondehub(ID, Position);
@@ -706,16 +669,6 @@ end;
 function TfrmSources.WaitingToSend(SourceIndex: Integer): Boolean;
 begin
     Result := Sources[SourceIndex].Source.WaitingToSend;
-end;
-
-procedure TfrmSources.CarStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
-begin
-    frmMain.UploadStatus(SourceID, HABHUB_UPLINK, Active, OK);
-end;
-
-procedure TfrmSources.HabitatStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
-begin
-    frmMain.UploadStatus(SourceID, HABHUB_UPLINK, Active, OK);
 end;
 
 procedure TfrmSources.SSDVStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);

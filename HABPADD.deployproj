@@ -4,8 +4,8 @@
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
     <PropertyGroup>
-        <DeviceId Condition="'$(Platform)'=='Android'">32320745424837</DeviceId>
-        <DeviceId Condition="'$(Platform)'=='Android64'">32320745424837</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android'"/>
+        <DeviceId Condition="'$(Platform)'=='Android64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
     </PropertyGroup>
     <ItemGroup Condition="'$(Platform)'=='OSX64'">
@@ -211,6 +211,15 @@
             <RemoteName>Swiss911 UCm BT.ttf</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Images\Android\Icon_192.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\res\drawable-xxxhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon192</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -666,15 +675,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\Icon_192.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\res\drawable-xxxhdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon192</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="OpenSSL\Android64\libcrypto.so" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\assets\internal\</RemoteDir>
             <RemoteName>libcrypto.so</RemoteName>
@@ -752,6 +752,15 @@
             <RemoteName>balloon-blue.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android\Release\libHABPADD.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>libHABPADD.so</RemoteName>
+            <DeployClass>ProjectOutput_Android32</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -858,15 +867,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\Android\Icon_48.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\res\drawable-mdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon48</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Android\Release\splash_image_def.xml" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\res\drawable\</RemoteDir>
             <RemoteName>splash_image_def.xml</RemoteName>
@@ -894,20 +894,20 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\Android\Icon_192.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\res\drawable-xxxhdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon192</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="Images\car-red.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\assets\internal\</RemoteDir>
             <RemoteName>car-red.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Images\Android\Icon_72.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\res\drawable-hdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon72</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -988,24 +988,6 @@
             <RemoteDir>HABPADD\res\drawable-xlarge\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
             <DeployClass>Android_SplashImage960</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="Images\Android\Icon_72.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\res\drawable-hdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon72</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="Images\Android\Icon_96.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\res\drawable-xhdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon96</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -1137,15 +1119,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Images\Android\Icon_144.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\res\drawable-xxhdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon144</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_96x96.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\res\drawable-xxxhdpi\</RemoteDir>
             <RemoteName>ic_notification.png</RemoteName>
@@ -1236,6 +1209,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="Images\Android\Icon_48.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\res\drawable-mdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon48</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Android\Release\AndroidManifest.xml" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\</RemoteDir>
             <RemoteName>AndroidManifest.xml</RemoteName>
@@ -1285,15 +1267,6 @@
             <RemoteDir>HABPADD\res\values\</RemoteDir>
             <RemoteName>colors.xml</RemoteName>
             <DeployClass>Android_Colors</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="Images\Android\Icon_36.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HABPADD\res\drawable-ldpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon36</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -1385,6 +1358,15 @@
             <RemoteName>target.png</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Images\Android\Icon_36.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\res\drawable-ldpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon36</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -1813,10 +1795,37 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="Images\Android\Icon_192.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\res\drawable-xxxhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon192</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Images\Splash_470.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>HABPADD\res\drawable-normal\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
             <DeployClass>Android_SplashImage470</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Images\Android\Icon_144.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\res\drawable-xxhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon144</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Images\Android\Icon_96.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HABPADD\res\drawable-xhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon96</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>

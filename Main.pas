@@ -93,12 +93,10 @@ type
     crcLoRaBluetooth: TCircle;
     btnSondehub: TButton;
     btnUDP: TButton;
-    btnHABHUBUplink: TButton;
     btnHablinkUplink: TButton;
     btnSondehubUplink: TButton;
     btnMQTTUplink: TButton;
     btnSSDVUplink: TButton;
-    btnHABHUB: TButton;
     btnHABLINK: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -135,7 +133,7 @@ type
     HeightFactor, WidthFactor: Double;
     CurrentForm: TfrmBase;
     Payloads: Array[1..3] of TPayload;
-    Sources: Array[0..8] of TSource;
+    Sources: Array[0..7] of TSource;
     PayloadIndex: Array[0..8] of Integer;
     ChasePosition: THABPosition;
     SelectedPayload: Integer;
@@ -174,11 +172,10 @@ type
   end;
 
 const
-    HABHUB_UPLINK = 1;
-    HABLINK_UPLINK = 2;
-    SONDEHUB_UPLINK = 3;
-    MQTT_UPLINK = 4;
-    SSDV_UPLINK = 5;
+    HABLINK_UPLINK = 1;
+    SONDEHUB_UPLINK = 2;
+    MQTT_UPLINK = 3;
+    SSDV_UPLINK = 4;
 
 var
   frmMain: TfrmMain;
@@ -322,8 +319,6 @@ begin
     Sources[HABLINK_SOURCE].Button := btnHABLINK;
     Sources[HABLINK_SOURCE].Circle := nil;
 
-    Sources[HABHUB_SOURCE].Button := btnHABHUB;
-    Sources[HABHUB_SOURCE].Circle := nil;
     (*
     // Screen size
     {$IFDEF ANDROID}
@@ -1225,11 +1220,6 @@ begin
 
     // Show upload status
     case UploadID of
-        HABHUB_UPLINK: begin
-            Button := btnHABHUBUplink;
-            Enabled := GetSettingBoolean('Upload', 'HABHUB', False);
-        end;
-
         HABLINK_UPLINK: begin
             Button := btnHablinkUplink;
             Enabled := GetSettingBoolean('Upload', 'Hablink', False);

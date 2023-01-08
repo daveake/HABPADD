@@ -13,7 +13,7 @@ inherited frmSources: TfrmSources
       Position.X = 2.000000000000000000
       Position.Y = 2.000000000000000000
       Size.Width = 697.000000000000000000
-      Size.Height = 44.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
       OnResize = rectGW1Resize
@@ -27,7 +27,7 @@ inherited frmSources: TfrmSources
         RotationCenter.X = 0.000000000000000000
         RotationCenter.Y = 0.000000000000000000
         Size.Width = 48.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -39,14 +39,14 @@ inherited frmSources: TfrmSources
       object Label10: TLabel
         Align = Client
         Size.Width = 654.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         Text = 'Label1'
         TabOrder = 1
         object lblGateway1RSSI: TLabel
           Align = Bottom
           StyledSettings = [Style]
-          Position.Y = 12.000000000000000000
+          Position.Y = 17.000000000000000000
           Size.Width = 654.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
@@ -61,7 +61,7 @@ inherited frmSources: TfrmSources
           Align = Client
           StyledSettings = [Family, Style]
           Size.Width = 654.000000000000000000
-          Size.Height = 12.000000000000000000
+          Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.FontColor = claWhite
@@ -79,9 +79,9 @@ inherited frmSources: TfrmSources
       Margins.Top = 3.000000000000000000
       Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
-      Position.Y = 386.000000000000000000
+      Position.Y = 374.000000000000000000
       Size.Width = 697.000000000000000000
-      Size.Height = 36.000000000000000000
+      Size.Height = 46.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
       object Label3: TLabel
@@ -94,7 +94,7 @@ inherited frmSources: TfrmSources
         RotationCenter.X = 0.000000000000000000
         RotationCenter.Y = 0.000000000000000000
         Size.Width = 48.000000000000000000
-        Size.Height = 36.000000000000000000
+        Size.Height = 46.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -107,7 +107,7 @@ inherited frmSources: TfrmSources
         Align = Client
         StyledSettings = [Style]
         Size.Width = 654.000000000000000000
-        Size.Height = 36.000000000000000000
+        Size.Height = 46.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Family = 'Courier New'
         TextSettings.Font.Size = 18.000000000000000000
@@ -120,7 +120,7 @@ inherited frmSources: TfrmSources
           StyledSettings = [Style]
           Position.X = 453.000000000000000000
           Size.Width = 201.000000000000000000
-          Size.Height = 36.000000000000000000
+          Size.Height = 46.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'Courier New'
           TextSettings.Font.Size = 16.000000000000000000
@@ -133,7 +133,7 @@ inherited frmSources: TfrmSources
           Align = Client
           StyledSettings = [Family, Style]
           Size.Width = 453.000000000000000000
-          Size.Height = 36.000000000000000000
+          Size.Height = 46.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.FontColor = claWhite
@@ -151,16 +151,16 @@ inherited frmSources: TfrmSources
       Margins.Top = 3.000000000000000000
       Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
-      Position.Y = 242.000000000000000000
+      Position.Y = 267.000000000000000000
       Size.Width = 697.000000000000000000
-      Size.Height = 44.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
       object lblSondehub: TLabel
         Align = Client
         StyledSettings = [Family, Style]
         Size.Width = 654.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -179,7 +179,7 @@ inherited frmSources: TfrmSources
         RotationCenter.X = 0.000000000000000000
         RotationCenter.Y = 0.000000000000000000
         Size.Width = 48.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -196,9 +196,9 @@ inherited frmSources: TfrmSources
       Margins.Top = 3.000000000000000000
       Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
-      Position.Y = 146.000000000000000000
+      Position.Y = 161.000000000000000000
       Size.Width = 697.000000000000000000
-      Size.Height = 44.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
       object Label9: TLabel
@@ -211,7 +211,7 @@ inherited frmSources: TfrmSources
         RotationCenter.X = 0.000000000000000000
         RotationCenter.Y = 0.000000000000000000
         Size.Width = 48.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -223,7 +223,7 @@ inherited frmSources: TfrmSources
       object Label1: TLabel
         Align = Client
         Size.Width = 654.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         Text = 'Label1'
         TabOrder = 1
@@ -231,7 +231,7 @@ inherited frmSources: TfrmSources
           Align = Client
           StyledSettings = [Family, Style]
           Size.Width = 654.000000000000000000
-          Size.Height = 12.000000000000000000
+          Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.FontColor = claWhite
@@ -243,7 +243,7 @@ inherited frmSources: TfrmSources
         object lblBluetoothRSSI: TLabel
           Align = Bottom
           StyledSettings = [Style]
-          Position.Y = 12.000000000000000000
+          Position.Y = 17.000000000000000000
           Size.Width = 654.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
@@ -263,9 +263,9 @@ inherited frmSources: TfrmSources
       Margins.Top = 3.000000000000000000
       Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
-      Position.Y = 98.000000000000000000
+      Position.Y = 108.000000000000000000
       Size.Width = 697.000000000000000000
-      Size.Height = 44.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
       object Label11: TLabel
@@ -278,7 +278,7 @@ inherited frmSources: TfrmSources
         RotationCenter.X = 0.000000000000000000
         RotationCenter.Y = 0.000000000000000000
         Size.Width = 48.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -290,7 +290,7 @@ inherited frmSources: TfrmSources
       object Label7: TLabel
         Align = Client
         Size.Width = 654.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         Text = 'Label7'
         TabOrder = 1
@@ -298,7 +298,7 @@ inherited frmSources: TfrmSources
           Align = Client
           StyledSettings = [Family, Style]
           Size.Width = 654.000000000000000000
-          Size.Height = 20.000000000000000000
+          Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.FontColor = claWhite
@@ -310,7 +310,7 @@ inherited frmSources: TfrmSources
         object lblSerialRSSI: TLabel
           Align = Bottom
           StyledSettings = [Style]
-          Position.Y = 20.000000000000000000
+          Position.Y = 25.000000000000000000
           Size.Width = 654.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -330,9 +330,9 @@ inherited frmSources: TfrmSources
       Margins.Top = 3.000000000000000000
       Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
-      Position.Y = 194.000000000000000000
+      Position.Y = 214.000000000000000000
       Size.Width = 697.000000000000000000
-      Size.Height = 44.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
       object Label4: TLabel
@@ -345,7 +345,7 @@ inherited frmSources: TfrmSources
         RotationCenter.X = 0.000000000000000000
         RotationCenter.Y = 0.000000000000000000
         Size.Width = 48.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -358,7 +358,7 @@ inherited frmSources: TfrmSources
         Align = Client
         StyledSettings = [Family, Style]
         Size.Width = 654.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -375,9 +375,9 @@ inherited frmSources: TfrmSources
       Margins.Top = 3.000000000000000000
       Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
-      Position.Y = 50.000000000000000000
+      Position.Y = 55.000000000000000000
       Size.Width = 697.000000000000000000
-      Size.Height = 44.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
       object Label8: TLabel
@@ -390,7 +390,7 @@ inherited frmSources: TfrmSources
         RotationCenter.X = 0.000000000000000000
         RotationCenter.Y = 0.000000000000000000
         Size.Width = 48.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -402,14 +402,14 @@ inherited frmSources: TfrmSources
       object Label12: TLabel
         Align = Client
         Size.Width = 654.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         Text = 'Label1'
         TabOrder = 1
         object lblGateway2RSSI: TLabel
           Align = Bottom
           StyledSettings = [Style]
-          Position.Y = 12.000000000000000000
+          Position.Y = 17.000000000000000000
           Size.Width = 654.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
@@ -424,7 +424,7 @@ inherited frmSources: TfrmSources
           Align = Client
           StyledSettings = [Family, Style]
           Size.Width = 654.000000000000000000
-          Size.Height = 12.000000000000000000
+          Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.FontColor = claWhite
@@ -435,51 +435,6 @@ inherited frmSources: TfrmSources
         end
       end
     end
-    object rectHH: TRectangle
-      Align = Scale
-      Fill.Color = claBlack
-      Margins.Left = 3.000000000000000000
-      Margins.Top = 3.000000000000000000
-      Margins.Bottom = 3.000000000000000000
-      Position.X = 2.000000000000000000
-      Position.Y = 290.000000000000000000
-      Size.Width = 697.000000000000000000
-      Size.Height = 44.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Color = claYellow
-      object lblHabitat: TLabel
-        Align = Client
-        StyledSettings = [Family, Style]
-        Size.Width = 654.000000000000000000
-        Size.Height = 44.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
-        TextSettings.Trimming = None
-        Text = '---'
-        TabOrder = 0
-      end
-      object Label14: TLabel
-        Align = Left
-        StyledSettings = [Family, Style]
-        HitTest = True
-        Margins.Left = 5.000000000000000000
-        Margins.Right = -10.000000000000000000
-        Position.X = 5.000000000000000000
-        RotationCenter.X = 0.000000000000000000
-        RotationCenter.Y = 0.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 44.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.VertAlign = Leading
-        Text = 'HH'
-        TabOrder = 1
-        OnClick = Label5Click
-      end
-    end
     object rectHL: TRectangle
       Align = Scale
       Fill.Color = claBlack
@@ -487,16 +442,16 @@ inherited frmSources: TfrmSources
       Margins.Top = 3.000000000000000000
       Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
-      Position.Y = 338.000000000000000000
+      Position.Y = 320.000000000000000000
       Size.Width = 697.000000000000000000
-      Size.Height = 44.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
       object lblHabLink: TLabel
         Align = Client
         StyledSettings = [Family, Style]
         Size.Width = 654.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite
@@ -515,7 +470,7 @@ inherited frmSources: TfrmSources
         RotationCenter.X = 0.000000000000000000
         RotationCenter.Y = 0.000000000000000000
         Size.Width = 48.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.FontColor = claWhite

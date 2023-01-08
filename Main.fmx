@@ -74,7 +74,7 @@ object frmMain: TfrmMain
       Align = Scale
       Fill.Color = claBlack
       Position.X = 86.000000000000000000
-      Size.Width = 281.000000000000000000
+      Size.Width = 250.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       Stroke.Thickness = 0.000000000000000000
@@ -209,24 +209,8 @@ object frmMain: TfrmMain
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSSmallButtonStyle'
-        TabOrder = 8
-        Text = 'UDP'
-        TextSettings.Font.Size = 22.000000000000000000
-        OnClick = btnSourcesClick
-      end
-      object btnHABHUB: TButton
-        Tag = 2
-        Align = Scale
-        StyledSettings = [Family]
-        Opacity = 0.699999988079071000
-        Margins.Left = 3.000000000000000000
-        Position.X = 219.000000000000000000
-        Size.Width = 29.000000000000000000
-        Size.Height = 25.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'LCARSSmallButtonStyle'
         TabOrder = 7
-        Text = 'HH'
+        Text = 'UDP'
         TextSettings.Font.Size = 22.000000000000000000
         OnClick = btnSourcesClick
       end
@@ -236,7 +220,7 @@ object frmMain: TfrmMain
         StyledSettings = [Family]
         Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
-        Position.X = 250.000000000000000000
+        Position.X = 219.000000000000000000
         Size.Width = 29.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
@@ -264,40 +248,24 @@ object frmMain: TfrmMain
     object rectUploads: TRectangle
       Align = Scale
       Fill.Color = claBlack
-      Position.X = 670.000000000000000000
-      Size.Width = 108.000000000000000000
+      Position.X = 691.000000000000000000
+      Size.Width = 86.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       Stroke.Thickness = 0.000000000000000000
       OnResize = rectUploadsResize
-      object btnHABHUBUplink: TButton
-        Tag = 2
-        Align = Scale
-        StyledSettings = [Family]
-        Opacity = 0.699999988079071000
-        Margins.Left = 3.000000000000000000
-        Position.X = 1.981132030487061000
-        Size.Width = 19.415096282958980000
-        Size.Height = 25.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'LCARSSmallButtonStyle'
-        TabOrder = 0
-        Text = 'HH'
-        TextSettings.Font.Size = 22.000000000000000000
-        OnClick = btnSourcesClick
-      end
       object btnHablinkUplink: TButton
         Tag = 2
         Align = Scale
         StyledSettings = [Family]
         Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
-        Position.X = 23.000000000000000000
+        Position.X = 2.000000000000000000
         Size.Width = 19.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSSmallButtonStyle'
-        TabOrder = 1
+        TabOrder = 0
         Text = 'HL'
         TextSettings.Font.Size = 22.000000000000000000
         OnClick = btnSourcesClick
@@ -308,12 +276,12 @@ object frmMain: TfrmMain
         StyledSettings = [Family]
         Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
-        Position.X = 44.000000000000000000
+        Position.X = 23.000000000000000000
         Size.Width = 19.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSSmallButtonStyle'
-        TabOrder = 5
+        TabOrder = 4
         Text = 'SH'
         TextSettings.Font.Size = 22.000000000000000000
         OnClick = btnSourcesClick
@@ -324,12 +292,12 @@ object frmMain: TfrmMain
         StyledSettings = [Family]
         Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
-        Position.X = 65.000000000000000000
+        Position.X = 44.000000000000000000
         Size.Width = 19.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSSmallButtonStyle'
-        TabOrder = 4
+        TabOrder = 3
         Text = 'MQ'
         TextSettings.Font.Size = 22.000000000000000000
         OnClick = btnSourcesClick
@@ -340,12 +308,12 @@ object frmMain: TfrmMain
         StyledSettings = [Family]
         Opacity = 0.699999988079071000
         Margins.Left = 3.000000000000000000
-        Position.X = 86.000000000000000000
+        Position.X = 65.000000000000000000
         Size.Width = 19.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'LCARSSmallButtonStyle'
-        TabOrder = 3
+        TabOrder = 2
         Text = 'SS'
         TextSettings.Font.Size = 22.000000000000000000
         OnClick = btnSourcesClick

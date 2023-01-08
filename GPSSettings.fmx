@@ -19,8 +19,8 @@ inherited frmGPSSettings: TfrmGPSSettings
               'ourself.'
             ''
             
-              '"Period" is the time, in seconds, between position updates to HA' +
-              'BHUB/Sondehub.')
+              '"Period" is the time, in seconds, between position updates to So' +
+              'ndehub.')
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           Size.Height = 207.000000000000000000

@@ -29,27 +29,11 @@ inherited frmDownloadSettings: TfrmDownloadSettings
       Size.Height = 135.000000000000000000
       inherited Rectangle1: TRectangle
         Size.Height = 127.000000000000000000
-        object chkEnableHABHUB: TLabel
-          Align = Scale
-          StyledSettings = [Family, Style, Other]
-          HitTest = True
-          Position.X = 34.000000000000000000
-          Position.Y = 71.000000000000000000
-          Size.Width = 185.000000000000000000
-          Size.Height = 41.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'lCARSCheckButton'
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          Text = 'Enable HABHUB'
-          TabOrder = 4
-          OnClick = chkEnableSondehubClick
-        end
         object chkEnableHABLINK: TLabel
           Align = Scale
           StyledSettings = [Family, Style, Other]
           HitTest = True
-          Position.X = 470.000000000000000000
+          Position.X = 458.000000000000000000
           Position.Y = 71.000000000000000000
           Size.Width = 185.000000000000000000
           Size.Height = 41.000000000000000000
@@ -66,7 +50,7 @@ inherited frmDownloadSettings: TfrmDownloadSettings
         Align = Scale
         StyledSettings = [Family, Style, Other]
         HitTest = True
-        Position.X = 262.000000000000000000
+        Position.X = 136.000000000000000000
         Position.Y = 71.000000000000000000
         Size.Width = 185.000000000000000000
         Size.Height = 41.000000000000000000
