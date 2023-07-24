@@ -44,7 +44,10 @@ uses
   SSDVForm in 'SSDVForm.pas' {frmSSDV},
   UDPSettings in 'UDPSettings.pas' {frmUDPSettings},
   UploadSettings in 'UploadSettings.pas' {frmUploadSettings},
-  WSMQTTSource in '..\HABRx\WSMQTTSource.pas';
+  WSMQTTSource in '..\HABRx\WSMQTTSource.pas',
+  Uploaders in 'Uploaders.pas' {frmUploaders},
+  SourceForm in 'SourceForm.pas' {frmSource},
+  SourceLog in 'SourceLog.pas' {frmSourceLog};
 
 {$R *.res}
 
@@ -52,6 +55,7 @@ begin
   Application.Initialize;
   Application.FormFactor.Orientations := [TFormOrientation.Landscape, TFormOrientation.InvertedLandscape];
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmSourceLog, frmSourceLog);
   Application.Run;
 end.
 

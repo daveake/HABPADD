@@ -18,7 +18,7 @@ uses
 {$IFDEF IOS}
   iOSapi.Foundation, FMX.Helpers.iOS, Macapi.Helpers,
 {$ENDIF}
-  Settings, Tawhiri, FMX.TMSBitmapContainer, FMX.TMSFNCTypes,
+  Settings, Uploaders, Tawhiri, FMX.TMSBitmapContainer, FMX.TMSFNCTypes,
   FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCMapsCommonTypes, FMX.TMSFNCCustomControl, FMX.TMSFNCWebBrowser,
   FMX.TMSFNCMaps, FMX.TMSFNCGoogleMaps;
@@ -41,7 +41,6 @@ type
   TSource = record
     Button:         TButton;
     LastPositionAt: TDateTime;
-    Circle:         TCircle;
 end;
 
 type
@@ -84,13 +83,10 @@ type
     FNCMap: TTMSFNCGoogleMaps;
     Button1: TButton;
     btnGPS: TButton;
-    crcGPS: TCircle;
     btnGateway1: TButton;
     btnGateway2: TButton;
     btnLoRaSerial: TButton;
-    crcLoRaSerial: TCircle;
     btnLoRaBT: TButton;
-    crcLoRaBluetooth: TCircle;
     btnSondehub: TButton;
     btnUDP: TButton;
     btnHablinkUplink: TButton;
@@ -127,6 +123,8 @@ type
       AEventData: TTMSFNCMapsEventData);
     procedure Button1Click(Sender: TObject);
     procedure rectUploadsResize(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure btnUploaders(Sender: TObject);
   private
     { Private declarations }
     DesignHeight, DesignWidth: Single;
@@ -196,6 +194,11 @@ begin
     end;
 end;
 
+procedure TfrmMain.btnUploaders(Sender: TObject);
+begin
+    LoadForm(nil, frmUploaders);
+end;
+
 procedure TfrmMain.Button1Click(Sender: TObject);
 begin
     LoadForm(TButton(Sender), frmLog);
@@ -249,7 +252,7 @@ begin
         FirstTime := False;
 
         // Splash form
-        frmSplash := TfrmSplash.Create(nil);
+        frmSplash := TfrmSplash.Create(Self);
         LoadForm(nil, frmSplash);
 
         tmrLoad.Enabled := True;
@@ -270,7 +273,7 @@ begin
 
     // Debug form, but only if we're a debug build
 {$IFDEF DEBUG}
-    frmDebug := TfrmDebug.Create(nil);
+    frmDebug := TfrmDebug.Create(Self);
 {$ENDIF}
 
 //{$IFDEF IOS}
@@ -296,28 +299,14 @@ begin
 
     // Source info
     Sources[GPS_SOURCE].Button := btnGPS;
-    Sources[GPS_SOURCE].Circle := crcGPS;
 
     Sources[GATEWAY_SOURCE_1].Button := btnGateway1;
-    Sources[GATEWAY_SOURCE_1].Circle := nil;
-
     Sources[GATEWAY_SOURCE_2].Button := btnGateway2;
-    Sources[GATEWAY_SOURCE_2].Circle := nil;
-
     Sources[SERIAL_SOURCE].Button := btnLoRaSerial;
-    Sources[SERIAL_SOURCE].Circle := crcLoRaSerial;
-
     Sources[BLUETOOTH_SOURCE].Button := btnLoRaBT;
-    Sources[BLUETOOTH_SOURCE].Circle := crcLoRaBluetooth;
-
     Sources[SONDEHUB_SOURCE].Button := btnSondehub;
-    Sources[SONDEHUB_SOURCE].Circle := nil;
-
     Sources[UDP_SOURCE].Button := btnUDP;
-    Sources[UDP_SOURCE].Circle := nil;
-
     Sources[HABLINK_SOURCE].Button := btnHABLINK;
-    Sources[HABLINK_SOURCE].Circle := nil;
 
     (*
     // Screen size
@@ -338,6 +327,15 @@ begin
 
 
     Predictor := TTawhiri.Create;
+end;
+
+procedure TfrmMain.FormDestroy(Sender: TObject);
+begin
+    inherited;
+
+    CloseSettings;
+
+    Predictor.Free;
 end;
 
 procedure TfrmMain.FormResize(Sender: TObject);
@@ -749,23 +747,24 @@ begin
     tmrLoad.Enabled := False;
 
     // Main forms
-    frmPayloads := TfrmPayloads.Create(nil);
+    frmPayloads := TfrmPayloads.Create(Self);
 
-    frmMap := TfrmMap.Create(nil);
+    frmMap := TfrmMap.Create(Self);
     frmMap.LoadForm;
 
-    frmSSDV := TfrmSSDV.Create(nil);
-    frmDirection := TfrmDirection.Create(nil);
-    frmNavigate := TfrmNavigate.Create(nil);
-    frmUplink := TfrmUplink.Create(nil);
-    frmLog := TfrmLog.Create(nil);
+    frmSSDV := TfrmSSDV.Create(Self);
+    frmDirection := TfrmDirection.Create(Self);
+    frmNavigate := TfrmNavigate.Create(Self);
+    frmUplink := TfrmUplink.Create(Self);
+    frmLog := TfrmLog.Create(Self);
+    frmUploaders := TfrmUploaders.Create(Self);
 
     // Sources Form
-    frmSources := TfrmSources.Create(nil);
+    frmSources := TfrmSources.Create(Self);
 
     // Ask for GPS permission
 {$IFDEF ANDROID}
-    frmSources.lblGPS.Text := 'GPS Permission Refused';
+    frmSources.SetGPSStatus('Requesting GPS Permission');
 
 //    PermissionsService.RequestPermissions([JStringToString(TJManifest_permission.JavaClass.ACCESS_FINE_LOCATION)],
 //        procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>) begin
@@ -783,7 +782,7 @@ begin
                 // activate or deactivate the location sensor }
                     frmSources.EnableGPS;
                 end else begin
-                    frmSources.lblGPS.Text := 'No GPS Permission';
+                    frmSources.SetGPSStatus('No GPS Permission');
                 end;
             end);
 {$ENDIF}
@@ -1203,21 +1202,6 @@ var
     Button: TButton;
     Enabled: Boolean;
 begin
-    // Show source upload status
-    if (SourceID >= Low(Sources)) and (SourceID <= High(Sources)) then begin
-        if Sources[SourceID].Circle <> nil then begin
-            if Active then begin
-                if OK then begin
-                    Sources[SourceID].Circle.Fill.Color := TAlphaColorRec.Lime;
-                end else begin
-                    Sources[SourceID].Circle.Fill.Color := TAlphaColorRec.Red;
-                end;
-            end else begin
-                Sources[SourceID].Circle.Fill.Color := TAlphaColorRec.Silver;
-            end;
-        end;
-    end;
-
     // Show upload status
     case UploadID of
         HABLINK_UPLINK: begin
@@ -1318,7 +1302,7 @@ end;
 procedure TfrmMain.LoadSettingsPage(PageIndex: Integer);
 begin
     if frmSettings = nil then begin
-        frmSettings := TfrmSettings.Create(nil);
+        frmSettings := TfrmSettings.Create(Self);
     end;
 
     LoadForm(btnSettings, frmSettings);
@@ -1330,5 +1314,6 @@ procedure TfrmMain.UpdateCarUploadSettings;
 begin
     frmSources.UpdateCarUploadSettings;
 end;
+
 
 end.

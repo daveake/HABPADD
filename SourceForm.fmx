@@ -1,0 +1,76 @@
+inherited frmSource: TfrmSource
+  Caption = 'frmBase1'
+  ClientHeight = 73
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    Size.Height = 73.000000000000000000
+    object rectMain: TRectangle
+      Align = Client
+      Fill.Color = claBlack
+      Size.Width = 700.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claYellow
+      object rectLeft: TRectangle
+        Align = Left
+        Corners = []
+        Fill.Color = xFFF1DF6F
+        Sides = []
+        Size.Width = 61.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        object lblCaption: TLabel
+          Align = Client
+          StyledSettings = []
+          HitTest = True
+          Size.Width = 61.000000000000000000
+          Size.Height = 73.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Swiss911 UCm BT'
+          TextSettings.Font.Size = 32.000000000000000000
+          TextSettings.HorzAlign = Center
+          TabOrder = 2
+          OnClick = Label2Click
+        end
+      end
+      object rectInfo: TRectangle
+        Align = Client
+        Corners = []
+        Fill.Kind = None
+        Sides = []
+        Size.Width = 639.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        object lblInfo: TLabel
+          Align = Bottom
+          StyledSettings = [Style]
+          Margins.Bottom = 3.000000000000000000
+          Position.Y = 52.000000000000000000
+          Size.Width = 639.000000000000000000
+          Size.Height = 18.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Courier New'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Center
+          TextSettings.Trimming = None
+          TabOrder = 1
+        end
+        object lblValue: TLabel
+          Align = Client
+          StyledSettings = [Style]
+          Size.Width = 639.000000000000000000
+          Size.Height = 52.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Courier New'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Center
+          TextSettings.Trimming = None
+          TabOrder = 0
+        end
+      end
+    end
+  end
+end

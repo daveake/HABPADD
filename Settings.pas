@@ -70,35 +70,35 @@ end;
 
 procedure TfrmSettings.btnGateway1Click(Sender: TObject);
 begin
-    frmLoRaGatewaySettings := TfrmLoRaGatewaySettings.Create(nil);
+    frmLoRaGatewaySettings := TfrmLoRaGatewaySettings.Create(Self);
 
     LoadSettingsForm(btnGateway1, frmLoRaGatewaySettings);
 end;
 
 procedure TfrmSettings.btnGateway2Click(Sender: TObject);
 begin
-    frmLoRaGatewaySettings2 := TfrmLoRaGatewaySettings2.Create(nil);
+    frmLoRaGatewaySettings2 := TfrmLoRaGatewaySettings2.Create(Self);
 
     LoadSettingsForm(btnGateway2, frmLoRaGatewaySettings2);
 end;
 
 procedure TfrmSettings.btnGeneralClick(Sender: TObject);
 begin
-    frmGeneralSettings := TfrmGeneralSettings.Create(nil);
+    frmGeneralSettings := TfrmGeneralSettings.Create(Self);
 
     LoadSettingsForm(btnGeneral, frmGeneralSettings);
 end;
 
 procedure TfrmSettings.btnGPSClick(Sender: TObject);
 begin
-    frmGPSSettings := TfrmGPSSettings.Create(nil);
+    frmGPSSettings := TfrmGPSSettings.Create(Self);
 
     LoadSettingsForm(btnGPS, frmGPSSettings);
 end;
 
 procedure TfrmSettings.btnDownloadsClick(Sender: TObject);
 begin
-    frmDownloadSettings := TfrmDownloadSettings.Create(nil);
+    frmDownloadSettings := TfrmDownloadSettings.Create(Self);
 
     LoadSettingsForm(btnDownloads, frmDownloadSettings);
 end;
@@ -106,28 +106,28 @@ end;
 procedure TfrmSettings.btnLoRaSerialClick(Sender: TObject);
 begin
     {$IF Defined(MSWINDOWS) or Defined(ANDROID)}
-        frmLoRaSerialSettings := TfrmLoRaSerialSettings.Create(nil);
+        frmLoRaSerialSettings := TfrmLoRaSerialSettings.Create(Self);
         LoadSettingsForm(btnLoRaSerial, frmLoRaSerialSettings);
     {$ENDIF}
 end;
 
 procedure TfrmSettings.btnUDPClick(Sender: TObject);
 begin
-    frmUDPSettings := TfrmUDPSettings.Create(nil);
+    frmUDPSettings := TfrmUDPSettings.Create(Self);
 
     LoadSettingsForm(btnUDP, frmUDPSettings);
 end;
 
 procedure TfrmSettings.btnUploadsClick(Sender: TObject);
 begin
-    frmUploadSettings := TfrmUploadSettings.Create(nil);
+    frmUploadSettings := TfrmUploadSettings.Create(Self);
 
     LoadSettingsForm(btnUploads, frmUploadSettings);
 end;
 
 procedure TfrmSettings.btnLoRaBTClick(Sender: TObject);
 begin
-    frmBluetoothSettings := TfrmBluetoothSettings.Create(nil);
+    frmBluetoothSettings := TfrmBluetoothSettings.Create(Self);
 
     LoadSettingsForm(btnLoRaBT, frmBluetoothSettings);
 end;
@@ -147,7 +147,7 @@ procedure TfrmSettings.LoadForm;
 begin
     inherited;
 
-//    frmGeneralSettings := TfrmGeneralSettings.Create(nil);
+//    frmGeneralSettings := TfrmGeneralSettings.Create(Self);
 //
 //    LoadSettingsForm(btnGeneral, frmGeneralSettings);
 //

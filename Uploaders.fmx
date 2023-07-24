@@ -1,0 +1,326 @@
+inherited frmUploaders: TfrmUploaders
+  Caption = 'frmBase1'
+  DesignerMasterStyle = 0
+  inherited pnlMain: TPanel
+    object rectLeft: TRectangle
+      Align = Left
+      Fill.Color = claBlack
+      Margins.Right = 1.000000000000000000
+      Size.Width = 341.000000000000000000
+      Size.Height = 424.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      Stroke.Thickness = 0.000000000000000000
+      object rectSH: TRectangle
+        Align = Top
+        Fill.Color = claBlack
+        Size.Width = 341.000000000000000000
+        Size.Height = 212.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claYellow
+        object Rectangle8: TRectangle
+          Align = Top
+          Corners = []
+          Fill.Color = xFFF1DF6F
+          Sides = []
+          Size.Width = 341.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          object Label4: TLabel
+            Align = Scale
+            StyledSettings = []
+            Margins.Left = 12.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 6.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 12.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 110.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Sondehub Uploads'
+            TabOrder = 2
+          end
+          object lblClipboard: TLabel
+            Align = Scale
+            AutoSize = True
+            StyledSettings = []
+            HitTest = True
+            Margins.Left = 12.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 6.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 140.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 195.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.HorzAlign = Trailing
+            Text = 'Touch to copy log to clipboard'
+            TabOrder = 1
+            OnClick = lblClipboardClick
+          end
+        end
+        object lstSondehub: TListBox
+          Align = Client
+          Size.Width = 341.000000000000000000
+          Size.Height = 188.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          DisableFocusEffect = True
+          DefaultItemStyles.ItemStyle = ''
+          DefaultItemStyles.GroupHeaderStyle = ''
+          DefaultItemStyles.GroupFooterStyle = ''
+          Viewport.Width = 337.000000000000000000
+          Viewport.Height = 184.000000000000000000
+          object Timer2: TTimer
+            Enabled = False
+            Interval = 5000
+            OnTimer = Timer2Timer
+            Left = 163
+            Top = 91
+          end
+        end
+      end
+      object rectSSDV: TRectangle
+        Align = Client
+        Fill.Color = claBlack
+        Margins.Top = 1.000000000000000000
+        Size.Width = 341.000000000000000000
+        Size.Height = 211.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claYellow
+        object Rectangle2: TRectangle
+          Align = Top
+          Corners = []
+          Fill.Color = xFFF1DF6F
+          Sides = []
+          Size.Width = 341.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          object Label2: TLabel
+            Align = Scale
+            StyledSettings = []
+            Margins.Left = 12.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 6.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 12.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 323.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'SSDV Uploads'
+            TabOrder = 2
+          end
+          object lblSSDVClipboard: TLabel
+            Align = Scale
+            AutoSize = True
+            StyledSettings = []
+            HitTest = True
+            Margins.Left = 12.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 6.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 124.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 211.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.HorzAlign = Trailing
+            Text = 'Touch to copy log to clipboard'
+            TabOrder = 1
+            OnClick = lblSSDVClipboardClick
+          end
+        end
+        object lstSSDV: TListBox
+          Align = Client
+          Size.Width = 341.000000000000000000
+          Size.Height = 187.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          DisableFocusEffect = True
+          DefaultItemStyles.ItemStyle = ''
+          DefaultItemStyles.GroupHeaderStyle = ''
+          DefaultItemStyles.GroupFooterStyle = ''
+          Viewport.Width = 337.000000000000000000
+          Viewport.Height = 183.000000000000000000
+          object Timer3: TTimer
+            Enabled = False
+            Interval = 5000
+            OnTimer = Timer3Timer
+            Left = 447
+            Top = 499
+          end
+        end
+      end
+    end
+    object rectRight: TRectangle
+      Align = Client
+      Fill.Color = claBlack
+      Margins.Left = 1.000000000000000000
+      Size.Width = 357.000000000000000000
+      Size.Height = 424.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      Stroke.Thickness = 0.000000000000000000
+      object rectHABLink: TRectangle
+        Align = Top
+        Fill.Color = claBlack
+        Size.Width = 357.000000000000000000
+        Size.Height = 212.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claYellow
+        object Rectangle3: TRectangle
+          Align = Top
+          Corners = []
+          Fill.Color = xFFF1DF6F
+          Sides = []
+          Size.Width = 357.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          object Label1: TLabel
+            Align = Scale
+            StyledSettings = []
+            Margins.Left = 12.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 6.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 12.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 118.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'HABLink Uploads'
+            TabOrder = 2
+          end
+          object lblHABLinkClipboard: TLabel
+            Align = Scale
+            AutoSize = True
+            StyledSettings = []
+            HitTest = True
+            Margins.Left = 12.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 6.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 148.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 203.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.HorzAlign = Trailing
+            Text = 'Touch to copy log to clipboard'
+            TabOrder = 1
+            OnClick = lblHABLinkClipboardClick
+          end
+        end
+        object lstHABLink: TListBox
+          Align = Client
+          Size.Width = 357.000000000000000000
+          Size.Height = 188.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          DisableFocusEffect = True
+          DefaultItemStyles.ItemStyle = ''
+          DefaultItemStyles.GroupHeaderStyle = ''
+          DefaultItemStyles.GroupFooterStyle = ''
+          Viewport.Width = 353.000000000000000000
+          Viewport.Height = 184.000000000000000000
+          object Timer4: TTimer
+            Enabled = False
+            Interval = 5000
+            OnTimer = Timer4Timer
+            Left = 447
+            Top = 499
+          end
+        end
+      end
+      object rectMQTT: TRectangle
+        Align = Client
+        Fill.Color = claBlack
+        Size.Width = 357.000000000000000000
+        Size.Height = 212.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claYellow
+        object Rectangle5: TRectangle
+          Align = Top
+          Corners = []
+          Fill.Color = xFFF1DF6F
+          Sides = []
+          Size.Width = 357.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          object Label5: TLabel
+            Align = Scale
+            StyledSettings = []
+            Margins.Left = 12.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 6.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 12.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 339.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'MQTT Uploads'
+            TabOrder = 2
+          end
+          object lblMQTTClipboard: TLabel
+            Align = Scale
+            AutoSize = True
+            StyledSettings = []
+            HitTest = True
+            Margins.Left = 12.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 6.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 132.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 219.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.HorzAlign = Trailing
+            Text = 'Touch to copy log to clipboard'
+            TabOrder = 1
+            OnClick = lblMQTTClipboardClick
+          end
+        end
+        object lstMQTT: TListBox
+          Align = Client
+          Size.Width = 357.000000000000000000
+          Size.Height = 188.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          DisableFocusEffect = True
+          DefaultItemStyles.ItemStyle = ''
+          DefaultItemStyles.GroupHeaderStyle = ''
+          DefaultItemStyles.GroupFooterStyle = ''
+          Viewport.Width = 353.000000000000000000
+          Viewport.Height = 184.000000000000000000
+          object Timer5: TTimer
+            Enabled = False
+            Interval = 5000
+            OnTimer = Timer5Timer
+            Left = 479
+            Top = 312
+          end
+        end
+      end
+    end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 5000
+    OnTimer = Timer1Timer
+    Left = 331
+    Top = 199
+  end
+end

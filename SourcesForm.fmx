@@ -7,70 +7,12 @@ inherited frmSources: TfrmSources
     object rectGW1: TRectangle
       Align = Scale
       Fill.Color = claBlack
-      Margins.Left = 3.000000000000000000
-      Margins.Top = 3.000000000000000000
-      Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
       Position.Y = 2.000000000000000000
       Size.Width = 697.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
-      OnResize = rectGW1Resize
-      object Label2: TLabel
-        Align = Left
-        StyledSettings = [Family, Style]
-        HitTest = True
-        Margins.Left = 5.000000000000000000
-        Margins.Right = -10.000000000000000000
-        Position.X = 5.000000000000000000
-        RotationCenter.X = 0.000000000000000000
-        RotationCenter.Y = 0.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.VertAlign = Leading
-        Text = 'GW1'
-        TabOrder = 0
-        OnClick = Label2Click
-      end
-      object Label10: TLabel
-        Align = Client
-        Size.Width = 654.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        Text = 'Label1'
-        TabOrder = 1
-        object lblGateway1RSSI: TLabel
-          Align = Bottom
-          StyledSettings = [Style]
-          Position.Y = 17.000000000000000000
-          Size.Width = 654.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Family = 'Courier New'
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          TabOrder = 1
-        end
-        object lblGateway1: TLabel
-          Align = Client
-          StyledSettings = [Family, Style]
-          Size.Width = 654.000000000000000000
-          Size.Height = 17.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Text = '---'
-          TabOrder = 2
-        end
-      end
     end
     object rectGPS: TRectangle
       Align = Scale
@@ -84,244 +26,36 @@ inherited frmSources: TfrmSources
       Size.Height = 46.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
-      object Label3: TLabel
-        Align = Left
-        StyledSettings = [Family, Style]
-        HitTest = True
-        Margins.Left = 5.000000000000000000
-        Margins.Right = -10.000000000000000000
-        Position.X = 5.000000000000000000
-        RotationCenter.X = 0.000000000000000000
-        RotationCenter.Y = 0.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 46.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.VertAlign = Leading
-        Text = 'GPS'
-        TabOrder = 0
-        OnClick = Label3Click
-      end
-      object Label6: TLabel
-        Align = Client
-        StyledSettings = [Style]
-        Size.Width = 654.000000000000000000
-        Size.Height = 46.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Family = 'Courier New'
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
-        TextSettings.Trimming = None
-        TabOrder = 1
-        object lblDirection: TLabel
-          Align = Right
-          StyledSettings = [Style]
-          Position.X = 453.000000000000000000
-          Size.Width = 201.000000000000000000
-          Size.Height = 46.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Family = 'Courier New'
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          TabOrder = 0
-        end
-        object lblGPS: TLabel
-          Align = Client
-          StyledSettings = [Family, Style]
-          Size.Width = 453.000000000000000000
-          Size.Height = 46.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Text = '---'
-          TabOrder = 1
-        end
-      end
     end
     object rectSH: TRectangle
       Align = Scale
       Fill.Color = claBlack
-      Margins.Left = 3.000000000000000000
-      Margins.Top = 3.000000000000000000
-      Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
       Position.Y = 267.000000000000000000
       Size.Width = 697.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
-      object lblSondehub: TLabel
-        Align = Client
-        StyledSettings = [Family, Style]
-        Size.Width = 654.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
-        TextSettings.Trimming = None
-        Text = '---'
-        TabOrder = 0
-      end
-      object Label5: TLabel
-        Align = Left
-        StyledSettings = [Family, Style]
-        HitTest = True
-        Margins.Left = 5.000000000000000000
-        Margins.Right = -10.000000000000000000
-        Position.X = 5.000000000000000000
-        RotationCenter.X = 0.000000000000000000
-        RotationCenter.Y = 0.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.VertAlign = Leading
-        Text = 'SH'
-        TabOrder = 1
-        OnClick = Label5Click
-      end
     end
     object rectBT: TRectangle
       Align = Scale
       Fill.Color = claBlack
-      Margins.Left = 3.000000000000000000
-      Margins.Top = 3.000000000000000000
-      Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
       Position.Y = 161.000000000000000000
       Size.Width = 697.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
-      object Label9: TLabel
-        Align = Left
-        StyledSettings = [Family, Style]
-        HitTest = True
-        Margins.Left = 5.000000000000000000
-        Margins.Right = -10.000000000000000000
-        Position.X = 5.000000000000000000
-        RotationCenter.X = 0.000000000000000000
-        RotationCenter.Y = 0.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.VertAlign = Leading
-        Text = 'BT'
-        TabOrder = 0
-        OnClick = Label9Click
-      end
-      object Label1: TLabel
-        Align = Client
-        Size.Width = 654.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        Text = 'Label1'
-        TabOrder = 1
-        object lblBT: TLabel
-          Align = Client
-          StyledSettings = [Family, Style]
-          Size.Width = 654.000000000000000000
-          Size.Height = 17.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Text = '---'
-          TabOrder = 1
-        end
-        object lblBluetoothRSSI: TLabel
-          Align = Bottom
-          StyledSettings = [Style]
-          Position.Y = 17.000000000000000000
-          Size.Width = 654.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Family = 'Courier New'
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          TabOrder = 2
-        end
-      end
     end
     object rectUSB: TRectangle
       Align = Scale
       Fill.Color = claBlack
-      Margins.Left = 3.000000000000000000
-      Margins.Top = 3.000000000000000000
-      Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
       Position.Y = 108.000000000000000000
       Size.Width = 697.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
-      object Label11: TLabel
-        Align = Left
-        StyledSettings = [Family, Style]
-        HitTest = True
-        Margins.Left = 5.000000000000000000
-        Margins.Right = -10.000000000000000000
-        Position.X = 5.000000000000000000
-        RotationCenter.X = 0.000000000000000000
-        RotationCenter.Y = 0.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.VertAlign = Leading
-        Text = 'USB'
-        TabOrder = 0
-        OnClick = Label11Click
-      end
-      object Label7: TLabel
-        Align = Client
-        Size.Width = 654.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        Text = 'Label7'
-        TabOrder = 1
-        object lblSerial: TLabel
-          Align = Client
-          StyledSettings = [Family, Style]
-          Size.Width = 654.000000000000000000
-          Size.Height = 25.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Text = '---'
-          TabOrder = 0
-        end
-        object lblSerialRSSI: TLabel
-          Align = Bottom
-          StyledSettings = [Style]
-          Position.Y = 25.000000000000000000
-          Size.Width = 654.000000000000000000
-          Size.Height = 24.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Family = 'Courier New'
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          TabOrder = 2
-        end
-      end
     end
     object rectUDP: TRectangle
       Align = Scale
@@ -335,105 +69,16 @@ inherited frmSources: TfrmSources
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
-      object Label4: TLabel
-        Align = Left
-        StyledSettings = [Family, Style]
-        HitTest = True
-        Margins.Left = 5.000000000000000000
-        Margins.Right = -10.000000000000000000
-        Position.X = 5.000000000000000000
-        RotationCenter.X = 0.000000000000000000
-        RotationCenter.Y = 0.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.VertAlign = Leading
-        Text = 'UDP'
-        TabOrder = 0
-        OnClick = Label4Click
-      end
-      object lblUDP: TLabel
-        Align = Client
-        StyledSettings = [Family, Style]
-        Size.Width = 654.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
-        TextSettings.Trimming = None
-        Text = '---'
-        TabOrder = 1
-      end
     end
     object rectGW2: TRectangle
       Align = Scale
       Fill.Color = claBlack
-      Margins.Left = 3.000000000000000000
-      Margins.Top = 3.000000000000000000
-      Margins.Bottom = 3.000000000000000000
       Position.X = 2.000000000000000000
       Position.Y = 55.000000000000000000
       Size.Width = 697.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
-      object Label8: TLabel
-        Align = Left
-        StyledSettings = [Family, Style]
-        HitTest = True
-        Margins.Left = 5.000000000000000000
-        Margins.Right = -10.000000000000000000
-        Position.X = 5.000000000000000000
-        RotationCenter.X = 0.000000000000000000
-        RotationCenter.Y = 0.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.VertAlign = Leading
-        Text = 'GW2'
-        TabOrder = 0
-        OnClick = Label8Click
-      end
-      object Label12: TLabel
-        Align = Client
-        Size.Width = 654.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        Text = 'Label1'
-        TabOrder = 1
-        object lblGateway2RSSI: TLabel
-          Align = Bottom
-          StyledSettings = [Style]
-          Position.Y = 17.000000000000000000
-          Size.Width = 654.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Family = 'Courier New'
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          TabOrder = 1
-        end
-        object lblGateway2: TLabel
-          Align = Client
-          StyledSettings = [Family, Style]
-          Size.Width = 654.000000000000000000
-          Size.Height = 17.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
-          TextSettings.FontColor = claWhite
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Text = '---'
-          TabOrder = 2
-        end
-      end
     end
     object rectHL: TRectangle
       Align = Scale
@@ -447,38 +92,6 @@ inherited frmSources: TfrmSources
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claYellow
-      object lblHabLink: TLabel
-        Align = Client
-        StyledSettings = [Family, Style]
-        Size.Width = 654.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
-        TextSettings.Trimming = None
-        Text = '---'
-        TabOrder = 0
-      end
-      object Label16: TLabel
-        Align = Left
-        StyledSettings = [Family, Style]
-        HitTest = True
-        Margins.Left = 5.000000000000000000
-        Margins.Right = -10.000000000000000000
-        Position.X = 5.000000000000000000
-        RotationCenter.X = 0.000000000000000000
-        RotationCenter.Y = 0.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 49.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.FontColor = claWhite
-        TextSettings.VertAlign = Leading
-        Text = 'HL'
-        TabOrder = 1
-        OnClick = Label5Click
-      end
     end
   end
   object tmrGPS: TTimer

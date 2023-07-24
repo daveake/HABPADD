@@ -9,19 +9,23 @@ uses
   GPSSource, Source, Base, GatewaySource, UDPSource, SerialSource, BluetoothSource,
   System.DateUtils, System.TimeSpan, System.Sensors, System.Sensors.Components, BLESource,
   IdBaseComponent, IdComponent, IdUDPBase, IdUDPClient, MQTTUplink, Sondehub, MQTTSource,
-  WSMQTTSource;
+  WSMQTTSource, SourceForm, Uploaders;
 
 type
   TSourcePanel = record
       Source:       TSource;
-      ValueLabel:   TLabel;
-      RSSILabel:    TLabel;
+      Form:         TfrmSource;
       CurrentFreq:  String;
       CurrentRSSI:  String;
       PacketRSSI:   String;
       FreqError:    String;
       PacketCount:  Integer;
       FrequencyError:   Double;
+      HadAPosition:     Boolean;
+      PacketStatus:     String;
+      Version:          String;
+      ConnectInfo:      String;
+      Device:           String;
   end;
 
 //type
@@ -35,48 +39,21 @@ type
     LocationSensor: TLocationSensor;
     tmrGPS: TTimer;
     rectGW1: TRectangle;
-    lblGateway1: TLabel;
-    Label2: TLabel;
     rectGPS: TRectangle;
-    lblGPS: TLabel;
-    Label3: TLabel;
     rectSH: TRectangle;
-    lblSondehub: TLabel;
-    Label5: TLabel;
     rectBT: TRectangle;
-    Label9: TLabel;
     rectUSB: TRectangle;
-    Label11: TLabel;
     rectUDP: TRectangle;
-    Label4: TLabel;
-    Label7: TLabel;
-    lblSerial: TLabel;
-    lblUDP: TLabel;
-    Label1: TLabel;
-    lblBT: TLabel;
-    lblBluetoothRSSI: TLabel;
     rectGW2: TRectangle;
-    lblGateway2: TLabel;
-    Label8: TLabel;
     OrientationSensor1: TOrientationSensor;
     MotionSensor1: TMotionSensor;
-    Label6: TLabel;
-    lblDirection: TLabel;
-    Label10: TLabel;
-    lblGateway1RSSI: TLabel;
-    Label12: TLabel;
-    lblGateway2RSSI: TLabel;
-    lblSerialRSSI: TLabel;
     UDPClient: TIdUDPClient;
     rectHL: TRectangle;
-    lblHabLink: TLabel;
-    Label16: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure tmrGPSTimer(Sender: TObject);
     procedure OrientationSensor1SensorChoosing(Sender: TObject;
       const Sensors: TSensorArray; var ChoseSensorIndex: Integer);
     procedure FormDestroy(Sender: TObject);
-    procedure rectGW1Resize(Sender: TObject);
     procedure Label2Click(Sender: TObject);
     procedure Label8Click(Sender: TObject);
     procedure Label11Click(Sender: TObject);
@@ -89,7 +66,7 @@ type
     SondehubUploader: TSondehubThread;
     MQTTUploader, HabLinkUploader: TMQTTThread;
     SSDVUploader: TSSDVThread;
-    Sources: Array[1..8] of TSourcePanel;
+    Sources: Array[0..8] of TSourcePanel;
     CompassPresent: Boolean;
     MagneticHeading, Declination: Double;
 //    GPSPositions: Array[1..5] of TGPSPosition;
@@ -124,6 +101,7 @@ type
     function WaitingToSend(SourceIndex: Integer): Boolean;
     procedure UpdateCarUploadSettings;
     procedure UpdateMQTTUploads;
+    procedure SetGPSStatus(Status: String);
 end;
 
 var
@@ -163,6 +141,11 @@ begin
     UpdateMQTTUploads;
 
     // GPS Source
+    Sources[GPS_SOURCE].Form := TfrmSource.Create(Self);
+    Sources[GPS_SOURCE].Form.pnlMain.Parent := rectGPS;
+    Sources[GPS_SOURCE].Form.lblInfo.Visible := True;
+    Sources[GPS_SOURCE].Form.lblCaption.Text := 'GPS';
+    Sources[GPS_SOURCE].Form.frmSourceLog.lblCaption.Text := 'GPS Log';
 {$IFDEF MSWINDOWS}
     GPSSource := TGPSSource.Create(GPS_SOURCE, 'GPS', GPSCallback);
 {$ELSE}
@@ -173,55 +156,73 @@ begin
 {$ENDIF}
 
     // Radio sources
-    Sources[GATEWAY_SOURCE_1].ValueLabel := lblGateway1;
     Sources[GATEWAY_SOURCE_1].Source := TGatewaySource.Create(GATEWAY_SOURCE_1, 'LoRaGateway1', HABCallback);
-    Sources[GATEWAY_SOURCE_1].RSSILabel := lblGateway1RSSI;
+    Sources[GATEWAY_SOURCE_1].Form := TfrmSource.Create(Self);
+    Sources[GATEWAY_SOURCE_1].Form.pnlMain.Parent := rectGW1;
+    Sources[GATEWAY_SOURCE_1].Form.lblInfo.Visible := True;
+    Sources[GATEWAY_SOURCE_1].Form.lblCaption.Text := 'GW1';
+    Sources[GATEWAY_SOURCE_1].Form.frmSourceLog.lblCaption.Text := 'Gateway 1 Telemetry Log';
 
-    Sources[GATEWAY_SOURCE_2].ValueLabel := lblGateway2;
     Sources[GATEWAY_SOURCE_2].Source := TGatewaySource.Create(GATEWAY_SOURCE_2, 'LoRaGateway2', HABCallback);
-    Sources[GATEWAY_SOURCE_2].RSSILabel := lblGateway2RSSI;
+    Sources[GATEWAY_SOURCE_2].Form := TfrmSource.Create(Self);
+    Sources[GATEWAY_SOURCE_2].Form.pnlMain.Parent := rectGW2;
+    Sources[GATEWAY_SOURCE_2].Form.lblInfo.Visible := True;
+    Sources[GATEWAY_SOURCE_2].Form.lblCaption.Text := 'GW2';
+    Sources[GATEWAY_SOURCE_2].Form.frmSourceLog.lblCaption.Text := 'Gateway 2 Telemetry Log';
 
     // USB / Serial source
-    Sources[SERIAL_SOURCE].ValueLabel := lblSerial;
-    Sources[SERIAL_SOURCE].RSSILabel := lblSerialRSSI;
     {$IF Defined(MSWINDOWS) or Defined(ANDROID)}
         Sources[SERIAL_SOURCE].Source := TSerialSource.Create(SERIAL_SOURCE, 'LoRaSerial', HABCallback);
-    {$ELSE}
-        Label1.Text := '';
-        lblSerial.Text := '';
+        Sources[SERIAL_SOURCE].Form := TfrmSource.Create(Self);
+        Sources[SERIAL_SOURCE].Form.pnlMain.Parent := rectUSB;
+        Sources[SERIAL_SOURCE].Form.lblInfo.Visible := True;
+        Sources[SERIAL_SOURCE].Form.lblCaption.Text := 'USB';
+        Sources[SERIAL_SOURCE].Form.frmSourceLog.lblCaption.Text := 'LoRa USB Telemetry Log';
     {$ENDIF}
 
     // Bluetooth source
-    Sources[BLUETOOTH_SOURCE].ValueLabel := lblBT;
-    Sources[BLUETOOTH_SOURCE].RSSILabel := lblBluetoothRSSI;
+    Sources[BLUETOOTH_SOURCE].Form := TfrmSource.Create(Self);
+    Sources[BLUETOOTH_SOURCE].Form.pnlMain.Parent := rectBT;
+    Sources[BLUETOOTH_SOURCE].Form.lblInfo.Visible := True;
+    Sources[BLUETOOTH_SOURCE].Form.frmSourceLog.lblCaption.Text := 'LoRa Bluetooth Telemetry Log';
     {$IF Defined(MSWINDOWS) or Defined(ANDROID)}
         Sources[BLUETOOTH_SOURCE].Source := TBluetoothSource.Create(BLUETOOTH_SOURCE, 'LoRaBluetooth', HABCallback);
+        Sources[BLUETOOTH_SOURCE].Form.lblCaption.Text := 'BT';
     {$ELSE}
         Sources[BLUETOOTH_SOURCE].Source := TBLESource.Create(BLUETOOTH_SOURCE, 'LoRaBluetooth', HABCallback);
-        Label9.Text := 'BLE';
+        Sources[BLUETOOTH_SOURCE].Form.lblCaption.Text := 'BLE';
     {$ENDIF}
 
-    Sources[UDP_SOURCE].ValueLabel := lblUDP;
-    Sources[UDP_SOURCE].RSSILabel := nil;
     Sources[UDP_SOURCE].Source := TUDPSource.Create(UDP_SOURCE, 'UDP', HABCallback);
+    Sources[UDP_SOURCE].Form := TfrmSource.Create(Self);
+    Sources[UDP_SOURCE].Form.pnlMain.Parent := rectUDP;
+    Sources[UDP_SOURCE].Form.lblInfo.Visible := False;
+    Sources[UDP_SOURCE].Form.lblCaption.Text := 'UDP';
+    Sources[UDP_SOURCE].Form.frmSourceLog.lblCaption.Text := 'UDP Telemetry Log';
 
-    Sources[SONDEHUB_SOURCE].ValueLabel := lblSondehub;
-    Sources[SONDEHUB_SOURCE].RSSILabel := nil;
     SetSettingString('Sondehub', 'Host', 'ws-reader.v2.sondehub.org');
     SetSettingString('Sondehub', 'Port', '443');
     SetSettingString('Sondehub', 'Topic', 'amateur/');
     SetSettingString('Sondehub', 'ExtraPayloads', '');
     SetSettingBoolean('Sondehub', 'Filtered', True);
     Sources[SONDEHUB_SOURCE].Source := TWSMQTTSource.Create(SONDEHUB_SOURCE, 'Sondehub', HABCallback);
+    Sources[SONDEHUB_SOURCE].Form := TfrmSource.Create(Self);
+    Sources[SONDEHUB_SOURCE].Form.pnlMain.Parent := rectSH;
+    Sources[SONDEHUB_SOURCE].Form.lblInfo.Visible := False;
+    Sources[SONDEHUB_SOURCE].Form.lblCaption.Text := 'SH';
+    Sources[SONDEHUB_SOURCE].Form.frmSourceLog.lblCaption.Text := 'Sondehub Telemetry Log';
 
-    Sources[HABLINK_SOURCE].ValueLabel := lblHabLink;
-    Sources[HABLINK_SOURCE].RSSILabel := nil;
     SetSettingString('HabLink', 'Host', 'hab.link');
     SetSettingString('HabLink', 'Port', '1883');
     SetSettingString('HabLink', 'Topic', 'incoming/payloads/');
     SetSettingString('HabLink', 'ExtraPayloads', '');
     SetSettingBoolean('HabLink', 'Filtered', True);
     Sources[HABLINK_SOURCE].Source := TMQTTSource.Create(HABLINK_SOURCE, 'HabLink', HABCallback);
+    Sources[HABLINK_SOURCE].Form := TfrmSource.Create(Self);
+    Sources[HABLINK_SOURCE].Form.pnlMain.Parent := rectHL;
+    Sources[HABLINK_SOURCE].Form.lblInfo.Visible := False;
+    Sources[HABLINK_SOURCE].Form.lblCaption.Text := 'HL';
+    Sources[HABLINK_SOURCE].Form.frmSourceLog.lblCaption.Text := 'HABLink Telemetry Log';
 end;
 
 procedure TfrmSources.CloseThread(Thread: TThread);
@@ -267,6 +268,19 @@ begin
         WaitForThread(Sources[Index].Source);
     end;
 
+    MQTTUploader.Free;
+    HabLinkUploader.Free;
+    SSDVUploader.Free;
+    SondehubUploader.Free;
+
+{$IFDEF MSWINDOWS}
+    GPSSource.Free;
+{$ENDIF}
+
+    for Index := Low(Sources) to High(Sources) do begin
+        if Sources[Index].Source <> nil then Sources[Index].Source.Free;
+    end;
+
     Caption := '';
 end;
 
@@ -277,7 +291,7 @@ begin
         if Position.InUse then begin
             NewGPSPosition(Position.TimeStamp, Position.Latitude, Position.Longitude, Position.Altitude, Position.Direction, False);
         end else if Line <> '' then begin
-            lblGPS.Text := Line;
+            Sources[GPS_SOURCE].Form.lblValue.Text := Line;
         end;
     end;
 end;
@@ -294,7 +308,7 @@ begin
     if IsNan(Latitude) then begin
         Temp := 'Waiting for GPS ...';
         frmMain.lblGPS.Text := Temp;
-        lblGPS.Text := Temp;
+        Sources[GPS_SOURCE].Form.lblValue.Text := Temp;
     end else begin
         Position := default(THABPosition);
 
@@ -313,7 +327,8 @@ begin
             frmMain.lblGPS.Text := Temp;
         end;
 
-        lblGPS.Text := Temp;
+        Sources[GPS_SOURCE].Form.lblValue.Text := Temp;
+        Sources[GPS_SOURCE].Form.WriteToLog(Temp);
 
         // if Position.TimeStamp <> Timestamp then begin
             Position.ReceivedAt := Now;
@@ -333,9 +348,9 @@ begin
         end else begin
             Position.DirectionValid := True;
             if UsingCompass then begin
-                lblDirection.Text := 'Compass Direction = ' + FormatFloat('0.0', Direction);
+                Sources[GPS_SOURCE].Form.lblInfo.Text := 'Compass Direction = ' + MyFormatFloat('0.0', Direction);
             end else begin
-                lblDirection.Text := 'GPS Direction = ' + FormatFloat('0.0', Direction);
+                Sources[GPS_SOURCE].Form.lblInfo.Text := 'GPS Direction = ' + MyFormatFloat('0.0', Direction);
             end;
             Position.Direction := Direction;
             Position.UsingCompass := UsingCompass;
@@ -357,7 +372,7 @@ begin
             ChaseCallsign := GetSettingString('CHASE', 'Callsign', '');
 
             if ChaseCallsign <> '' then begin
-                if GetSettingBoolean('Upload', 'MQTT', False) then begin
+                if GetSettingBoolean('Upload', 'MQTT', False) and (MQTTUploader <> nil) then begin
                     if Now >= (LastMQTTLinkUpload + GetSettingInteger('CHASE', 'Period', 30) / 86400) then begin
                         MQTTUploader.SendChase(ChaseCallsign + '_Chase',
                                                FormatDateTime('hh:nn:ss', TimeStamp) + ',' +
@@ -369,7 +384,7 @@ begin
                     end;
                 end;
 
-                if GetSettingBoolean('Upload', 'HABLINK', False) then begin
+                if GetSettingBoolean('Upload', 'HABLINK', False) and (HablinkUploader <> nil) then begin
                     if Now >= (LastHABLinkUpload + 5/ 86400) then begin
                         HablinkUploader.SendChase(ChaseCallsign + '_Chase',
                                                   FormatDateTime('hh:nn:ss', TimeStamp) + ',' +
@@ -403,25 +418,6 @@ begin
         ChoseSensorIndex := Found;
         CompassPresent := True;
     end;
-end;
-
-procedure TfrmSources.rectGW1Resize(Sender: TObject);
-var
-    i, FontSize: Integer;
-begin
-    FontSize := Round(lblSerialRSSI.Width / 64);
-
-    for i := Low(Sources) to High(Sources) do begin
-        if Sources[i].ValueLabel <> nil then begin
-            Sources[i].ValueLabel.TextSettings.Font.Size := FontSize;
-        end;
-        if Sources[i].RSSILabel <> nil then begin
-            Sources[i].RSSILabel.TextSettings.Font.Size := FontSize;
-        end;
-    end;
-
-    lblGPS.TextSettings.Font.Size := FontSize;
-    lblDirection.TextSettings.Font.Size := FontSize;
 end;
 
 // this function x,y,z axis for the phone in vertical orientation (portrait)
@@ -489,6 +485,7 @@ end;
 procedure TfrmSources.SondehubStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
 begin
     frmMain.UploadStatus(SourceID, SONDEHUB_UPLINK, Active, OK);
+    frmUploaders.WriteSondehubStatus(Status);
 end;
 
 procedure TfrmSources.HABCallback(ID: Integer; Connected: Boolean; Line: String; Position: THABPosition);
@@ -499,107 +496,143 @@ var
 begin
     frmMain.NewPosition(ID, Position);
 
-    // New Position
-    if Position.InUse then begin
-        Inc(Sources[ID].PacketCount);
+    // New position
+    try
+        if Position.InUse then begin
+            Inc(Sources[ID].PacketCount);
 
-//        frmMain.NewPosition(ID, Position);
+            // Upload enabled for this source ?
+            case ID of
+                SERIAL_SOURCE:  OK := GetSettingBoolean('LoRaSerial', 'Upload', False);
+                BLUETOOTH_SOURCE:  OK := GetSettingBoolean('LoRaBluetooth', 'Upload', False);
+                else OK := False;
+            end;
 
-        // Upload enabled for this source ?
-        case ID of
-            SERIAL_SOURCE:  OK := GetSettingBoolean('LoRaSerial', 'Upload', False);
-            BLUETOOTH_SOURCE:  OK := GetSettingBoolean('LoRaBluetooth', 'Upload', False);
-            else OK := False;
-        end;
+            if OK then begin
+                Callsign := GetSettingString('General', 'Callsign', '');
 
-        if OK then begin
-            Callsign := GetSettingString('General', 'Callsign', '');
+                // Callsign needed for HABHUB and Sondehub
+                if Callsign <> '' then begin
+                    if GetSettingBoolean('Upload', 'Sondehub', False) and (SondehubUploader <> nil) then begin
+                        SondehubUploader.SaveTelemetryToSondehub(ID, Position);
+                    end;
+                end;
 
-            // Callsign needed for HABHUB and Sondehub
-            if Callsign <> '' then begin
-                if GetSettingBoolean('Upload', 'Sondehub', False) and (SondehubUploader <> nil) then begin
-                    Position.Longitude := Position.Longitude + 0.01;
-                    SondehubUploader.SaveTelemetryToSondehub(ID, Position);
+                if GetSettingBoolean('Upload', 'MQTT', False) and (MQTTUploader <> nil) then begin
+                    MQTTUploader.SendTelemetry(Position.PayloadID, Position.Line);
+                end;
+
+                if GetSettingBoolean('Upload', 'HABLINK', False) and (HablinkUploader <> nil) then begin
+                    HablinkUploader.SendTelemetry(Position.PayloadID, Position.Line);
                 end;
             end;
 
-            if GetSettingBoolean('Upload', 'MQTT', False) then begin
-                MQTTUploader.SendTelemetry(Position.PayloadID, Position.Line);
+            if ID in [SERIAL_SOURCE, BLUETOOTH_SOURCE] then begin
+                Port := GetSettingInteger('General', 'UDPTxPort', 0);
+                if Port > 0 then begin
+                    UDPClient.Broadcast(Position.Line, Port);
+                end;
             end;
 
-            if GetSettingBoolean('Upload', 'HABLINK', False) then begin
-                HablinkUploader.SendTelemetry(Position.PayloadID, Position.Line);
+            Sources[ID].Form.lblValue.Text := Position.Line;
+
+
+            if Length(Position.Line) > 40 then begin
+                Sources[ID].HadAPosition := True;
+                Sources[ID].PacketStatus := 'Telemetry Packet';
+                Sources[ID].Form.WriteToLog('Telemetry: ' + Position.Line);
+            end else begin
+//                Sources[ID].Form.lblValue.Text := Position.Line;
+                Sources[ID].Form.WriteToLog(Position.Line);
+            end;
+        end else if Position.IsSSDV then begin
+            Sources[ID].PacketStatus := 'SSDV Packet';
+            Sources[ID].Form.WriteToLog('Received SSDV Packet');
+        end else if Position.FailedCRC then begin
+            Sources[ID].PacketStatus := 'CRC Error';
+            Sources[ID].Form.WriteToLog('CRC Error');
+        end else if Line <> '' then begin
+            Sources[ID].Form.lblValue.Text := Line;
+            Sources[ID].ConnectInfo := Line;
+            Sources[ID].Form.WriteToLog(Line);
+        end;
+
+        // SSDV Packet
+        if Position.IsSSDV then begin
+            if GetSettingBoolean('Upload', 'SSDV', False) then begin
+                Callsign := GetSettingString('General', 'Callsign', '');
+                if Callsign <> '' then begin
+                    if ID = SERIAL_SOURCE then begin
+                        if GetSettingBoolean('LoRaSerial', 'SSDV', False) then begin
+                            SSDVUploader.SaveSSDVToHabitat(Position.Line, Callsign);
+                        end;
+                    end else if ID = BLUETOOTH_SOURCE then begin
+                        if GetSettingBoolean('LoRaBluetooth', 'SSDV', False) then begin
+                            SSDVUploader.SaveSSDVToHabitat( Position.Line, Callsign);
+                        end;
+                    end;
+                end;
             end;
         end;
 
-        if ID in [SERIAL_SOURCE, BLUETOOTH_SOURCE] then begin
-            Port := GetSettingInteger('General', 'UDPTxPort', 0);
-            if Port > 0 then begin
-                UDPClient.Broadcast(Position.Line, Port);
-            end;
+        if Position.CurrentFrequency > 0 then begin
+            Sources[ID].CurrentFreq := 'Curr Freq ' + FormatFloat('0.000#', Position.CurrentFrequency) + ' MHz';
         end;
 
-        Sources[ID].ValueLabel.Text := Copy(Position.Line, 1, 100);
-    end else if Line <> '' then begin
-        Sources[ID].ValueLabel.Text := Line;
-    end;
+        if Position.HasCurrentRSSI then begin
+            Sources[ID].CurrentRSSI := '  Curr RSSI ' + IntToStr(Position.CurrentRSSI)
+        end;
 
-    // SSDV Packet
-    if Position.IsSSDV then begin
-        if GetSettingBoolean('Upload', 'SSDV', False) then begin
-            Callsign := GetSettingString('General', 'Callsign', '');
-            if Callsign <> '' then begin
+        if Position.HasPacketRSSI then begin
+            Sources[ID].PacketRSSI := '  Pkt RSSI ' + IntToStr(Position.PacketRSSI);
+            Sources[ID].Form.WriteToLog('Packet RSSI = ' + IntToStr(Position.PacketRSSI));
+        end;
+
+        if Position.HasFrequency then begin
+            Sources[ID].FrequencyError := Position.FrequencyError;
+            Sources[ID].FreqError := '  Freq Err = ' + FormatFloat('0', Position.FrequencyError*1000) + ' Hz';
+
+            // AFC
+            if (Position.CurrentFrequency > 0) and (abs(Position.FrequencyError) > 1) then begin
                 if ID = SERIAL_SOURCE then begin
-                    if GetSettingBoolean('LoRaSerial', 'SSDV', False) then begin
-                        SSDVUploader.SaveSSDVToHabitat(Position.Line, Callsign);
+                    if GetSettingBoolean('LoRaSerial', 'AFC', False) then begin
+                        Sources[ID].Source.SendSetting('F', FormatFloat('0.0000', Position.CurrentFrequency + Position.FrequencyError / 1000));
                     end;
                 end else if ID = BLUETOOTH_SOURCE then begin
-                    if GetSettingBoolean('LoRaBluetooth', 'SSDV', False) then begin
-                        SSDVUploader.SaveSSDVToHabitat( Position.Line, Callsign);
+                    if GetSettingBoolean('LoRaBluetooth', 'AFC', False) then begin
+                        Sources[ID].Source.SendSetting('F', FormatFloat('0.0000', Position.CurrentFrequency + Position.FrequencyError / 1000));
                     end;
                 end;
             end;
         end;
-    end;
 
-    if Position.CurrentFrequency > 0 then begin
-        Sources[ID].CurrentFreq := 'Curr Freq ' + FormatFloat('0.000#', Position.CurrentFrequency) + ' MHz';
-    end;
-
-    if Position.HasCurrentRSSI then begin
-        Sources[ID].CurrentRSSI := '  Curr RSSI ' + IntToStr(Position.CurrentRSSI)
-    end;
-
-    if Position.HasPacketRSSI then begin
-        Sources[ID].PacketRSSI := '  Pkt RSSI ' + IntToStr(Position.PacketRSSI);
-    end;
-
-    if Position.HasFrequency then begin
-        Sources[ID].FrequencyError := Position.FrequencyError;
-        Sources[ID].FreqError := '  Freq Err = ' + FormatFloat('0', Position.FrequencyError*1000) + ' Hz';
-
-        // AFC
-        if (Position.CurrentFrequency > 0) and (abs(Position.FrequencyError) > 1) then begin
-            if ID = SERIAL_SOURCE then begin
-                if GetSettingBoolean('LoRaSerial', 'AFC', False) then begin
-                    Sources[ID].Source.SendSetting('F', FormatFloat('0.0000', Position.CurrentFrequency + Position.FrequencyError / 1000));
-                end;
-            end else if ID = BLUETOOTH_SOURCE then begin
-                if GetSettingBoolean('LoRaBluetooth', 'AFC', False) then begin
-                    Sources[ID].Source.SendSetting('F', FormatFloat('0.0000', Position.CurrentFrequency + Position.FrequencyError / 1000));
-                end;
-            end;
-        end;
-    end;
-
-    if Sources[ID].RSSILabel <> nil then begin
         Temp := Sources[ID].CurrentFreq + Sources[ID].CurrentRSSI + Sources[ID].PacketRSSI + Sources[ID].FreqError;
 
         if (Temp <> '') and (ID in [GATEWAY_SOURCE_1, GATEWAY_SOURCE_2]) then begin
-            Sources[ID].RSSILabel.Text := 'Ch' + IntToStr(Position.Channel) + ': ' + Temp;
+            Sources[ID].Form.lblInfo.Text := 'Ch' + IntToStr(Position.Channel) + ': ' + Temp;
         end else begin
-            Sources[ID].RSSILabel.Text := Temp;
+            Sources[ID].Form.lblInfo.Text := Temp;
         end;
+
+        if Position.Device <> '' then begin
+            Sources[ID].Device := Position.Device;
+            Sources[ID].Form.WriteToLog('Device: ' + Position.Device);
+        end;
+
+        if Position.Version <> '' then begin
+            Sources[ID].Version := 'V' + Position.Version;
+            Sources[ID].Form.WriteToLog('Version: ' + Position.Version);
+        end;
+
+        if (Sources[ID].ConnectInfo <> '') and (not Sources[ID].HadAPosition) then begin
+            if (Sources[ID].Device<> '') and (Sources[ID].Version <> '') then begin
+                Sources[ID].Form.lblValue.Text := Sources[ID].ConnectInfo + ': ' + Sources[ID].Device + ' ' + Sources[ID].Version;
+            end else begin
+                Sources[ID].Form.lblValue.Text := Sources[ID].ConnectInfo;
+            end;
+        end;
+    except
+        Sources[ID].Form.lblValue.Text := '** ERROR - **';
     end;
 end;
 
@@ -674,11 +707,13 @@ end;
 procedure TfrmSources.SSDVStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
 begin
     frmMain.UploadStatus(SourceID, SSDV_UPLINK, Active, OK);
+    frmUploaders.WriteSSDVStatus(Status);
 end;
 
 procedure TfrmSources.HabLinkStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
 begin
     frmMain.UploadStatus(SourceID, HABLINK_UPLINK, Active, OK);
+    frmUploaders.WriteHABLinkStatus(Status);
 end;
 
 procedure TfrmSources.Label11Click(Sender: TObject);
@@ -719,6 +754,7 @@ end;
 procedure TfrmSources.MQTTStatusCallback(SourceID: Integer; Active, OK: Boolean; Status: String);
 begin
     frmMain.UploadStatus(SourceID, MQTT_UPLINK, Active, OK);
+    frmUploaders.WriteMQTTStatus(Status);
 end;
 
 procedure TfrmSources.UpdateCarUploadSettings;
@@ -727,7 +763,7 @@ begin
                                  GetSettingString('CHASE', 'Callsign', 'UNKNOWN'),
                                  True,
                                  GetSettingInteger('CHASE', 'Period', 30),
-                                 GetSettingBoolean('Upload', 'Upload', False));
+                                 GetSettingBoolean('CHASE', 'Upload', False));
 end;
 
 procedure TfrmSources.UpdateMQTTUploads;
@@ -740,12 +776,24 @@ begin
 
     CarTopic := GetSettingString('Upload', 'MQTTChaseTopic', '');
 
-    MQTTUploader.SetMQTTDetails(GetSettingString('Upload', 'MQTTBroker', ''),
-                                GetSettingString('Upload', 'MQTTUserName', ''),
-                                GetSettingString('Upload', 'MQTTPassword', ''),
-                                Topic, CarTopic);
+    if MQTTUploader <> nil then begin
+        MQTTUploader.SetMQTTDetails(GetSettingString('Upload', 'MQTTBroker', ''),
+                                    GetSettingString('Upload', 'MQTTUserName', ''),
+                                    GetSettingString('Upload', 'MQTTPassword', ''),
+                                    Topic, CarTopic);
+    end;
 
-    HablinkUploader.SetMQTTDetails('hab.link', 'daffyduck', 'HAB2022', 'incoming/payloads/$PAYLOAD$', 'incoming/chase/$CALLSIGN$');
+    if HablinkUploader <> nil then begin
+        HablinkUploader.SetMQTTDetails('hab.link', 'daffyduck', 'HAB2022', 'incoming/payloads/$PAYLOAD$', 'incoming/chase/$CALLSIGN$');
+    end;
 end;
 
+procedure TfrmSources.SetGPSStatus(Status: String);
+begin
+    Sources[GPS_SOURCE].Form.lblValue.Text := Status;
+end;
+
+
 end.
+
+
