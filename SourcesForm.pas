@@ -374,11 +374,11 @@ begin
             if ChaseCallsign <> '' then begin
                 if GetSettingBoolean('Upload', 'MQTT', False) and (MQTTUploader <> nil) then begin
                     if Now >= (LastMQTTLinkUpload + GetSettingInteger('CHASE', 'Period', 30) / 86400) then begin
-                        MQTTUploader.SendChase(ChaseCallsign + '_Chase',
-                                               FormatDateTime('hh:nn:ss', TimeStamp) + ',' +
-                                               Format('%2.5f', [Latitude]) + ',' +
-                                               Format('%2.5f', [Longitude]) + ', ' +
-                                               Format('%.0f', [Altitude]));
+                        MQTTUploader.SendChase(ChaseCallsign,
+                                               '{"time":"' + FormatDateTime('hh:nn:ss', TimeStamp) + '",' +
+                                               '"lat":' + Format('%2.5f', [Latitude]) + ',' +
+                                               '"lon":' + Format('%2.5f', [Longitude]) + ',' +
+                                               '"alt":' + Format('%.0f', [Altitude]) + '}');
 
                         LastMQTTLinkUpload := Now;
                     end;
@@ -386,11 +386,11 @@ begin
 
                 if GetSettingBoolean('Upload', 'HABLINK', False) and (HablinkUploader <> nil) then begin
                     if Now >= (LastHABLinkUpload + 5/ 86400) then begin
-                        HablinkUploader.SendChase(ChaseCallsign + '_Chase',
-                                                  FormatDateTime('hh:nn:ss', TimeStamp) + ',' +
-                                                  Format('%2.5f', [Latitude]) + ',' +
-                                                  Format('%2.5f', [Longitude]) + ', ' +
-                                                  Format('%.0f', [Altitude]));
+                        HablinkUploader.SendChase(ChaseCallsign,
+                                                   '{"time":"' + FormatDateTime('hh:nn:ss', TimeStamp) + '",' +
+                                                   '"lat":' + Format('%2.5f', [Latitude]) + ',' +
+                                                   '"lon":' + Format('%2.5f', [Longitude]) + ',' +
+                                                   '"alt":' + Format('%.0f', [Altitude]) + '}');
 
                         LastHABLinkUpload := Now;
                     end;
@@ -511,7 +511,7 @@ begin
             if OK then begin
                 Callsign := GetSettingString('General', 'Callsign', '');
 
-                // Callsign needed for HABHUB and Sondehub
+                // Callsign needed for HABHUB, Sondehub and MQTT
                 if Callsign <> '' then begin
                     if GetSettingBoolean('Upload', 'Sondehub', False) and (SondehubUploader <> nil) then begin
                         SondehubUploader.SaveTelemetryToSondehub(ID, Position);
@@ -519,11 +519,11 @@ begin
                 end;
 
                 if GetSettingBoolean('Upload', 'MQTT', False) and (MQTTUploader <> nil) then begin
-                    MQTTUploader.SendTelemetry(Position.PayloadID, Position.Line);
+                    MQTTUploader.SendTelemetry(Position.PayloadID, Callsign, Position.Line);
                 end;
 
                 if GetSettingBoolean('Upload', 'HABLINK', False) and (HablinkUploader <> nil) then begin
-                    HablinkUploader.SendTelemetry(Position.PayloadID, Position.Line);
+                    HablinkUploader.SendTelemetry(Position.PayloadID, Callsign, Position.Line);
                 end;
             end;
 
@@ -784,7 +784,7 @@ begin
     end;
 
     if HablinkUploader <> nil then begin
-        HablinkUploader.SetMQTTDetails('hab.link', 'daffyduck', 'HAB2022', 'incoming/payloads/$PAYLOAD$', 'incoming/chase/$CALLSIGN$');
+        HablinkUploader.SetMQTTDetails('hab.link', 'daffyduck', 'HAB2022', 'incoming/payloads/$PAYLOAD$/$LISTENER$/sentence', 'incoming/chase/$CALLSIGN$');
     end;
 end;
 

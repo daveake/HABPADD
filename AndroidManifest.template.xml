@@ -6,7 +6,7 @@
         android:versionName="%versionName%">
 
     <!-- This is the platform API where NativeActivity was introduced. -->
-    <uses-sdk android:minSdkVersion="%minSdkVersion%" android:targetSdkVersion="%targetSdkVersion%" />
+    <uses-sdk android:minSdkVersion="%minSdkVersion%" android:targetSdkVersion="31" />
 <%uses-permission%>
     <application android:persistent="%persistent%"
         android:restoreAnyVersion="%restoreAnyVersion%"
@@ -21,6 +21,7 @@
              This will take care of integrating with our NDK code. -->
         <activity android:name="com.embarcadero.firemonkey.FMXNativeActivity"
                 android:label="%activityLabel%"
+                android:exported="true"
                 android:configChanges="orientation|keyboardHidden">
             <!-- Tell NativeActivity the name of our .so -->
             <meta-data android:name="android.app.lib_name"

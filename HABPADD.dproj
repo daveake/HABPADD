@@ -5,8 +5,8 @@
         <FrameworkType>FMX</FrameworkType>
         <MainSource>HABPADD.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
-        <Platform Condition="'$(Platform)'==''">Android64</Platform>
+        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>168979</TargetedPlatforms>
         <AppType>Application</AppType>
         <PlatformSDK Condition="'$(PlatformSDK)'=='' And '$(Platform)'=='Android64'">AndroidSDK25.2.5_64bit.sdk</PlatformSDK>
@@ -380,13 +380,13 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android)'!=''">
         <DCC_IOChecking>false</DCC_IOChecking>
-        <VerInfo_Build>3</VerInfo_Build>
+        <VerInfo_Build>4</VerInfo_Build>
         <Android_SplashImage426>Images\Splash_426.png</Android_SplashImage426>
         <Android_SplashImage470>Images\Splash_470.png</Android_SplashImage470>
         <Android_SplashImage640>Images\Splash_640.png</Android_SplashImage640>
         <Android_SplashImage960>Images\Splash_960.png</Android_SplashImage960>
         <Android_SplashTileMode>disabled</Android_SplashTileMode>
-        <VerInfo_Keys>package=com.daveakerman.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=3;versionName=V1.8.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.daveakerman.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=4;versionName=V1.8.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <Android_LauncherIcon36>Images\Android\Icon_36.png</Android_LauncherIcon36>
         <AUP_CHANGE_WIFI_MULTICAST_STATE>true</AUP_CHANGE_WIFI_MULTICAST_STATE>
         <AUP_WRITE_CALENDAR>false</AUP_WRITE_CALENDAR>
@@ -402,18 +402,19 @@
         <CfgParent>Cfg_2</CfgParent>
         <Cfg_2>true</Cfg_2>
         <DCC_IOChecking>false</DCC_IOChecking>
-        <VerInfo_Build>3</VerInfo_Build>
+        <VerInfo_Build>4</VerInfo_Build>
         <Android_SplashImage426>Images\Splash_426.png</Android_SplashImage426>
         <Android_SplashImage470>Images\Splash_470.png</Android_SplashImage470>
         <Android_SplashImage640>Images\Splash_640.png</Android_SplashImage640>
         <Android_SplashImage960>Images\Splash_960.png</Android_SplashImage960>
         <Android_SplashTileMode>disabled</Android_SplashTileMode>
-        <VerInfo_Keys>package=com.daveakerman.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=3;versionName=V1.9.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.daveakerman.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=4;versionName=V1.9.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <DCC_GenerateAndroidAppBundleFile>true</DCC_GenerateAndroidAppBundleFile>
         <PF_KeyStore>Keys\JABPADD.keystore</PF_KeyStore>
         <PF_KeyStorePass>850A47C55F9E0799CF74E50BA4007BF0E4130519A05A97D897C80FA28E363C94DB04A390E34B1C31C1B15774FAD1C339BABA3609043F22FC1657458CE5A722CFC949F31FD555FAFEBFE4AF0D07551D589201</PF_KeyStorePass>
         <PF_AliasKey>habpadd</PF_AliasKey>
         <PF_AliasKeyPass>850A47C55F9E0799CF74E50BA4007BF0E4130519A05A97D897C80FA28E363C94DB04A390E34B1C31C1B15774FAD1C339BABA3609043F22FC1657458CE5A722CFC949F31FD555FAFEBFE4AF0D07551D589201</PF_AliasKeyPass>
+        <BT_BuildType>AppStore</BT_BuildType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice64)'!=''">
         <DCC_WriteableConstants>true</DCC_WriteableConstants>
@@ -1575,12 +1576,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libPCRE.dylib" Class="DependencyModule">
                     <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libPCRE.dylib" Class="DependencyModule">
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
                     <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -1826,6 +1827,12 @@
                 </DeployFile>
                 <DeployFile LocalName="Android\Release\libHABPADD.so" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Android">
+                        <RemoteName>libHABPADD.so</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android\Release\libHABPADD.so" Configuration="Release" Class="ProjectOutput_Android32">
+                    <Platform Name="Android64">
                         <RemoteName>libHABPADD.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
